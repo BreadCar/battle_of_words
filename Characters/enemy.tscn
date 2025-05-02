@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxnlk1rpkda2d"]
+
+[ext_resource type="Script" uid="uid://crutaxsyiwxnb" path="res://classes/enemy.gd" id="1_sdfay"]
+[ext_resource type="Script" uid="uid://dgwegxgyk0ebl" path="res://classes/statemachine.gd" id="2_mpxx0"]
+[ext_resource type="Script" uid="uid://ctpuwkt5n8aj2" path="res://classes/Stats.gd" id="3_3tsq0"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_sdfay")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+
+[node name="Hitbox" type="Area2D" parent="Graphics"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitbox"]
+
+[node name="Hurtbox" type="Area2D" parent="Graphics"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurtbox"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_mpxx0")
+metadata/_custom_type_script = "uid://dgwegxgyk0ebl"
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("3_3tsq0")
+metadata/_custom_type_script = "uid://ctpuwkt5n8aj2"

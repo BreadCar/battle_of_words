@@ -7,12 +7,14 @@ extends CharacterBody2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var jump_request_timer: Timer = $Timers/Jump_request_timer
 @onready var coyote_timer: Timer = $Timers/coyote_timer
+@onready var cast_request_timer: Timer = $Timers/cast_request_timer
 
 enum State  {
 	IDLE,
 	RUN,
 	JUMP,
 	FALL,
+	CASTING,
 }
 
 const Ground_State:= [State.IDLE, State.RUN]
@@ -25,6 +27,8 @@ var gravity : float = ProjectSettings.get("physics/2d/default_gravity")
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
+	if event.is_action_pressed("cast"):
+		cast_request_timer.start()
 
 func tick_physics(state: State, delta: float) -> void:
 	match state:
@@ -61,9 +65,11 @@ func stand(delta: float) -> void:
 func get_next_state(state: State) -> int:
 	
 	var direction: int = Input.get_axis("move_l","move_r")
-	var is_still: bool = is_zero_approx(direction) and velocity.x == 0
+	var is_still: bool = is_zero_approx(direction) and is_zero_approx(velocity.x)
 	var can_jump: bool = coyote_timer.time_left > 0 or is_on_floor()
-	var should_jump: bool = can_jump and jump_request_timer.time_left> 0
+	var should_jump: bool = can_jump and jump_request_timer.time_left > 0
+	var can_cast: bool = state in Ground_State
+	var should_cast: bool = can_cast and cast_request_timer.time_left > 0
 	
 	if state in Ground_State and not is_on_floor():
 		return State.FALL
@@ -85,11 +91,14 @@ func get_next_state(state: State) -> int:
 				return State.FALL
 		
 		State.FALL:
-			if is_on_floor():
+			if is_on_floor() and is_still:
+				return State.IDLE
+			elif is_on_floor():
 				return State.RUN
 			if should_jump:
 				return State.JUMP
-				
+
+
 	return StateMachine.KEEP_CURRENT
 
 func transition_state(from: State , to: State) -> void:
@@ -105,15 +114,19 @@ func transition_state(from: State , to: State) -> void:
 	
 	match to:
 		State.IDLE:
-			animation_player.play("idle")
+			if not animation_player.is_playing() or animation_player.current_animation != "idle":
+				print("Playing IDLE")
+				animation_player.play("idle")
+		
 		State.RUN:
 			animation_player.play("run")
+		
 		State.JUMP:
 			animation_player.play("jump")
 			velocity.y = Jump_Velocity
 			coyote_timer.stop()
 			jump_request_timer.stop()
-			
+		
 		State.FALL:
 			animation_player.play("fall")
 			if from in Ground_State:
