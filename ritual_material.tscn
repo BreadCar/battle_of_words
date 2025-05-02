@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://drmj66jsv7qc1"]
+
+[sub_resource type="GDScript" id="GDScript_m2rub"]
+script/source = "extends Node2D
+
+@export var character = \"\"
+var collected = false
+
+func set_new_character(new_char):
+    character = new_char
+    $TextLabel.text = character
+
+func _on_collected():
+    if not collected:
+        collected = true
+        var player = get_tree().get_first_node_in_group(\"player\")
+        if player:
+            player.activated_characters.append(character)
+            queue_free()
+"
+
+[node name="RitualMaterial" type="Area2D"]
+script = SubResource("GDScript_m2rub")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://druxpnfw0gx0l"]
+
+[ext_resource type="Script" uid="uid://dmeyykhhqpfka" path="res://button.gd" id="1_0fbet"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_uchyk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0fbet"]
+font_color = Color(0, 0, 0, 0.643137)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.429381, 0.178879, 0.560028, 0.662745)
+self_modulate = Color(1, 0.462745, 0.890196, 1)
+position = Vector2(195, 121.5)
+scale = Vector2(494, 319)
+mesh = SubResource("QuadMesh_uchyk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 44.0
+offset_right = 245.0
+offset_bottom = 90.0
+text = "XXXX"
+label_settings = SubResource("LabelSettings_0fbet")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 103.0
+offset_right = 102.0
+offset_bottom = 134.0
+text = "game start"
+flat = true
+script = ExtResource("1_0fbet")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = -17.0
+offset_top = 144.0
+offset_right = 75.0
+offset_bottom = 175.0
+text = "exit"
+flat = true
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button" method="_on_button_2_pressed"]

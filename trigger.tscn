@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj1hqosq6q811"]
+
+[ext_resource type="Script" uid="uid://bee1bk0e34ia2" path="res://trigger.gd" id="1_r7rtx"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_r7rtx"]
+
+[node name="Trigger" type="Area2D"]
+visible = false
+script = ExtResource("1_r7rtx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_r7rtx")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
