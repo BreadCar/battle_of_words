@@ -1,7 +1,3 @@
 [gd_scene format=3 uid="uid://c2u1mux2ffs7t"]
 
-[node name="World" type="Node"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="test_scene" type="Node"]
