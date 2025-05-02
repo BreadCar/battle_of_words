@@ -15,6 +15,7 @@ run/main_scene="uid://c2u1mux2ffs7t"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+<<<<<<< HEAD
 [display]
 
 window/size/viewport_width=1920
@@ -57,6 +58,13 @@ jump={
 2d_physics/layer_5="PlayerHurtbox"
 2d_physics/layer_6="MobHurtbox"
 
+=======
+<<<<<<< HEAD
+>>>>>>> e4518e80318c8a8d9a7cce2c5ee9cef4e959de50
 [rendering]
-
 textures/canvas_textures/default_texture_filter=0
+
+[display]
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
