@@ -9,7 +9,7 @@ enum State{
 	DIE,
 }
 
-var speed: float = 350
+var speed: float = 200
 
 @onready var wall_checker: RayCast2D = $Graphics/Wall_checker
 @onready var edge_checker: RayCast2D = $Graphics/edge_checker
@@ -24,7 +24,7 @@ func can_see_player() -> bool:
 
 func tick_physics(state: State, delta: float) -> void:
 	
-	var should_turn = wall_checker.is_colliding() or not edge_checker.is_colliding()
+	var should_turn = (wall_checker.is_colliding() and not wall_checker.get_collider() is Player) or not edge_checker.is_colliding()
 	if should_turn:
 		direction *= -1
 	
@@ -42,22 +42,29 @@ func get_next_state(state: State) -> int:
 	
 	var direction: int = Input.get_axis("move_l","move_r")
 	var is_still: bool = is_zero_approx(direction) and is_zero_approx(velocity.x)
+	var should_attack: bool = wall_checker.is_colliding() and wall_checker.get_collider() is Player
+	if stats.health == 0:
+		return State.DIE
 	
 	match state:
 		State.IDLE:
-			if state_machine.state_time > 3:
+			if state_machine.state_time > 2:
+				return State.RUN
+			if can_see_player():
 				return State.RUN
 		State.WALK:
-			if state_machine.state_time > 5:
+			if state_machine.state_time > 8:
 				return State.IDLE
+			if can_see_player():
+				return State.RUN
 		State.RUN:
-			if wall_checker.is_colliding() and wall_checker.get_collider() is Player:
+			if should_attack:
 				return State.ATTACK
 			if not can_see_player() and colddown_timer.is_stopped():
 				return State.WALK
 			
 		State.ATTACK:
-			if not animation_player.is_playing():
+			if not should_attack:
 				return State.RUN
 			
 		State.HURT:
