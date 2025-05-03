@@ -86,6 +86,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_ffjio"]
 resource_name = "attack"
 length = 0.8
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -157,7 +158,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_rs03m"]
@@ -507,14 +508,16 @@ region_rect = Rect2(0, 0, 128, 32)
 [node name="Wall_checker" type="RayCast2D" parent="Graphics" index="3"]
 position = Vector2(-6, -8)
 target_position = Vector2(-22, 0)
+collision_mask = 3
 
 [node name="edge_checker" type="RayCast2D" parent="Graphics" index="4"]
 position = Vector2(-30, -7)
 target_position = Vector2(0, 13)
 
 [node name="Player_checker" type="RayCast2D" parent="Graphics" index="5"]
-position = Vector2(-6, -8)
-target_position = Vector2(-68, 0)
+position = Vector2(-6, -14)
+target_position = Vector2(-155, 0)
+collision_mask = 3
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(4.65661e-10, -8)
