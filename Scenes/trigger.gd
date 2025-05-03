@@ -1,4 +1,28 @@
 extends Area2D
+
+@export var spike_color: Color = Color.RED  # 触发器对应尖刺的颜色
+@export var spike: NodePath  # 尖刺节点的路径
+
+#当玩家进入触发器范围时
+func _on_Trigger_body_entered(body):
+    if body.name == "Player":  
+      get_tree().current_scene.get_node("UI/Label").show()#F键ui的地址
+
+#当玩家离开触发器范围时
+func _on_Trigger_body_exited(body):
+    if body.name == "Player":
+	 get_tree().current_scene.get_node("UI/Label").hide()
+
+#按下F键位实现尖刺的函数
+func _process(delta):
+    if Input.is_action_just_pressed("interact"):
+        var spike_node = get_node(spike)
+        if spike_node:
+            spike_node.show_spike(spike_color)
+
+
+
+
 # 机关属性
 @export var initial_text = "DOORCLOSED"
 @export var activation_text = "OPEN"
