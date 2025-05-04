@@ -1,5 +1,6 @@
 class_name Player
 extends CharacterBody2D
+signal interacted
 
 
 @onready var graphics: Node2D = $Graphics
@@ -24,14 +25,14 @@ const Player_Speed: float = 300
 const Jump_Velocity: float = -300
 const Accleration: float = Player_Speed / 0.2
 var gravity : float = ProjectSettings.get("physics/2d/default_gravity") 
-var interacting_with:interactable
+var interacting_with: interactable
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
 	if event.is_action_pressed("cast"):
 		cast_request_timer.start()
-    if event.is_action_pressed("interact")and interacting_with:
+	if event.is_action_pressed("interact")and interacting_with:
 		interacting_with.interact()
 #interact对应F键
 func tick_physics(state: State, delta: float) -> void:
@@ -141,7 +142,7 @@ func transition_state(from: State , to: State) -> void:
 func _init() ->void:
 	collision_layer=0
 	collision_mask=0
-	set_colllision_mask_value(2,true)
+	set_collision_mask_value(2,true)
 
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)

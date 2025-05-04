@@ -8,29 +8,25 @@ extends Area2D
 
 #当玩家进入触发器范围时
 func _on_Trigger_body_entered(body):
-    if body.name == "Player":  
-      get_tree().current_scene.get_node("UI/Label").show()#F键ui的地址
+	if body.name == "Player":  
+		get_tree().current_scene.get_node("UI/Label").show()#F键ui的地址
 
 #当玩家离开触发器范围时
 func _on_Trigger_body_exited(body):
-    if body.name == "Player":
-	 get_tree().current_scene.get_node("UI/Label").hide()
+	if body.name == "Player":
+		get_tree().current_scene.get_node("UI/Label").hide()
 
 #按下F键位实现尖刺或平台移动
 func _process(delta):
-    if Input.is_action_just_pressed("interact"):
-        var spike_node = get_node(spike)
-        if spike_node:
-            spike_node.show_spike(spike_color)
+	if Input.is_action_just_pressed("interact"):
+		var spike_node = get_node(spike)
+		if spike_node:
+			spike_node.show_spike(spike_color)
 		var platform_node=get_node(platform)
 		if platform_node:
-			platform_node.can_control=false
-
-func _process(delta):
-	if Input.is_action_just_pressed("interact):
-		var platform_node=get_node(platform)
-		if platform_node:
+			platform_node.show_platform(platform_color)
 			platform_node.can_control=true
+
 
 # 机关属性
 @export var initial_text = "DOORCLOSED"
