@@ -1,18 +1,29 @@
-[gd_scene load_steps=14 format=4 uid="uid://xphfa4voimox"]
+[gd_scene load_steps=15 format=4 uid="uid://xphfa4voimox"]
 
-[ext_resource type="Texture2D" uid="uid://cchkkqutqq7vj" path="res://Assets/Scene/stringstar fields/background_0.png" id="1_xwwu8"]
-[ext_resource type="Texture2D" uid="uid://cjfl18kt27a44" path="res://Assets/Scene/stringstar fields/background_1.png" id="2_dqgbn"]
-[ext_resource type="Texture2D" uid="uid://cjr3p438uurbv" path="res://Assets/Scene/stringstar fields/background_2.png" id="3_40qop"]
-[ext_resource type="Texture2D" uid="uid://ktt45165sykc" path="res://Assets/Scene/stringstar fields/Big_Tree.png" id="4_3pq81"]
-[ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/stringstar fields/tileset.png" id="4_40qop"]
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="5_3icsq"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="6_3icsq"]
 [ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="6_3pq81"]
 [ext_resource type="TileSet" uid="uid://bcbt3jdmwoa4e" path="res://Scenes/Game_play/Resourse/Scene_tileset.tres" id="6_36eua"]
-[ext_resource type="FontFile" uid="uid://bq2s13vhvphbq" path="res://Assets/UI/minimalpixel.fnt" id="10_lnimb"]
+[ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="7_3icsq"]
+[ext_resource type="Texture2D" uid="uid://dh0l4uvk7tduc" path="res://Assets/Mobs/荆棘.png" id="8_4atdx"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0p05"]
-texture = ExtResource("4_40qop")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
+load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3icsq"]
+load_path = "res://.godot/imported/background_1.png-82d931fd7586fd90ebeed89807b9f4e2.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3pq81"]
+load_path = "res://.godot/imported/Big_Tree.png-e66980b843d3ae14128796c496f17328.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_36eua"]
+load_path = "res://.godot/imported/background_2.png-59c5b409bf7fe0b3d767306e9c584b5a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lnimb"]
+load_path = "res://.godot/imported/tileset.png-8b43e1dd1e5f5b02ae0001724d29e315.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4atdx"]
+texture = SubResource("CompressedTexture2D_lnimb")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -117,10 +128,10 @@ texture = ExtResource("4_40qop")
 
 [sub_resource type="TileSet" id="TileSet_5nsto"]
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_j0p05")
+sources/1 = SubResource("TileSetAtlasSource_4atdx")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40qop"]
-size = Vector2(21, 168)
+size = Vector2(30.5, 168)
 
 [node name="01Tutorial" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [32.0]
@@ -137,22 +148,22 @@ motion_scale = Vector2(0.1, 1)
 [node name="00" type="Sprite2D" parent="Background/ParallaxBackground_00"]
 position = Vector2(-280, -80)
 scale = Vector2(1.08, 1.08)
-texture = ExtResource("1_xwwu8")
+texture = SubResource("CompressedTexture2D_40qop")
 
 [node name="03" type="Sprite2D" parent="Background/ParallaxBackground_00"]
 position = Vector2(31.0395, -80)
 scale = Vector2(1.08, 1.08)
-texture = ExtResource("1_xwwu8")
+texture = SubResource("CompressedTexture2D_40qop")
 
 [node name="06" type="Sprite2D" parent="Background/ParallaxBackground_00"]
 position = Vector2(342.079, -80)
 scale = Vector2(1.08, 1.08)
-texture = ExtResource("1_xwwu8")
+texture = SubResource("CompressedTexture2D_40qop")
 
 [node name="09" type="Sprite2D" parent="Background/ParallaxBackground_00"]
 position = Vector2(653.118, -80)
 scale = Vector2(1.08, 1.08)
-texture = ExtResource("1_xwwu8")
+texture = SubResource("CompressedTexture2D_40qop")
 
 [node name="ColorRect" type="ColorRect" parent="Background/ParallaxBackground_00"]
 offset_left = -434.26
@@ -167,19 +178,19 @@ position = Vector2(-291.667, -110.185)
 motion_scale = Vector2(0.3, 1)
 
 [node name="01" type="Sprite2D" parent="Background/Parallaxackground_01"]
-texture = ExtResource("2_dqgbn")
+texture = SubResource("CompressedTexture2D_3icsq")
 
 [node name="04" type="Sprite2D" parent="Background/Parallaxackground_01"]
 position = Vector2(288, 0)
-texture = ExtResource("2_dqgbn")
+texture = SubResource("CompressedTexture2D_3icsq")
 
 [node name="07" type="Sprite2D" parent="Background/Parallaxackground_01"]
 position = Vector2(576, 0)
-texture = ExtResource("2_dqgbn")
+texture = SubResource("CompressedTexture2D_3icsq")
 
 [node name="10" type="Sprite2D" parent="Background/Parallaxackground_01"]
 position = Vector2(864, 0)
-texture = ExtResource("2_dqgbn")
+texture = SubResource("CompressedTexture2D_3icsq")
 
 [node name="ParallaxTree" type="ParallaxLayer" parent="Background"]
 modulate = Color(0.303233, 0.303233, 0.303233, 1)
@@ -194,26 +205,26 @@ tile_set = ExtResource("5_3icsq")
 [node name="Tree_00" type="Sprite2D" parent="Background/ParallaxTree"]
 position = Vector2(367.593, -73.1483)
 scale = Vector2(1.3, 1.3)
-texture = ExtResource("4_3pq81")
+texture = SubResource("CompressedTexture2D_3pq81")
 
 [node name="ParallaxBackground_02" type="ParallaxLayer" parent="Background"]
 position = Vector2(-291.667, -96.2965)
 motion_scale = Vector2(0.6, 1)
 
 [node name="02" type="Sprite2D" parent="Background/ParallaxBackground_02"]
-texture = ExtResource("3_40qop")
+texture = SubResource("CompressedTexture2D_36eua")
 
 [node name="05" type="Sprite2D" parent="Background/ParallaxBackground_02"]
 position = Vector2(288, 0)
-texture = ExtResource("3_40qop")
+texture = SubResource("CompressedTexture2D_36eua")
 
 [node name="08" type="Sprite2D" parent="Background/ParallaxBackground_02"]
 position = Vector2(576, 0)
-texture = ExtResource("3_40qop")
+texture = SubResource("CompressedTexture2D_36eua")
 
 [node name="11" type="Sprite2D" parent="Background/ParallaxBackground_02"]
 position = Vector2(864, 0)
-texture = ExtResource("3_40qop")
+texture = SubResource("CompressedTexture2D_36eua")
 
 [node name="ParallaxBushes" type="ParallaxLayer" parent="Background"]
 modulate = Color(0.65834, 0.65834, 0.65834, 1)
@@ -238,8 +249,15 @@ position = Vector2(-331, -61)
 shape = SubResource("RectangleShape2D_40qop")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Scene/Edge"]
-position = Vector2(601, -61)
+position = Vector2(558, -61)
 shape = SubResource("RectangleShape2D_40qop")
+
+[node name="Sprite2D" type="Sprite2D" parent="Scene/Edge"]
+modulate = Color(0.360784, 0.537255, 0.662745, 1)
+z_index = 5
+position = Vector2(553, -119)
+scale = Vector2(0.329611, 0.358576)
+texture = ExtResource("8_4atdx")
 
 [node name="Player" parent="." instance=ExtResource("6_3pq81")]
 position = Vector2(-235, 0)
@@ -272,11 +290,5 @@ offset_right = 611.0
 offset_bottom = 40.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 112.0
-offset_top = -82.0
-offset_right = 195.0
-offset_bottom = -52.0
-theme_override_fonts/font = ExtResource("10_lnimb")
-text = "Place NPC Here
-"
+[node name="NPC" parent="." instance=ExtResource("7_3icsq")]
+position = Vector2(155, -15)

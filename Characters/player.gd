@@ -33,8 +33,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
 
-	if event.is_action_pressed("cast"):
-		cast_request_timer.start()
+	#if event.is_action_pressed("cast"):
+		#cast_request_timer.start()
 	if event.is_action_pressed("interact") and not interacting_with.is_empty():
 		interacting_with.back().interact()  # interact 对应 F 键
 

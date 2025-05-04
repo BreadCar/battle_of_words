@@ -1,10 +1,9 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://rxbp7ve8jf8j"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bl1tv"]
-load_path = "res://.godot/imported/tileset_dark.png-0f78f97aa5f65317e0171463c804c6fc.ctex"
+[ext_resource type="Texture2D" uid="uid://cpirtinaupjgr" path="res://Assets/Scene/01/stringstar fields/tileset_dark.png" id="1_rv0co"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u8ije"]
-texture = SubResource("CompressedTexture2D_bl1tv")
+texture = ExtResource("1_rv0co")
 10:0/size_in_atlas = Vector2i(8, 9)
 10:0/0 = 0
 7:5/size_in_atlas = Vector2i(3, 2)

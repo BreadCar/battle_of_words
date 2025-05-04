@@ -1,3 +1,419 @@
-[gd_scene format=3 uid="uid://xwh6t27oe7d8"]
+[gd_scene load_steps=19 format=4 uid="uid://xwh6t27oe7d8"]
 
-[node name="02Forest" type="Node2D"]
+[ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="3_lsw8j"]
+[ext_resource type="TileSet" uid="uid://bcbt3jdmwoa4e" path="res://Scenes/Game_play/Resourse/Scene_tileset.tres" id="6_x2g80"]
+[ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="10_ew4r3"]
+[ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="11_q306e"]
+[ext_resource type="SpriteFrames" uid="uid://cyjdjuqjhyetu" path="res://Scenes/Start_Page/fire.tres" id="12_lsw8j"]
+[ext_resource type="Texture2D" uid="uid://cyb6cpmtuhy7n" path="res://Assets/Scene/Light.png" id="13_pifuj"]
+[ext_resource type="PackedScene" uid="uid://dgy78yxhn2l1u" path="res://Characters/slime.tscn" id="15_v6ica"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
+load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3icsq"]
+load_path = "res://.godot/imported/background_1.png-82d931fd7586fd90ebeed89807b9f4e2.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3pq81"]
+load_path = "res://.godot/imported/Big_Tree.png-e66980b843d3ae14128796c496f17328.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_36eua"]
+load_path = "res://.godot/imported/background_2.png-59c5b409bf7fe0b3d767306e9c584b5a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pm218"]
+load_path = "res://.godot/imported/background_layer_1.png-ec3dfad38eb41e5a29030f95c3addabf.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e75dw"]
+load_path = "res://.godot/imported/background_layer_2.png-e8b0a98844d113629f857c8eeaed2c4f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hiw41"]
+load_path = "res://.godot/imported/background_layer_3.png-70ca0546b03123e7c8946aafb545b1f6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lnimb"]
+load_path = "res://.godot/imported/tileset.png-8b43e1dd1e5f5b02ae0001724d29e315.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsw8j"]
+texture = SubResource("CompressedTexture2D_lnimb")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+1:2/0 = 0
+1:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+9:7/0 = 0
+9:8/0 = 0
+0:9/0 = 0
+0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:9/0 = 0
+1:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:9/0 = 0
+2:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:9/0 = 0
+3:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:9/0 = 0
+4:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:9/0 = 0
+5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:9/0 = 0
+6:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:9/0 = 0
+7:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:9/0 = 0
+8:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:9/0 = 0
+9:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:9/0 = 0
+10:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:9/0 = 0
+11:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+12:9/0 = 0
+12:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:9/0 = 0
+13:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+14:9/0 = 0
+14:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+15:9/0 = 0
+15:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+16:9/0 = 0
+16:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+17:9/0 = 0
+17:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:10/0 = 0
+0:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:10/0 = 0
+1:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:10/0 = 0
+2:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:10/0 = 0
+3:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:10/0 = 0
+4:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:10/0 = 0
+5:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:10/0 = 0
+6:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:10/0 = 0
+7:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:10/0 = 0
+8:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:10/0 = 0
+9:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:0/size_in_atlas = Vector2i(8, 9)
+10:0/0 = 0
+10:0/0/texture_origin = Vector2i(8, 64)
+0:5/size_in_atlas = Vector2i(4, 4)
+0:5/0 = 0
+0:5/0/texture_origin = Vector2i(0, 24)
+2:2/size_in_atlas = Vector2i(1, 3)
+2:2/0 = 0
+2:2/0/texture_origin = Vector2i(0, -16)
+0:2/size_in_atlas = Vector2i(1, 2)
+0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, -8)
+3:3/size_in_atlas = Vector2i(2, 2)
+3:3/0 = 0
+3:3/0/texture_origin = Vector2i(0, 8)
+7:5/size_in_atlas = Vector2i(3, 2)
+7:5/0 = 0
+7:5/0/texture_origin = Vector2i(0, 8)
+4:7/size_in_atlas = Vector2i(5, 2)
+4:7/0 = 0
+4:7/0/texture_origin = Vector2i(0, 8)
+
+[sub_resource type="TileSet" id="TileSet_pifuj"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_lsw8j")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2shyc"]
+size = Vector2(20, 550.5)
+
+[node name="01Forest" type="Node2D"]
+metadata/_edit_vertical_guides_ = [-319.0, 601.0]
+metadata/_edit_horizontal_guides_ = [290.0]
+
+[node name="Background" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
+
+[node name="ParallaxBackground_00" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+position = Vector2(0, -50.926)
+motion_scale = Vector2(0.1, 1)
+
+[node name="00" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxBackground_00"]
+position = Vector2(-280, -80)
+scale = Vector2(1.08, 1.08)
+texture = SubResource("CompressedTexture2D_40qop")
+
+[node name="03" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxBackground_00"]
+position = Vector2(31.0395, -80)
+scale = Vector2(1.08, 1.08)
+texture = SubResource("CompressedTexture2D_40qop")
+
+[node name="06" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxBackground_00"]
+position = Vector2(342.079, -80)
+scale = Vector2(1.08, 1.08)
+texture = SubResource("CompressedTexture2D_40qop")
+
+[node name="09" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxBackground_00"]
+position = Vector2(653.118, -80)
+scale = Vector2(1.08, 1.08)
+texture = SubResource("CompressedTexture2D_40qop")
+
+[node name="ColorRect" type="ColorRect" parent="Background/ParallaxBackground/ParallaxBackground_00"]
+offset_left = -434.26
+offset_top = -216.667
+offset_right = -385.26
+offset_bottom = -176.667
+scale = Vector2(25.4488, 1)
+color = Color(0.180392, 0.352941, 0.537255, 1)
+
+[node name="Parallaxackground_01" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+position = Vector2(-291.667, -110.185)
+motion_scale = Vector2(0.3, 1)
+
+[node name="01" type="Sprite2D" parent="Background/ParallaxBackground/Parallaxackground_01"]
+position = Vector2(0, 7.185)
+texture = SubResource("CompressedTexture2D_3icsq")
+
+[node name="04" type="Sprite2D" parent="Background/ParallaxBackground/Parallaxackground_01"]
+position = Vector2(288, 7.185)
+texture = SubResource("CompressedTexture2D_3icsq")
+
+[node name="07" type="Sprite2D" parent="Background/ParallaxBackground/Parallaxackground_01"]
+position = Vector2(576, 7.185)
+texture = SubResource("CompressedTexture2D_3icsq")
+
+[node name="10" type="Sprite2D" parent="Background/ParallaxBackground/Parallaxackground_01"]
+position = Vector2(864, 7.185)
+texture = SubResource("CompressedTexture2D_3icsq")
+
+[node name="ParallaxTree" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+modulate = Color(0.303233, 0.303233, 0.303233, 1)
+motion_scale = Vector2(0.45, 1)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="Background/ParallaxBackground/ParallaxTree"]
+position = Vector2(-30, 0)
+scale = Vector2(1.66231, 1.66231)
+tile_map_data = PackedByteArray("AAAGAPv/AQAKAAAAABD/////AQAAAAUAABA=")
+tile_set = ExtResource("3_lsw8j")
+
+[node name="Tree_00" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxTree"]
+position = Vector2(367.593, -73.1483)
+scale = Vector2(1.3, 1.3)
+texture = SubResource("CompressedTexture2D_3pq81")
+
+[node name="ParallaxBackground_02" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+position = Vector2(-291.667, -96.2965)
+motion_scale = Vector2(0.6, 1)
+
+[node name="02" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxBackground_02"]
+position = Vector2(-0.333008, 7.29651)
+texture = SubResource("CompressedTexture2D_36eua")
+
+[node name="05" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxBackground_02"]
+position = Vector2(287.667, 7.29651)
+texture = SubResource("CompressedTexture2D_36eua")
+
+[node name="08" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxBackground_02"]
+position = Vector2(575.667, 7.29651)
+texture = SubResource("CompressedTexture2D_36eua")
+
+[node name="11" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxBackground_02"]
+position = Vector2(863.667, 7.29651)
+texture = SubResource("CompressedTexture2D_36eua")
+
+[node name="ParallaxBushes" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+visible = false
+modulate = Color(0.65834, 0.65834, 0.65834, 1)
+motion_scale = Vector2(0.8, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Background/ParallaxBackground/ParallaxBushes"]
+tile_map_data = PackedByteArray("AAAFAP7/AAAAAAUAAAAHAP//AAAHAAUAAAAIAP//AAAHAAUAAAAKAP//AAAIAAYAAAAKAP7/AAAIAAUAAAAMAP7/AAAIAAUAAAALAP//AAAIAAYAAAAMAP//AAAIAAYAAAANAP//AAAJAAYAAAAJAP//AAAHAAYAAAATAP//AAAAAAUAABD3//7/AAAAAAUAABDv//7/AAAHAAUAAADv////AAAHAAYAAADw//7/AAAIAAUAAADw////AAAIAAYAAADx//7/AAAJAAUAAADx////AAAJAAYAAAAAAP7/AAAHAAUAAAAAAP//AAAHAAYAAAABAP7/AAAIAAUAAAABAP//AAAIAAYAAAACAP7/AAAJAAUAAAACAP//AAAJAAYAAAAQAP7/AAAHAAUAAAAQAP//AAAHAAYAAAARAP7/AAAIAAUAAAARAP//AAAIAAYAAAASAP7/AAAJAAUAAAASAP//AAAJAAYAAAAYAP//AAAEAAcAAAAZAP//AAAHAAYAAAAaAP7/AAAIAAUAAAAaAP//AAAIAAYAAAAbAP7/AAAIAAUAAAAbAP//AAAIAAYAAAAcAP7/AAAJAAUAAAAcAP//AAAJAAYAAAAZAP7/AAAHAAUAAAAVAP3/AAAAAAUAAAD///3/AAAAAAUAAAA=")
+tile_set = ExtResource("6_x2g80")
+
+[node name="ParallaxUnderground" type="ParallaxBackground" parent="Background"]
+
+[node name="ParallaxBackground_00" type="ParallaxLayer" parent="Background/ParallaxUnderground"]
+modulate = Color(0.203922, 0.188235, 0.313726, 1)
+position = Vector2(-47, 229)
+motion_scale = Vector2(0.1, 1)
+
+[node name="00" type="Sprite2D" parent="Background/ParallaxUnderground/ParallaxBackground_00"]
+position = Vector2(-280, -80)
+scale = Vector2(1.08, 1.08)
+texture = SubResource("CompressedTexture2D_pm218")
+
+[node name="03" type="Sprite2D" parent="Background/ParallaxUnderground/ParallaxBackground_00"]
+position = Vector2(65, -80)
+scale = Vector2(1.08, 1.08)
+texture = SubResource("CompressedTexture2D_pm218")
+
+[node name="06" type="Sprite2D" parent="Background/ParallaxUnderground/ParallaxBackground_00"]
+position = Vector2(410, -80)
+scale = Vector2(1.08, 1.08)
+texture = SubResource("CompressedTexture2D_pm218")
+
+[node name="09" type="Sprite2D" parent="Background/ParallaxUnderground/ParallaxBackground_00"]
+position = Vector2(755, -80)
+scale = Vector2(1.08, 1.08)
+texture = SubResource("CompressedTexture2D_pm218")
+
+[node name="ColorRect" type="ColorRect" parent="Background/ParallaxUnderground/ParallaxBackground_00"]
+offset_left = -453.0
+offset_top = -205.0
+offset_right = 930.0
+offset_bottom = -173.0
+color = Color(0.544527, 0.569546, 0.848364, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Background/ParallaxUnderground/ParallaxBackground_00"]
+offset_left = -453.0
+offset_top = -230.0
+offset_right = 930.0
+offset_bottom = -205.0
+color = Color(0.829193, 0.844504, 0.954307, 1)
+
+[node name="Parallaxackground_01" type="ParallaxLayer" parent="Background/ParallaxUnderground"]
+modulate = Color(0.290196, 0.164706, 0.368627, 1)
+position = Vector2(-292, 156)
+motion_scale = Vector2(0.3, 1)
+
+[node name="01" type="Sprite2D" parent="Background/ParallaxUnderground/Parallaxackground_01"]
+texture = SubResource("CompressedTexture2D_e75dw")
+
+[node name="04" type="Sprite2D" parent="Background/ParallaxUnderground/Parallaxackground_01"]
+position = Vector2(320, 0)
+texture = SubResource("CompressedTexture2D_e75dw")
+
+[node name="07" type="Sprite2D" parent="Background/ParallaxUnderground/Parallaxackground_01"]
+position = Vector2(640, 0)
+texture = SubResource("CompressedTexture2D_e75dw")
+
+[node name="10" type="Sprite2D" parent="Background/ParallaxUnderground/Parallaxackground_01"]
+position = Vector2(960, 0)
+texture = SubResource("CompressedTexture2D_e75dw")
+
+[node name="ParallaxBackground_02" type="ParallaxLayer" parent="Background/ParallaxUnderground"]
+modulate = Color(0.184314, 0.184314, 0.458824, 1)
+position = Vector2(-292, 157)
+motion_scale = Vector2(0.6, 1)
+
+[node name="02" type="Sprite2D" parent="Background/ParallaxUnderground/ParallaxBackground_02"]
+texture = SubResource("CompressedTexture2D_hiw41")
+
+[node name="05" type="Sprite2D" parent="Background/ParallaxUnderground/ParallaxBackground_02"]
+position = Vector2(320, -7.62939e-06)
+texture = SubResource("CompressedTexture2D_hiw41")
+
+[node name="08" type="Sprite2D" parent="Background/ParallaxUnderground/ParallaxBackground_02"]
+position = Vector2(640, 0.999992)
+texture = SubResource("CompressedTexture2D_hiw41")
+
+[node name="11" type="Sprite2D" parent="Background/ParallaxUnderground/ParallaxBackground_02"]
+position = Vector2(960, 0.999992)
+texture = SubResource("CompressedTexture2D_hiw41")
+
+[node name="ForeGround" type="ParallaxBackground" parent="."]
+layer = 3
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ForeGround"]
+z_index = 3
+motion_scale = Vector2(1.2, 1)
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="ForeGround/ParallaxLayer"]
+z_index = 3
+position = Vector2(132, -29)
+scale = Vector2(1.86969, 1.86969)
+tile_map_data = PackedByteArray("AADz//3/AAAKAAAAAAAEAP//AAAAAAUAAAD+/wAAAAAEAAcAAAD3/wAAAAAHAAUAAAAIAP3/AAAKAAAAABAMAAEAAAAEAAcAAAAKAAEAAAAEAAcAAAACAAEAAAAHAAUAAAABAAEAAAAHAAUAABAJAAEAAAAHAAUAABALAAEAAAAHAAUAABAOAAAAAAAEAAcAAAD7/wEAAAAHAAUAAAD5/wEAAAAEAAcAAAD6/wEAAAABAAQAAAD4/wEAAAAEAAcAAAD1/wEAAAAEAAcAAADy/wEAAAAEAAcAAADx/wEAAAAHAAUAAADw/wEAAAAHAAUAAADv/wEAAAAEAAcAAADu/wEAAAAHAAUAAADt/wEAAAAHAAUAAAAPAAEAAAAHAAUAAAAQAAEAAAAHAAUAAAAQAAAAAAAEAAcAAAARAAEAAAAHAAUAAAARAAAAAAAHAAUAAAASAAEAAAAHAAUAAAASAAAAAAAEAAcAAADz/wMAAAAHAAUAACDx/wMAAAAEAAcAACDv/wMAAAAEAAcAACDu/wMAAAAEAAcAACD1/wIAAAAHAAUAACD2/wMAAAAHAAUAACD3/wMAAAAAAAUAACD7/wMAAAAHAAUAACD//wMAAAAAAAUAACAFAAMAAAAHAAUAACAMAAMAAAAHAAUAACALAAMAAAAAAAUAACARAAMAAAAAAAUAACD4/wIAAAAHAAUAACD5/wMAAAAHAAUAACD4/wQAAAAHAAUAACD5/wQAAAAHAAUAACD8/wMAAAAHAAUAACD9/wIAAAAHAAUAACD+/wIAAAAHAAUAACD+/wMAAAAHAAUAACAAAAMAAAAHAAUAACAAAAIAAAAHAAUAACABAAMAAAAEAAcAACADAAIAAAAEAAcAACAGAAIAAAAHAAUAACAHAAIAAAAEAAcAACAIAAMAAAAEAAcAACAKAAMAAAAEAAcAACANAAIAAAAEAAcAACAHAAMAAAAHAAUAACAOAAIAAAAHAAUAACAPAAMAAAAHAAUAACASAAMAAAAHAAUAACATAAIAAAAHAAUAACAQAAQAAAAHAAUAACABAAQAAAAHAAUAACACAAMAAAAHAAUAACAEAAIAAAAHAAUAACAEAAMAAAAAAAUAACD0/wMAAAAHAAUAACD0/wQAAAAHAAUAACD+/wQAAAAHAAUAACAFAAIAAAAHAAUAACADAAMAAAAHAAUAACANAAMAAAAHAAUAACAQAAMAAAAHAAUAACAPAAQAAAAHAAUAACAOAAMAAAAHAAUAACA=")
+tile_set = ExtResource("10_ew4r3")
+
+[node name="ParallaxUnderground" type="ParallaxLayer" parent="ForeGround"]
+z_index = 3
+position = Vector2(179, 232)
+motion_scale = Vector2(1.2, 1)
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="ForeGround/ParallaxUnderground"]
+z_index = 3
+position = Vector2(132, -29)
+scale = Vector2(1.86969, 1.86969)
+tile_map_data = PackedByteArray("AADz//3/AAAKAAAAAAAEAP//AAAAAAUAAAD+/wAAAAAEAAcAAAD3/wAAAAAHAAUAAAAIAP3/AAAKAAAAABAMAAEAAAAEAAcAAAAKAAEAAAAEAAcAAAACAAEAAAAHAAUAAAABAAEAAAAHAAUAABAJAAEAAAAHAAUAABALAAEAAAAHAAUAABAOAAAAAAAEAAcAAAD7/wEAAAAHAAUAAAD5/wEAAAAEAAcAAAD6/wEAAAABAAQAAAD4/wEAAAAEAAcAAAD1/wEAAAAEAAcAAADy/wEAAAAEAAcAAADx/wEAAAAHAAUAAADw/wEAAAAHAAUAAADv/wEAAAAHAAUAAADu/wEAAAAHAAUAAADt/wEAAAAHAAUAAAAPAAEAAAAHAAUAAAAQAAEAAAAHAAUAAAAQAAAAAAAEAAcAAAARAAEAAAAHAAUAAAARAAAAAAAHAAUAAAASAAEAAAAHAAUAAAASAAAAAAAEAAcAAADz/wMAAAAHAAUAACDx/wMAAAAEAAcAACDv/wMAAAAEAAcAACDu/wMAAAAEAAcAACD1/wIAAAAHAAUAACD2/wMAAAAAAAUAACD3/wMAAAAAAAUAACD7/wMAAAAAAAUAACD//wMAAAAAAAUAACAFAAMAAAAAAAUAACAMAAMAAAAAAAUAACALAAMAAAAAAAUAACARAAMAAAAAAAUAACD4/wIAAAAHAAUAACD5/wMAAAAHAAUAACD4/wQAAAAHAAUAACD5/wQAAAAHAAUAACD8/wMAAAAHAAUAACD9/wIAAAAHAAUAACD+/wIAAAAHAAUAACD+/wMAAAAHAAUAACAAAAMAAAAHAAUAACAAAAIAAAAHAAUAACABAAMAAAAEAAcAACADAAIAAAAEAAcAACAGAAIAAAAEAAcAACAHAAIAAAAEAAcAACAIAAMAAAAEAAcAACAKAAMAAAAEAAcAACANAAIAAAAEAAcAACAHAAMAAAAHAAUAACAOAAIAAAAHAAUAACAPAAMAAAAHAAUAACASAAMAAAAHAAUAACATAAIAAAAHAAUAACAQAAQAAAAHAAUAACABAAQAAAAHAAUAACACAAMAAAAHAAUAACAEAAIAAAAHAAUAACAEAAMAAAAHAAUAACD0/wMAAAAHAAUAACD0/wQAAAAHAAUAACD+/wQAAAAHAAUAACDt//3/AAAKAAAAABDu/wAAAAAHAAUAAADs/wIAAAAHAAUAAADq/wAAAAAAAAUAAAA=")
+tile_set = ExtResource("10_ew4r3")
+
+[node name="ColorRect" type="ColorRect" parent="ForeGround/ParallaxUnderground"]
+offset_left = -577.0
+offset_top = 25.0
+offset_right = 700.0
+offset_bottom = 147.0
+color = Color(0, 0, 0, 1)
+
+[node name="Scene" type="Node2D" parent="."]
+
+[node name="Ground" type="Node2D" parent="Scene"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Scene/Ground"]
+tile_map_data = PackedByteArray("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")
+tile_set = SubResource("TileSet_pifuj")
+
+[node name="Underground" type="Node2D" parent="Scene"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Scene/Underground"]
+modulate = Color(0.637843, 0.637843, 0.637843, 1)
+position = Vector2(0, 235)
+tile_map_data = PackedByteArray("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")
+tile_set = SubResource("TileSet_pifuj")
+
+[node name="Fire" type="Node2D" parent="Scene/Underground"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Scene/Underground/Fire"]
+position = Vector2(135, 217)
+scale = Vector2(0.791667, 0.791667)
+sprite_frames = ExtResource("12_lsw8j")
+autoplay = "default"
+frame_progress = 0.906685
+
+[node name="PointLight2D" type="PointLight2D" parent="Scene/Underground/Fire"]
+position = Vector2(155, 225)
+color = Color(0.930643, 0.66059, 0.391649, 1)
+energy = 1.5
+texture = ExtResource("13_pifuj")
+
+[node name="Edge" type="StaticBody2D" parent="Scene"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/Edge"]
+position = Vector2(-329, -5.25)
+shape = SubResource("RectangleShape2D_2shyc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Scene/Edge"]
+position = Vector2(612, 49)
+shape = SubResource("RectangleShape2D_2shyc")
+
+[node name="Player" parent="." instance=ExtResource("11_q306e")]
+position = Vector2(-1, -26)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(4, 4)
+limit_left = -315
+limit_right = 600
+limit_bottom = 290
+
+[node name="Interactable" type="Node" parent="."]
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="Slime" parent="Enemy" instance=ExtResource("15_v6ica")]
+position = Vector2(384, 233)
