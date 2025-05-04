@@ -7,8 +7,8 @@ extends CharacterBody2D
 @onready var jump_request_timer: Timer = $Timers/Jump_request_timer
 @onready var coyote_timer: Timer = $Timers/coyote_timer
 @onready var cast_request_timer: Timer = $Timers/cast_request_timer
-@onready var interaction_icon:AnimatedSprite2D=$InteractionIcon
-#player添加子节点AnimatedSprite2D命名InteractionIcon加个F键的美术素材
+@onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
+
 
 enum State  {
 	IDLE,
@@ -16,6 +16,7 @@ enum State  {
 	JUMP,
 	FALL,
 	CASTING,
+	DYING,
 }
 
 const Ground_State:= [State.IDLE, State.RUN]
@@ -23,18 +24,20 @@ const Player_Speed: float = 300
 const Jump_Velocity: float = -300
 const Accleration: float = Player_Speed / 0.2
 var gravity : float = ProjectSettings.get("physics/2d/default_gravity") 
-var interacting_with:interactable
+var interacting_with: Array[Interactable]
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
 	if event.is_action_pressed("cast"):
 		cast_request_timer.start()
-    if event.is_action_pressed("interact")and interacting_with:
-		interacting_with.interact()
-#interact对应F键
+	if event.is_action_pressed("interact")and interacting_with:
+		interacting_with.back().interact()
+		
+
 func tick_physics(state: State, delta: float) -> void:
-	interaction_icon.visible=interacting_with !=null
+	
+	interaction_icon.visible = not interacting_with.is_empty()
 	
 	match state:
 		State.IDLE:
@@ -66,7 +69,21 @@ func stand(delta: float) -> void:
 	velocity.y += gravity * delta
 	
 	move_and_slide()
+
+func die() -> void:
+	get_tree().reload_current_scene()
+
+func register_interactable(v: Interactable) -> void:
+	if state_machine.current_state == State.DYING:
+		return
 	
+	if v in interacting_with:
+		return
+	interacting_with.append(v)
+	
+func unregister_interactable(v: Interactable) -> void:
+	interacting_with.erase(v)
+
 func get_next_state(state: State) -> int:
 	
 	var direction: int = Input.get_axis("move_l","move_r")
@@ -135,19 +152,3 @@ func transition_state(from: State , to: State) -> void:
 			animation_player.play("fall")
 			if from in Ground_State:
 				coyote_timer.start()
-
-func _init() ->void:
-	collision_layer=0
-	collision_mask=0
-	set_colllision_mask_value(2,true)
-
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
-
-func interact()->void:	
-	interacted.emit()
-
-func _on_body_entered(player:Player)->void:
-	player.interacting_with=self
-func _on_body_exited(player:Player)->void:	
-	player.interacting_with=null
