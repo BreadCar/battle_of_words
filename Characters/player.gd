@@ -90,7 +90,6 @@ func get_next_state(state: State) -> int:
 	var can_jump: bool = coyote_timer.time_left > 0 or is_on_floor()
 	var should_jump: bool = can_jump and jump_request_timer.time_left > 0
 	var can_cast: bool = state in Ground_State
-	var should_cast: bool = can_cast and cast_request_timer.time_left > 0
 	
 	if state in Ground_State and not is_on_floor():
 		return State.FALL
