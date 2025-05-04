@@ -138,9 +138,21 @@ editor_draw_drag_margin = true
 
 [node name="trigger" type="Area2D" parent="."]
 script = ExtResource("4_gjpho")
+spike_color = null
+spike = null
+platform_color = null
+platform = null
+initial_text = null
+activation_text = null
 
 [node name="Slime" parent="." instance=ExtResource("5_p70al")]
 position = Vector2(199, -4)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 78.0
+offset_top = -29.0
+offset_right = 118.0
+offset_bottom = -6.0
 
 [node name="Interactable" type="Area2D" parent="."]
 position = Vector2(56, -9)

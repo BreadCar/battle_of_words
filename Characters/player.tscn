@@ -715,4 +715,4 @@ wait_time = 0.1
 position = Vector2(0, -45)
 sprite_frames = SubResource("SpriteFrames_642pg")
 autoplay = "default"
-frame_progress = 0.429744
+frame_progress = 0.297871

@@ -24,6 +24,7 @@ func _process(delta):
 			spike_node.show_spike(spike_color)
 		var platform_node=get_node(platform)
 		if platform_node:
+			platform_node.show_platform(platform_color)
 			platform_node.can_control=true
 
 #func _process(delta):

@@ -1,5 +1,6 @@
 class_name Player
 extends CharacterBody2D
+signal interacted
 
 @onready var graphics: Node2D = $Graphics
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -29,11 +30,9 @@ var interacting_with: Array[Interactable]
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
-	if event.is_action_pressed("cast"):
-		cast_request_timer.start()
 	if event.is_action_pressed("interact")and interacting_with:
 		interacting_with.back().interact()
-		
+
 
 func tick_physics(state: State, delta: float) -> void:
 	
