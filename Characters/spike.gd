@@ -5,19 +5,21 @@ extends Node2D
 @onready var spike_timer = $Spike_Timer
 
 func _ready():
-    spike_timer.wait_time = retract_time
-    spike_timer.one_shot = true
-    hide_spike()
+	spike_timer.wait_time = retract_time
+	spike_timer.one_shot = true
+	hide_spike()
 
 func _on_Spike_Timer_timeout():
-    hide_spike() 
+	hide_spike() 
 
 
 func show_spike(color: Color):
-    if color == spike_color:
-        $Sprite2D.show()
-        spike_timer.start()  # 开始计时
+	if color == spike_color:
+		$Sprite2D.show()
+		spike_timer.start()  # 开始计时
 
 # 隐藏尖刺
 func hide_spike():
-    $Sprite2D.hide()
+	spike.visible = false
+	await get_tree().create_timer(2.0).timeout
+	spike.visible = true
