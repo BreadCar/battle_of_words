@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var jump_request_timer: Timer = $Timers/Jump_request_timer
 @onready var coyote_timer: Timer = $Timers/coyote_timer
 @onready var cast_request_timer: Timer = $Timers/cast_request_timer
+@onready var interaction_icon:AnimatedSprite2D=$InteractionIcon
+#player添加子节点AnimatedSprite2D命名InteractionIcon加个F键的美术素材
 
 enum State  {
 	IDLE,
@@ -21,15 +23,19 @@ const Player_Speed: float = 300
 const Jump_Velocity: float = -300
 const Accleration: float = Player_Speed / 0.2
 var gravity : float = ProjectSettings.get("physics/2d/default_gravity") 
-
+var interacting_with:interactable
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
 	if event.is_action_pressed("cast"):
 		cast_request_timer.start()
-
+    if event.is_action_pressed("interact")and interacting_with:
+		interacting_with.interact()
+#interact对应F键
 func tick_physics(state: State, delta: float) -> void:
+	interaction_icon.visible=interacting_with !=null
+	
 	match state:
 		State.IDLE:
 			move(delta)
@@ -129,3 +135,19 @@ func transition_state(from: State , to: State) -> void:
 			animation_player.play("fall")
 			if from in Ground_State:
 				coyote_timer.start()
+
+func _init() ->void:
+	collision_layer=0
+	collision_mask=0
+	set_colllision_mask_value(2,true)
+
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+
+func interact()->void:	
+	interacted.emit()
+
+func _on_body_entered(player:Player)->void:
+	player.interacting_with=self
+func _on_body_exited(player:Player)->void:	
+	player.interacting_with=null

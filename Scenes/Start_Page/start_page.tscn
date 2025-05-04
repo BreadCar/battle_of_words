@@ -1,0 +1,169 @@
+[gd_scene load_steps=24 format=3 uid="uid://blupqjdeu1u6g"]
+
+[ext_resource type="Texture2D" uid="uid://bl48wihq8i0qf" path="res://Assets/Scene/Start_Page/Start.png" id="1_pfp41"]
+[ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="2_ixw72"]
+[ext_resource type="SpriteFrames" uid="uid://cyjdjuqjhyetu" path="res://Scenes/Start_Page/fire.tres" id="3_rwjpj"]
+[ext_resource type="Texture2D" uid="uid://dp6x34abhp5u" path="res://Assets/UI/Panel.png" id="4_7v051"]
+[ext_resource type="FontFile" uid="uid://bq2s13vhvphbq" path="res://Assets/UI/minimalpixel.fnt" id="4_ixw72"]
+[ext_resource type="Texture2D" uid="uid://dfg418eximqx4" path="res://Assets/UI/Button/Button.png" id="6_ffbbd"]
+[ext_resource type="Texture2D" uid="uid://bf5ncjenu5fhc" path="res://Assets/UI/Button/Button_Hover.png" id="6_wfpfa"]
+[ext_resource type="Texture2D" uid="uid://diw6al1f307hu" path="res://Assets/UI/Button/Button_Pressed.png" id="6_x5137"]
+[ext_resource type="Texture2D" uid="uid://h8bi3n6cxx0b" path="res://Assets/UI/Title_Panel.png" id="7_ffbbd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7v051"]
+size = Vector2(892.225, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffbbd"]
+size = Vector2(20, 270.481)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wfpfa"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0cbnd"]
+texture = ExtResource("6_wfpfa")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffbbd"]
+texture = ExtResource("6_x5137")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5137"]
+texture = ExtResource("6_ffbbd")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cbnd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eh8x4"]
+texture = ExtResource("6_wfpfa")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3h0en"]
+texture = ExtResource("6_x5137")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7v051"]
+texture = ExtResource("6_ffbbd")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh8x4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c62j2"]
+texture = ExtResource("6_wfpfa")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p37k7"]
+texture = ExtResource("6_x5137")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfpfa"]
+texture = ExtResource("6_ffbbd")
+
+[node name="StartPage" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-8, 98)
+scale = Vector2(0.47698, 0.483721)
+texture = ExtResource("1_pfp41")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2(-164.145, 98.6885)
+shape = SubResource("RectangleShape2D_7v051")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2(203.363, -49.6154)
+shape = SubResource("RectangleShape2D_ffbbd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Background/StaticBody2D"]
+position = Vector2(-599.606, -48.75)
+shape = SubResource("RectangleShape2D_ffbbd")
+
+[node name="Player" parent="." instance=ExtResource("2_ixw72")]
+position = Vector2(-6, 138)
+
+[node name="Fire" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Fire"]
+position = Vector2(194.667, 308.333)
+scale = Vector2(0.791667, 0.791667)
+sprite_frames = ExtResource("3_rwjpj")
+autoplay = "default"
+frame_progress = 0.906685
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Fire"]
+position = Vector2(-360.333, 120.333)
+scale = Vector2(0.791667, 0.791667)
+sprite_frames = ExtResource("3_rwjpj")
+autoplay = "default"
+frame_progress = 0.0180638
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button_Panel" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = -25.0
+offset_right = 436.0
+offset_bottom = 296.0
+texture = ExtResource("4_7v051")
+
+[node name="Button" type="VBoxContainer" parent="UI/Button_Panel"]
+z_index = 1
+layout_mode = 0
+offset_left = 54.0
+offset_top = 65.0
+offset_right = 207.0
+offset_bottom = 267.0
+theme_override_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="UI/Button_Panel/Button"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ixw72")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wfpfa")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0cbnd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ffbbd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_x5137")
+text = "START"
+
+[node name="OptionButton" type="Button" parent="UI/Button_Panel/Button"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ixw72")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0cbnd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_eh8x4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3h0en")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7v051")
+text = "OPTION"
+
+[node name="ExitButton" type="Button" parent="UI/Button_Panel/Button"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_ixw72")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eh8x4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_c62j2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p37k7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_wfpfa")
+text = "EXIT"
+
+[node name="Title_panel" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = -451.0
+offset_top = -378.0
+offset_right = 453.0
+offset_bottom = -61.0
+texture = ExtResource("7_ffbbd")
+
+[node name="Title" type="Label" parent="UI/Title_panel"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 188.0
+offset_right = 820.0
+offset_bottom = 288.0
+theme_override_fonts/font = ExtResource("4_ixw72")
+theme_override_font_sizes/font_size = 100
+text = "Whispers of Wordcraft"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-6, 138)
+zoom = Vector2(1.5, 1.5)
+limit_bottom = 400
