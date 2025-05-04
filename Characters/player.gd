@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-
 @onready var graphics: Node2D = $Graphics
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var state_machine: StateMachine = $StateMachine
@@ -115,7 +114,6 @@ func transition_state(from: State , to: State) -> void:
 	match to:
 		State.IDLE:
 			if not animation_player.is_playing() or animation_player.current_animation != "idle":
-				print("Playing IDLE")
 				animation_player.play("idle")
 		
 		State.RUN:
