@@ -129,18 +129,19 @@ tile_set = SubResource("TileSet_5nsto")
 position = Vector2(0, -43)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -17)
 zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
-editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [node name="trigger" type="Area2D" parent="."]
 script = ExtResource("4_gjpho")
 
 [node name="Slime" parent="." instance=ExtResource("5_p70al")]
 position = Vector2(199, -4)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 78.0
+offset_top = -29.0
+offset_right = 118.0
+offset_bottom = -6.0
 
 [node name="Interactable" type="Area2D" parent="."]
 position = Vector2(56, -9)

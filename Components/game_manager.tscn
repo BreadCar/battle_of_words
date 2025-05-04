@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://djtps4c67h4ns"]
+
+[ext_resource type="Script" uid="uid://tt6237lh3dn6" path="res://Components/game_manager.gd" id="1_ehlg1"]
+
+[node name="Game_manager" type="Node"]
+script = ExtResource("1_ehlg1")
+
+[node name="SFX_manager" type="AudioStreamPlayer2D" parent="."]

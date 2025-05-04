@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://n56jlj8ne1g6"]
+[gd_scene load_steps=23 format=3 uid="uid://n56jlj8ne1g6"]
 
 [ext_resource type="Texture2D" uid="uid://d1ik4g2re3iqj" path="res://Assets/Character/HERO_FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="1_5mj4t"]
 [ext_resource type="Script" uid="uid://c8j8fcqj5dx2d" path="res://Characters/player.gd" id="1_65n15"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bao3hxnfsn52n" path="res://Assets/Character/HERO_FREE_Samurai 2D Pixel Art v1.2/Sprites/HURT.png" id="3_vb825"]
 [ext_resource type="Texture2D" uid="uid://biw1kjko2arw1" path="res://Assets/Character/HERO_FREE_Samurai 2D Pixel Art v1.2/Sprites/ATTACK 1.png" id="4_4m0gv"]
 [ext_resource type="Script" uid="uid://dgwegxgyk0ebl" path="res://classes/statemachine.gd" id="5_l48on"]
+[ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="7_p728j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vb825"]
 size = Vector2(13, 32.5)
@@ -638,6 +639,42 @@ _data = {
 &"run": SubResource("Animation_65n15")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5slg2"]
+atlas = ExtResource("7_p728j")
+region = Rect2(112, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbmiu"]
+atlas = ExtResource("7_p728j")
+region = Rect2(112, 176, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3rah"]
+atlas = ExtResource("7_p728j")
+region = Rect2(112, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4gpq"]
+atlas = ExtResource("7_p728j")
+region = Rect2(112, 400, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_642pg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5slg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbmiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3rah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4gpq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_65n15")
@@ -673,3 +710,9 @@ one_shot = true
 wait_time = 0.1
 
 [node name="cast_request_timer" type="Timer" parent="Timers"]
+
+[node name="InteractionIcon" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -45)
+sprite_frames = SubResource("SpriteFrames_642pg")
+autoplay = "default"
+frame_progress = 0.297871

@@ -27,6 +27,10 @@ func _process(delta):
 			platform_node.show_platform(platform_color)
 			platform_node.can_control=true
 
+#func _process(delta):
+#		var platform_node=get_node(platform)
+#		if platform_node:
+#			platform_node.can_control=true
 
 # 机关属性
 @export var initial_text = "DOORCLOSED"
