@@ -23,17 +23,21 @@ const Ground_State := [State.IDLE, State.RUN]
 const Player_Speed: float = 300
 const Jump_Velocity: float = -300
 const Accleration: float = Player_Speed / 0.2
+
 var gravity: float = ProjectSettings.get("physics/2d/default_gravity") 
 
 var interacting_with: Array[Interactable] = []
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
+
 	if event.is_action_pressed("cast"):
 		cast_request_timer.start()
 	if event.is_action_pressed("interact") and not interacting_with.is_empty():
 		interacting_with.back().interact()  # interact 对应 F 键
+
 
 func tick_physics(state: State, delta: float) -> void:
 	interaction_icon.visible = not interacting_with.is_empty()
@@ -74,7 +78,9 @@ func get_next_state(state: State) -> int:
 	var can_jump: bool = coyote_timer.time_left > 0 or is_on_floor()
 	var should_jump: bool = can_jump and jump_request_timer.time_left > 0
 	var can_cast: bool = state in Ground_State
+
 	var should_cast: bool = can_cast and cast_request_timer.time_left > 0
+
 
 	if state in Ground_State and not is_on_floor():
 		return State.FALL

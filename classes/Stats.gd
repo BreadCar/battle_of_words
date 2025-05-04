@@ -2,7 +2,6 @@ class_name Stats
 extends Node
 
 signal  health_changed
-signal  energy_changed
 
 
 @export var max_health: int = 3

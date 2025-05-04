@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://c2u1mux2ffs7t"]
+[gd_scene load_steps=10 format=4 uid="uid://c2u1mux2ffs7t"]
 
 [ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/stringstar fields/tileset.png" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bgkec1l7jpsmy" path="res://Scenes/test_scene.gd" id="1_5nsto"]
 [ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="2_j0p05"]
-[ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="2_y7y61"]
 [ext_resource type="Script" uid="uid://lgu6vd45m4sb" path="res://Scenes/trigger.gd" id="4_gjpho"]
 [ext_resource type="PackedScene" uid="uid://dgy78yxhn2l1u" path="res://Characters/slime.tscn" id="5_p70al"]
 [ext_resource type="Script" uid="uid://6sxtwf3grmkf" path="res://classes/interactable.gd" id="6_45d1s"]
@@ -122,9 +121,6 @@ size = Vector2(20, 44)
 [node name="test_scene" type="Node"]
 script = ExtResource("1_5nsto")
 
-[node name="NPC" parent="." instance=ExtResource("2_y7y61")]
-position = Vector2(250, -14)
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAADAP//AQAKAAAAAAD8////AQAAAAUAAAD7/wAAAQAAAAkAAAD7/wEAAQAAAAoAAAD8/wAAAQABAAkAAAD8/wEAAQABAAoAAAD9/wAAAQACAAkAAAD9/wEAAQACAAoAAAD+/wAAAQADAAkAAAD+/wEAAQADAAoAAAD//wAAAQAEAAkAAAD//wEAAQAEAAoAAAAAAAAAAQAFAAkAAAAAAAEAAQAFAAoAAAABAAAAAQAGAAkAAAABAAEAAQAGAAoAAAACAAAAAQAHAAkAAAACAAEAAQAHAAoAAAADAAAAAQAAAAkAAAADAAEAAQAAAAoAAAAEAAAAAQABAAkAAAAEAAEAAQABAAoAAAAFAAAAAQACAAkAAAAFAAEAAQACAAoAAAAGAAAAAQADAAkAAAAGAAEAAQADAAoAAAAHAAAAAQAEAAkAAAAHAAEAAQAEAAoAAAAIAAAAAQAFAAkAAAAIAAEAAQAFAAoAAAAJAAAAAQAGAAkAAAAJAAEAAQAGAAoAAAAKAAAAAQAHAAkAAAAKAAEAAQAHAAoAAAALAAAAAQAAAAkAAAALAAEAAQAAAAoAAAAMAAAAAQABAAkAAAAMAAEAAQABAAoAAAANAAAAAQACAAkAAAANAAEAAQACAAoAAAAOAAAAAQADAAkAAAAOAAEAAQADAAoAAAAPAAAAAQAEAAkAAAAPAAEAAQAEAAoAAAAQAAAAAQAFAAkAAAAQAAEAAQAFAAoAAAARAAAAAQAGAAkAAAARAAEAAQAGAAoAAAASAAAAAQAHAAkAAAASAAEAAQAHAAoAAAATAAAAAQAIAAkAAAATAAEAAQAIAAoAAAAUAAAAAQAJAAkAAAAUAAEAAQAJAAoAAAAIAPz/AQAHAAkAAAAJAPz/AQAIAAkAAAAKAPz/AQAJAAkAAAALAPz/AQAKAAkAAAAEAP7/AQAHAAkAAAAFAP7/AQAIAAkAAAAGAP7/AQAJAAkAAAAHAP7/AQAKAAkAAAD+////AQAHAAkAAAD/////AQAIAAkAAAAAAP//AQAJAAkAAAABAP//AQAKAAkAAAA=")
 tile_set = SubResource("TileSet_5nsto")
@@ -144,13 +140,19 @@ editor_draw_drag_margin = true
 script = ExtResource("4_gjpho")
 
 [node name="Slime" parent="." instance=ExtResource("5_p70al")]
-position = Vector2(203, 0)
+position = Vector2(199, -4)
 
-[node name="test_interacter_tree" type="Area2D" parent="."]
+[node name="Label" type="Label" parent="."]
+offset_left = 78.0
+offset_top = -29.0
+offset_right = 118.0
+offset_bottom = -6.0
+
+[node name="Interactable" type="Area2D" parent="."]
 position = Vector2(56, -9)
 script = ExtResource("6_45d1s")
 metadata/_custom_type_script = "uid://6sxtwf3grmkf"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="test_interacter_tree"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2(2, -14)
 shape = SubResource("RectangleShape2D_y7y61")
