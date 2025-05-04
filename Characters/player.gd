@@ -9,6 +9,7 @@ signal interacted
 @onready var coyote_timer: Timer = $Timers/coyote_timer
 @onready var cast_request_timer: Timer = $Timers/cast_request_timer
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 enum State {
 	IDLE,
@@ -28,16 +29,24 @@ var gravity: float = ProjectSettings.get("physics/2d/default_gravity")
 
 var interacting_with: Array[Interactable] = []
 
+var killed: bool = false
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
+	if event.is_action_pressed("interact")and interacting_with:
+		interacting_with.back().interact()
 
-	#if event.is_action_pressed("cast"):
-		#cast_request_timer.start()
-	if event.is_action_pressed("interact") and not interacting_with.is_empty():
-		interacting_with.back().interact()  # interact 对应 F 键
+func kill() -> void:
+	if not killed:  # 防止重复触发
+		killed = true
+		print("Player killed")
 
+func die() -> void:
+	# 延迟一帧再重载场景，避免同一帧内重复触发
+	await get_tree().process_frame
+	get_tree().reload_current_scene()
 
 func tick_physics(state: State, delta: float) -> void:
 	interaction_icon.visible = not interacting_with.is_empty()
@@ -45,6 +54,19 @@ func tick_physics(state: State, delta: float) -> void:
 	match state:
 		State.IDLE, State.RUN, State.JUMP, State.FALL:
 			move(delta)
+			
+		State.RUN:
+			move(delta)
+		
+		State.JUMP:
+			move(delta)
+			
+		State.FALL:
+			move(delta)
+		
+		State.DYING:
+			stand(delta)
+
 
 func move(delta: float) -> void:
 	var direction: int = Input.get_axis("move_l", "move_r")
@@ -59,8 +81,7 @@ func stand(delta: float) -> void:
 	velocity.y += gravity * delta
 	move_and_slide()
 
-func die() -> void:
-	get_tree().reload_current_scene()
+
 
 func register_interactable(v: Interactable) -> void:
 	if state_machine.current_state == State.DYING:
@@ -73,7 +94,11 @@ func unregister_interactable(v: Interactable) -> void:
 	interacting_with.erase(v)
 
 func get_next_state(state: State) -> int:
-	var direction: int = Input.get_axis("move_l", "move_r")
+	# 如果已经是DYING状态则保持不变
+	if state == State.DYING:
+		return StateMachine.KEEP_CURRENT
+		
+	var direction: int = Input.get_axis("move_l","move_r")
 	var is_still: bool = is_zero_approx(direction) and is_zero_approx(velocity.x)
 	var can_jump: bool = coyote_timer.time_left > 0 or is_on_floor()
 	var should_jump: bool = can_jump and jump_request_timer.time_left > 0
@@ -84,7 +109,9 @@ func get_next_state(state: State) -> int:
 
 	if state in Ground_State and not is_on_floor():
 		return State.FALL
-
+	if killed and state != State.DYING:  # 只在非DYING状态时转换到DYING
+		return State.DYING
+	
 	match state:
 		State.IDLE:
 			if not is_still:
@@ -106,6 +133,14 @@ func get_next_state(state: State) -> int:
 				return State.RUN
 			if should_jump:
 				return State.JUMP
+		
+		State.DYING:
+			# 确保只执行一次死亡逻辑
+			if not killed:
+				killed = true
+				print("Player entering DYING state")
+				die()
+			return StateMachine.KEEP_CURRENT
 
 	return StateMachine.KEEP_CURRENT
 
@@ -134,3 +169,8 @@ func transition_state(from: State, to: State) -> void:
 			animation_player.play("fall")
 			if from in Ground_State:
 				coyote_timer.start()
+		
+		State.DYING:
+			animation_player.play("hurt")
+			velocity.y = Jump_Velocity / 2
+			collision_shape_2d.disabled = true

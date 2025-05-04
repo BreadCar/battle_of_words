@@ -243,7 +243,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_4m0gv"]
 resource_name = "hurt"
-length = 0.7
+length = 1.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -316,6 +316,20 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Rect2(1248, 0, 96, 96)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"die"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_eovys"]
@@ -715,4 +729,4 @@ wait_time = 0.1
 position = Vector2(0, -45)
 sprite_frames = SubResource("SpriteFrames_642pg")
 autoplay = "default"
-frame_progress = 0.0604657
+frame_progress = 0.600396

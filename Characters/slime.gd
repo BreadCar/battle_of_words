@@ -41,7 +41,6 @@ func tick_physics(state: State, delta: float) -> void:
 func get_next_state(state: State) -> int:
 	
 	var direction: int = Input.get_axis("move_l","move_r")
-	var is_still: bool = is_zero_approx(direction) and is_zero_approx(velocity.x)
 	var should_attack: bool = wall_checker.is_colliding() and wall_checker.get_collider() is Player
 	if stats.health == 0:
 		return State.DIE
