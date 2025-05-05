@@ -68,3 +68,8 @@ func _spawn_killzone():
 	active_killzone = killzone_scene.instantiate()
 	add_child(active_killzone)
 	active_killzone.position = Vector2(0, 0) 
+
+#func _on_death():
+	#EventBus.emit_signal("corpse_flower_killed")
+	#queue_free()
+

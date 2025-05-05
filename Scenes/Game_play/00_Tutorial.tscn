@@ -347,6 +347,7 @@ script = ExtResource("11_w6nsl")
 metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
 
 [node name="Brambles" type="Sprite2D" parent="Interactable"]
+modulate = Color(0.636793, 0.667596, 0.841546, 1)
 position = Vector2(553, -76)
 scale = Vector2(0.198847, 0.198847)
 texture = ExtResource("11_nnay0")

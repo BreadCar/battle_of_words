@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://blupqjdeu1u6g"]
+[gd_scene load_steps=22 format=3 uid="uid://blupqjdeu1u6g"]
 
 [ext_resource type="Texture2D" uid="uid://bl48wihq8i0qf" path="res://Assets/Scene/Start_Page/Start.png" id="1_pfp41"]
 [ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="2_ixw72"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bf5ncjenu5fhc" path="res://Assets/UI/Button/Button_Hover.png" id="6_wfpfa"]
 [ext_resource type="Texture2D" uid="uid://diw6al1f307hu" path="res://Assets/UI/Button/Button_Pressed.png" id="6_x5137"]
 [ext_resource type="Texture2D" uid="uid://h8bi3n6cxx0b" path="res://Assets/UI/Title_Panel.png" id="7_ffbbd"]
+[ext_resource type="Script" uid="uid://cppokpuj2eyfm" path="res://Scenes/Start_Page/start_button.gd" id="10_3h0en"]
+[ext_resource type="Script" uid="uid://cdhh40sx2d8su" path="res://Scenes/Start_Page/exit_button.gd" id="10_eh8x4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7v051"]
 size = Vector2(892.225, 20)
@@ -25,17 +27,6 @@ texture = ExtResource("6_wfpfa")
 texture = ExtResource("6_x5137")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x5137"]
-texture = ExtResource("6_ffbbd")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cbnd"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eh8x4"]
-texture = ExtResource("6_wfpfa")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3h0en"]
-texture = ExtResource("6_x5137")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7v051"]
 texture = ExtResource("6_ffbbd")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh8x4"]
@@ -122,17 +113,8 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_0cbnd")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ffbbd")
 theme_override_styles/normal = SubResource("StyleBoxTexture_x5137")
 text = "START"
-
-[node name="OptionButton" type="Button" parent="UI/Button_Panel/Button"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("4_ixw72")
-theme_override_font_sizes/font_size = 40
-theme_override_styles/focus = SubResource("StyleBoxEmpty_0cbnd")
-theme_override_styles/hover = SubResource("StyleBoxTexture_eh8x4")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_3h0en")
-theme_override_styles/normal = SubResource("StyleBoxTexture_7v051")
-text = "OPTION"
+script = ExtResource("10_3h0en")
+next_scene_path = "res://UI/Video/intro_video.tscn"
 
 [node name="ExitButton" type="Button" parent="UI/Button_Panel/Button"]
 layout_mode = 2
@@ -144,6 +126,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_c62j2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_p37k7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_wfpfa")
 text = "EXIT"
+script = ExtResource("10_eh8x4")
 
 [node name="Title_panel" type="TextureRect" parent="UI"]
 layout_mode = 0

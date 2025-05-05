@@ -27,6 +27,7 @@ func fade_to_scene(scene_path: String) -> void:
 	# 切换场景
 	_tween.tween_callback(func():
 		get_tree().change_scene_to_file(scene_path)
+		
 	)
 	# 淡入（变亮）
 	_tween.tween_property(fade_overlay, "modulate:a", 0.0, fade_duration)
