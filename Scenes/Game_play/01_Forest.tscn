@@ -403,13 +403,14 @@ position = Vector2(612, 49)
 shape = SubResource("RectangleShape2D_2shyc")
 
 [node name="Player" parent="." instance=ExtResource("11_q306e")]
-position = Vector2(-1, -26)
+position = Vector2(-269, -21)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
 limit_left = -315
 limit_right = 600
 limit_bottom = 290
+limit_smoothed = true
 
 [node name="Interactable" type="Node" parent="."]
 

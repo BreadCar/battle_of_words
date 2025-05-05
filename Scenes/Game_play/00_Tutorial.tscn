@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=4 uid="uid://xphfa4voimox"]
+[gd_scene load_steps=17 format=4 uid="uid://xphfa4voimox"]
 
+[ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="4_3icsq"]
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="5_3icsq"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="6_3icsq"]
 [ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="6_3pq81"]
@@ -133,6 +134,9 @@ sources/1 = SubResource("TileSetAtlasSource_4atdx")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40qop"]
 size = Vector2(30.5, 168)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pq81"]
+size = Vector2(219.338, 647.004)
+
 [node name="01Tutorial" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [32.0]
 metadata/_edit_vertical_guides_ = [-320.0]
@@ -249,7 +253,7 @@ position = Vector2(-331, -61)
 shape = SubResource("RectangleShape2D_40qop")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Scene/Edge"]
-position = Vector2(558, -61)
+position = Vector2(565, -61)
 shape = SubResource("RectangleShape2D_40qop")
 
 [node name="Sprite2D" type="Sprite2D" parent="Scene/Edge"]
@@ -258,6 +262,14 @@ z_index = 5
 position = Vector2(553, -119)
 scale = Vector2(0.329611, 0.358576)
 texture = ExtResource("8_4atdx")
+
+[node name="Killzone" type="Area2D" parent="Scene/Edge/Sprite2D"]
+script = ExtResource("4_3icsq")
+metadata/_custom_type_script = "uid://drb7fi0rr1elp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/Edge/Sprite2D/Killzone"]
+position = Vector2(99.6688, -13.944)
+shape = SubResource("RectangleShape2D_3pq81")
 
 [node name="Player" parent="." instance=ExtResource("6_3pq81")]
 position = Vector2(-235, 0)
