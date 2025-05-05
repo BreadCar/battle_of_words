@@ -161,23 +161,26 @@ metadata/_custom_type_script = "uid://6sxtwf3grmkf"
 position = Vector2(2, -14)
 shape = SubResource("RectangleShape2D_y7y61")
 
-[node name="Platform" parent="." instance=ExtResource("8_uo7di")]
+[node name="EventBus" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("10_kn06e")
+metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
+
+[node name="Platform" type="Node" parent="."]
+
+[node name="Platform" parent="Platform" instance=ExtResource("8_uo7di")]
 position = Vector2(550, -73)
 
-[node name="Interact_point" type="Area2D" parent="."]
+[node name="Interact_point" type="Area2D" parent="Platform"]
 collision_mask = 3
 script = ExtResource("6_45d1s")
 metadata/_custom_type_script = "uid://6sxtwf3grmkf"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_point"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Interact_point"]
 position = Vector2(493, -10)
 shape = SubResource("RectangleShape2D_7yo87")
 
-[node name="Sprite2D" type="Sprite2D" parent="Interact_point/CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Platform/Interact_point/CollisionShape2D"]
 texture = ExtResource("9_kn06e")
 region_enabled = true
 region_rect = Rect2(448, 16, 12, 16)
-
-[node name="EventBus" type="Node" parent="."]
-script = ExtResource("10_kn06e")
-metadata/_custom_type_script = "uid://d3uh6ck1ycabq"

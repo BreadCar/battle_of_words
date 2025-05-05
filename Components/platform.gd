@@ -3,7 +3,7 @@ extends Area2D
 
 @onready var interact_point: Interactable = $"../Interact_point"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var event_bus: EventBus = $"../EventBus"
+@onready var event_bus: EventBus = %EventBus
 
 var current_direction: Vector2 = Vector2.ZERO
 var move_speed: float = 100.0
