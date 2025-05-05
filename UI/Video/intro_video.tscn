@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbd0i8vwaivel"]
+
+[ext_resource type="VideoStream" uid="uid://dy5mk844wy3xv" path="res://UI/Video/start.ogv" id="1_cbuot"]
+[ext_resource type="Script" uid="uid://cqg8u5uu8qfuq" path="res://UI/Video/intro_video.gd" id="1_kyws1"]
+
+[node name="IntroVideo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kyws1")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_cbuot")
+autoplay = true
