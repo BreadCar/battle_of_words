@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="3_lsw8j"]
 [ext_resource type="TileSet" uid="uid://bcbt3jdmwoa4e" path="res://Scenes/Game_play/Resourse/Scene_tileset.tres" id="6_x2g80"]
 [ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="7_hiw41"]
-[ext_resource type="Script" uid="uid://6sxtwf3grmkf" path="res://classes/interactable.gd" id="8_0s7c8"]
+[ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="8_pifuj"]
 [ext_resource type="Texture2D" uid="uid://bpqcsx2kns6qb" path="res://Assets/Stones/Blue.png" id="9_2shyc"]
 [ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="9_uqgud"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_2shyc"]
@@ -431,8 +431,8 @@ position = Vector2(362, 184)
 
 [node name="Interact_point" type="Area2D" parent="Interactable"]
 collision_mask = 3
-script = ExtResource("8_0s7c8")
-metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+script = ExtResource("8_pifuj")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Interact_point"]
 position = Vector2(193, 222)

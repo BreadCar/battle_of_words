@@ -47,6 +47,14 @@ func _input(event):
 			is_waiting_for_input = false
 			current_direction = Vector2.RIGHT
 			event_bus.emit_signal("platform_control_started", current_direction)
+		elif event.is_action_pressed("move_up"):
+			is_waiting_for_input = false
+			current_direction = Vector2.UP
+			event_bus.emit_signal("platform_control_started", current_direction)
+		elif event.is_action_pressed("move_dn"):
+			is_waiting_for_input = false
+			current_direction = Vector2.DOWN
+			event_bus.emit_signal("platform_control_started", current_direction)
 
 func _physics_process(delta):
 	if is_controlled and current_direction != Vector2.ZERO:

@@ -1,5 +1,6 @@
 extends Area2D
 
+@onready var spike_interacter: Interactable = $"../Spike_interacter"
 @export var retract_time: float = 2.0  # 凸起时间（秒）
 @export var spike_color: Color = Color.RED  # 尖刺的颜色
 @onready var spike_timer: Timer = $"Spike timer"
@@ -12,6 +13,7 @@ func _ready():
 	spike_timer.wait_time = retract_time
 	spike_timer.one_shot = true
 	passive_interacter.interacted.connect(_on_interacted)
+	spike_interacter.interacted.connect(_on_interacted)
 	spike_timer.timeout.connect(_on_Spike_Timer_timeout)
 	
 	hide_spike()

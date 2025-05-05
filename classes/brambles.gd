@@ -10,7 +10,7 @@ func _ready():
 
 func _on_interacted():
 	# 方法一：直接隐藏
-	bramble_disappear_sound.play()
+	#bramble_disappear_sound.play()
 	visible = false
 	killzone.visible = false
 	killzone.set_deferred("monitoring", false) # 禁用碰撞检测

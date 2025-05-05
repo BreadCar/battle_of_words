@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://c2u1mux2ffs7t"]
+[gd_scene load_steps=25 format=4 uid="uid://c2u1mux2ffs7t"]
 
 [ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/01/stringstar fields/tileset.png" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bgkec1l7jpsmy" path="res://Scenes/test_scene.gd" id="1_5nsto"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://ptkbt21oe042" path="res://Components/stone_2.gd" id="15_kwl8l"]
 [ext_resource type="Script" uid="uid://bc5xhuldbc1vg" path="res://Components/e_g_cosplaying_door.gd" id="16_xiqgv"]
 [ext_resource type="PackedScene" uid="uid://d1xncc5i7d3uj" path="res://Characters/Corpse_flower.tscn" id="18_rwt1y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwt1y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0p05"]
 texture = ExtResource("1_5cjrv")
@@ -138,7 +140,22 @@ size = Vector2(32, 32)
 [node name="test_scene" type="Node"]
 script = ExtResource("1_5nsto")
 
-[node name="Spike" parent="." instance=ExtResource("2_q2d71")]
+[node name="Spike" type="Node" parent="."]
+
+[node name="Spike_interacter" type="Area2D" parent="Spike"]
+position = Vector2(357, -10)
+script = ExtResource("6_45d1s")
+metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike/Spike_interacter"]
+shape = SubResource("RectangleShape2D_rwt1y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spike/Spike_interacter/CollisionShape2D"]
+texture = ExtResource("9_kn06e")
+region_enabled = true
+region_rect = Rect2(80, 64, 16, 16)
+
+[node name="Spike" parent="Spike" instance=ExtResource("2_q2d71")]
 position = Vector2(384, -10)
 
 [node name="NPC" parent="." instance=ExtResource("2_y7y61")]
