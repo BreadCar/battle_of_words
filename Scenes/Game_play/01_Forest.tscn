@@ -10,7 +10,7 @@
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="10_ew4r3"]
 [ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="11_q306e"]
 [ext_resource type="SpriteFrames" uid="uid://cyjdjuqjhyetu" path="res://Scenes/Start_Page/fire.tres" id="12_lsw8j"]
-[ext_resource type="PackedScene" uid="uid://dwsh41lkwwaq7" path="res://Components/transition_trigger.tscn" id="13_lsw8j"]
+[ext_resource type="PackedScene" path="res://Components/transition_trigger.tscn" id="13_lsw8j"]
 [ext_resource type="Texture2D" uid="uid://cyb6cpmtuhy7n" path="res://Assets/Scene/Light.png" id="13_pifuj"]
 [ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="13_v6ica"]
 [ext_resource type="PackedScene" uid="uid://dgy78yxhn2l1u" path="res://Characters/slime.tscn" id="15_v6ica"]

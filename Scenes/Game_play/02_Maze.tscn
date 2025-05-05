@@ -10,9 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dinvu07d6vrld" path="res://Assets/Scene/02/dungeon_sidescroller-Raou/spr_torch.png" id="10_yswn3"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="11_3lro8"]
 [ext_resource type="PackedScene" uid="uid://d1xncc5i7d3uj" path="res://Characters/Corpse_flower.tscn" id="11_fvfaf"]
-
-[ext_resource type="PackedScene" uid="uid://dwsh41lkwwaq7" path="res://Components/transition_trigger.tscn" id="12_3lro8"]
-
+[ext_resource type="PackedScene" path="res://Components/transition_trigger.tscn" id="12_3lro8"]
 [ext_resource type="TileSet" uid="uid://d4gou6srq3dgg" path="res://Scenes/Game_play/Resourse/02/02Scene_tileset_fore.tres" id="12_yswn3"]
 [ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="13_8a4gb"]
 [ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="14_jdgih"]

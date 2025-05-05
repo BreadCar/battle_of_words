@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://c2u1mux2ffs7t"]
+[gd_scene load_steps=23 format=4 uid="uid://c2u1mux2ffs7t"]
 
 [ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/01/stringstar fields/tileset.png" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bgkec1l7jpsmy" path="res://Scenes/test_scene.gd" id="1_5nsto"]
@@ -11,15 +11,12 @@
 [ext_resource type="Script" uid="uid://dqherf4g4u2si" path="res://classes/platform_packger.gd" id="9_7yo87"]
 [ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="9_kn06e"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_kn06e"]
-
-[ext_resource type="PackedScene" uid="uid://b4wfegpy1gu42" path="res://Characters/Trap.tscn" id="12_op4cu"]
-
 [ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="11_ti1bm"]
+[ext_resource type="PackedScene" path="res://Characters/Trap.tscn" id="12_op4cu"]
 [ext_resource type="Script" uid="uid://bk5xdha6bpv7x" path="res://classes/container.gd" id="13_8l3nt"]
 [ext_resource type="Script" uid="uid://d2jkh2keao5ea" path="res://classes/magic_stone.gd" id="14_kwl8l"]
 [ext_resource type="Script" uid="uid://ptkbt21oe042" path="res://Components/stone_2.gd" id="15_kwl8l"]
 [ext_resource type="Script" uid="uid://bc5xhuldbc1vg" path="res://Components/e_g_cosplaying_door.gd" id="16_xiqgv"]
-
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0p05"]
 texture = ExtResource("1_5cjrv")
@@ -246,8 +243,6 @@ offset_right = 427.0
 offset_bottom = -56.0
 text = "我是门"
 script = ExtResource("16_xiqgv")
-
-
 
 [node name="Spike_box" parent="." instance=ExtResource("12_op4cu")]
 position = Vector2(-135, 43)
