@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://xphfa4voimox"]
+[gd_scene load_steps=25 format=4 uid="uid://xphfa4voimox"]
 
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="5_3icsq"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="6_3icsq"]
@@ -9,7 +9,10 @@
 [ext_resource type="Script" uid="uid://6sxtwf3grmkf" path="res://classes/interactable.gd" id="9_4atdx"]
 [ext_resource type="Texture2D" uid="uid://bpqcsx2kns6qb" path="res://Assets/Stones/Blue.png" id="10_2av67"]
 [ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="10_lnimb"]
+[ext_resource type="Texture2D" uid="uid://dh0l4uvk7tduc" path="res://Assets/Mobs/荆棘.png" id="11_nnay0"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="11_w6nsl"]
+[ext_resource type="Script" uid="uid://cpem4oxy34wss" path="res://classes/brambles.gd" id="12_8taie"]
+[ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="13_1c45w"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
 load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
@@ -142,6 +145,9 @@ size = Vector2(91.9148, 311.191)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnay0"]
 size = Vector2(56, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnmh5"]
+size = Vector2(20, 427.464)
 
 [node name="01Tutorial" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [32.0]
@@ -339,6 +345,20 @@ texture = ExtResource("10_2av67")
 unique_name_in_owner = true
 script = ExtResource("11_w6nsl")
 metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
+
+[node name="Brambles" type="Sprite2D" parent="Interactable"]
+position = Vector2(553, -76)
+scale = Vector2(0.198847, 0.198847)
+texture = ExtResource("11_nnay0")
+script = ExtResource("12_8taie")
+
+[node name="Killzone" type="Area2D" parent="Interactable/Brambles"]
+script = ExtResource("13_1c45w")
+metadata/_custom_type_script = "uid://drb7fi0rr1elp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Brambles/Killzone"]
+position = Vector2(-10.0581, 163.442)
+shape = SubResource("RectangleShape2D_dnmh5")
 
 [editable path="NPC"]
 [editable path="NPC/BubbleDialog"]
