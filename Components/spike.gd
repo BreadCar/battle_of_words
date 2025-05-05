@@ -5,7 +5,7 @@ extends Area2D
 @onready var spike_timer: Timer = $"Spike timer"
 @onready var passive_interacter: Passive_Interacter = $Passive_Interacter
 @onready var sprite_2d: Sprite2D = $Sprite2D
-
+@onready var spike_sound=$SpikeSound
 var killer: Killzone
 
 func _ready():
@@ -39,6 +39,7 @@ func _on_Spike_Timer_timeout():
 func show_spike(color: Color):
 	if color == spike_color:
 		sprite_2d.show()
+		spike_sound.play()
 		spike_timer.start()
 
 func hide_spike():
