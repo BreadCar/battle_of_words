@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="8_flaqq"]
 [ext_resource type="Texture2D" uid="uid://dinvu07d6vrld" path="res://Assets/Scene/02/dungeon_sidescroller-Raou/spr_torch.png" id="10_yswn3"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="11_3lro8"]
-[ext_resource type="PackedScene" path="res://Characters/Corpse_flower.tscn" id="11_fvfaf"]
+[ext_resource type="PackedScene" uid="uid://d1xncc5i7d3uj" path="res://Characters/Corpse_flower.tscn" id="11_fvfaf"]
 [ext_resource type="TileSet" uid="uid://d4gou6srq3dgg" path="res://Scenes/Game_play/Resourse/02/02Scene_tileset_fore.tres" id="12_yswn3"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
