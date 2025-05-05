@@ -17,9 +17,8 @@ script = ExtResource("1_7ur85")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_yn7ff")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.591199
 
 [node name="Killzone" type="Area2D" parent="."]
 script = ExtResource("3_5g30m")

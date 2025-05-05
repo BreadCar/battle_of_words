@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0deebtx6k2br"]
+
+[ext_resource type="Texture2D" uid="uid://c6eiiqy8t0o7a" path="res://百泽改的东西——/素材/Blue.png" id="1_n2p7y"]
+[ext_resource type="Shader" uid="uid://donk35s583ur4" path="res://百泽改的东西——/shader/魔法石的shader.gdshader" id="1_nnlsb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnlsb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2p7y"]
+shader = ExtResource("1_nnlsb")
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_color = Color(11.94, 2.239, 6.717, 1)
+
+[sub_resource type="Environment" id="Environment_pgq31"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 2.0
+glow_map_strength = 0.0
+
+[node name="1" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nnlsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_n2p7y")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_n2p7y")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pgq31")

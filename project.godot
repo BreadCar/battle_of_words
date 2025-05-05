@@ -21,6 +21,7 @@ window/size/viewport_height=1080
 [autoload]
 
 GameManager="*res://Components/game_manager.tscn"
+FadeTransition="*res://Scenes/fade_transition.tscn"
 
 [display]
 

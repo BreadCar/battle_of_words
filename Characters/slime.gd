@@ -9,7 +9,7 @@ enum State{
 	DIE,
 }
 
-var speed: float = 200
+var speed: float = 100
 
 @onready var wall_checker: RayCast2D = $Graphics/Wall_checker
 @onready var edge_checker: RayCast2D = $Graphics/edge_checker

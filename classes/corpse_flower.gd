@@ -7,7 +7,7 @@ enum State {
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area: Area2D = $Area2D
-@onready var killzone_scene: PackedScene = preload("res://classes/killzone.tscn") 
+@onready var killzone_scene: PackedScene = preload("res://Components/killzone.tscn") 
 
 var current_state: State = State.IDLE
 var player_in_range: bool = false

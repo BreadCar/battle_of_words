@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://c2u1mux2ffs7t"]
+[gd_scene load_steps=22 format=4 uid="uid://c2u1mux2ffs7t"]
 
 [ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/01/stringstar fields/tileset.png" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bgkec1l7jpsmy" path="res://Scenes/test_scene.gd" id="1_5nsto"]
@@ -11,7 +11,15 @@
 [ext_resource type="Script" uid="uid://dqherf4g4u2si" path="res://classes/platform_packger.gd" id="9_7yo87"]
 [ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="9_kn06e"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_kn06e"]
+
+[ext_resource type="PackedScene" uid="uid://b4wfegpy1gu42" path="res://Characters/Trap.tscn" id="12_op4cu"]
+
 [ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="11_ti1bm"]
+[ext_resource type="Script" uid="uid://bk5xdha6bpv7x" path="res://classes/container.gd" id="13_8l3nt"]
+[ext_resource type="Script" uid="uid://d2jkh2keao5ea" path="res://classes/magic_stone.gd" id="14_kwl8l"]
+[ext_resource type="Script" uid="uid://ptkbt21oe042" path="res://Components/stone_2.gd" id="15_kwl8l"]
+[ext_resource type="Script" uid="uid://bc5xhuldbc1vg" path="res://Components/e_g_cosplaying_door.gd" id="16_xiqgv"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0p05"]
 texture = ExtResource("1_5cjrv")
@@ -127,6 +135,8 @@ size = Vector2(20, 44)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yo87"]
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xiqgv"]
+
 [node name="test_scene" type="Node"]
 script = ExtResource("1_5nsto")
 
@@ -142,6 +152,7 @@ tile_set = SubResource("TileSet_5nsto")
 
 [node name="Player" parent="." instance=ExtResource("2_j0p05")]
 position = Vector2(0, -43)
+collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -17)
@@ -188,3 +199,56 @@ shape = SubResource("RectangleShape2D_7yo87")
 texture = ExtResource("9_kn06e")
 region_enabled = true
 region_rect = Rect2(448, 16, 12, 16)
+
+[node name="WordBoard" type="Node" parent="."]
+
+[node name="Container" type="VBoxContainer" parent="WordBoard"]
+offset_left = 156.0
+offset_top = -107.0
+offset_right = 284.0
+offset_bottom = -84.0
+script = ExtResource("13_8l3nt")
+
+[node name="Label" type="Label" parent="WordBoard/Container"]
+layout_mode = 2
+text = "这是测试用文本框"
+
+[node name="Stone1" type="Area2D" parent="WordBoard"]
+position = Vector2(303, -10)
+script = ExtResource("14_kwl8l")
+metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WordBoard/Stone1"]
+shape = SubResource("RectangleShape2D_xiqgv")
+
+[node name="Sprite2D" type="Sprite2D" parent="WordBoard/Stone1/CollisionShape2D"]
+texture = ExtResource("9_kn06e")
+region_enabled = true
+region_rect = Rect2(112, 64, 16, 16)
+
+[node name="Stone2" type="Area2D" parent="WordBoard"]
+position = Vector2(331, -10)
+script = ExtResource("15_kwl8l")
+metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WordBoard/Stone2"]
+shape = SubResource("RectangleShape2D_xiqgv")
+
+[node name="Sprite2D" type="Sprite2D" parent="WordBoard/Stone2/CollisionShape2D"]
+texture = ExtResource("9_kn06e")
+region_enabled = true
+region_rect = Rect2(112, 64, 16, 16)
+
+[node name="e_g_cosplayingDoor" type="Label" parent="."]
+offset_left = 315.0
+offset_top = -79.0
+offset_right = 427.0
+offset_bottom = -56.0
+text = "我是门"
+script = ExtResource("16_xiqgv")
+
+
+
+[node name="Spike_box" parent="." instance=ExtResource("12_op4cu")]
+position = Vector2(-135, 43)
+rotation = 3.14159

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwsh41lkwwaq7"]
+
+[ext_resource type="Script" uid="uid://cb172lc3oeb2b" path="res://Components/transition_trigger.gd" id="1_lplof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a14ko"]
+size = Vector2(20, 129)
+
+[node name="TransitionTrigger" type="Area2D"]
+script = ExtResource("1_lplof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 54.5)
+shape = SubResource("RectangleShape2D_a14ko")
