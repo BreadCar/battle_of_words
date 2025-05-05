@@ -90,3 +90,7 @@ func transition_state(from: State , to: State) -> void:
 			animation_player.play("hurt")
 		State.DIE:
 			animation_player.play("die")
+
+func _on_death():
+    EventBus.emit_signal("slime_killed")
+    queue_free()
