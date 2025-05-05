@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4wfegpy1gu42"]
+[gd_scene load_steps=5 format=3 uid="uid://cxbvgrxl3q0sm"]
 
 [ext_resource type="Texture2D" uid="uid://bmrjk5785ubw5" path="res://Assets/spike_box/Spike_box.png" id="1_no4oc"]
 [ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="2_v25a8"]

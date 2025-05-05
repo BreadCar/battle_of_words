@@ -22,6 +22,16 @@ enum State {
 	CONTROLING_PLATFORM,
 }
 
+var player_skills: Dictionary = {
+	"edit": true,
+	"up": false,
+	"down": false,
+	"left": false,
+	"right": false,
+	"true": false,
+	"false": false
+}
+
 const Ground_State := [State.IDLE, State.RUN]
 const Player_Speed: float = 300
 const Jump_Velocity: float = -300
@@ -35,82 +45,48 @@ var killed: bool = false
 
 var controling: int = -1
 
-# 技能状态变量
-var can_appear:=false
-var can_clear:=false
-var can_modify:=false
+var slime_kill_counter: int = 0
+var corpse_flower_kill_counter: int = 0
 
 func _ready():
 	event_bus.slime_killed.connect(_on_slime_killed)
-	event_bus.slime_unlocked.connect(_on_skill_unlocked)
 	event_bus.corpse_flower_killed.connect(_on_corpse_flower_killed)
 
-func _on_slime_killed(type: String):
-	event_bus.kill_counters.slime += 1
-	match  event_bus.kill_counters.slime:
-		1:
-			event_bus.player_skills.manifest.up = true
-			event_bus.emit_signal("skill_unlocked", "manifest", "up")
-		2:
-			event_bus.player_skills.manifest.down = true
-			event_bus.emit_signal("skill_unlocked", "manifest", "down")
-		3:
-			event_bus.player_skills.manifest.left = true
-			event_bus.emit_signal("skill_unlocked", "manifest", "left")
-		4:
-			event_bus.player_skills.manifest.right = true
-			event_bus.emit_signal("skill_unlocked", "manifest", "right")
+const DIRECTION_SKILLS = {
+	1: "up",
+	2: "down", 
+	3: "left",
+	4: "right"
+}
 
-func _on_corpse_flower_killed():
-	event_bus.kill_counters.corpse_flower+=1
-	match event_bus.kill_counters.corpse_flower:
-		1:
-			event_bus.player_skills.clear= true
-			event_bus.emit_signal("skill_unlocked", "erase", "true")
-		2:
-			event_bus.player_skills.clear = true
-			event_bus.emit_signal("skill_unlocked", "erase", "false")
+const LOGIC_SKILLS = {
+	1: "true",
+	2: "false"
+}
 
-func _on_skill_unlocked(skill_type: String, ability_name: String):
-	match skill_type:
-		"manifest":
-			print("解锁显现·%s 能力" % ability_name)
-			_enable_direction_ability(ability_name)
-		"erase":
-			print("解锁抹除·%s 能力" % ability_name)
-			_enable_logic_ability(ability_name)
-		"modify":
-			print("解锁抹除·%s 能力" % ability_name)
-			_enable_logic_ability(ability_name)
-
-func _enable_direction_ability(dir: String):
-	match dir:
-		"up":
-			$UpIndicator.visible = true
-		"down":
-			$DownIndicator.visible = true
-		"left":
-			$LeftIndicator.visible = true
-		"right":
-			$RightIndicator.visible = true
-
-func _enable_logic_ability(logic: String):
-	# 实现逻辑能力的具体效果 
-	match logic:
-		"true":
-			$TrueParticles.emitting = true
-		"false":
-			$FalseParticles.emitting = true
-
-func _physics_process(delta):
-	# 检查终极技能解锁条件
+func _check_ultimate_skill():
 	if (event_bus.kill_counters.slime >= 4 && 
 		event_bus.kill_counters.corpse_flower >= 2 &&
-		!event_bus.player_skills.modify):
+		!player_skills.has("modify")):
 		
-		event_bus.player_skills.modify = true
-		event_bus.emit_signal("skill_unlocked", "modify", "")
-			 
+		player_skills["modify"] = true
+		print("终极技能modify已解锁")
+
+func _on_slime_killed():
+	slime_kill_counter += 1
+	if DIRECTION_SKILLS.has(slime_kill_counter):
+		var skill = DIRECTION_SKILLS[slime_kill_counter]
+		player_skills[skill] = true
+		print("解锁方向技能:", skill)
+	_check_ultimate_skill()
+
+func _on_corpse_flower_killed():
+	corpse_flower_kill_counter += 1
+	if LOGIC_SKILLS.has(corpse_flower_kill_counter):
+		var skill = LOGIC_SKILLS[corpse_flower_kill_counter]
+		player_skills[skill] = true
+		print("解锁逻辑技能:", skill)
+	_check_ultimate_skill()
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()

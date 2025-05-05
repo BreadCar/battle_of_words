@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="9_kn06e"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_kn06e"]
 [ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="11_ti1bm"]
-[ext_resource type="PackedScene" path="res://Characters/Trap.tscn" id="12_op4cu"]
+[ext_resource type="PackedScene" uid="uid://cxbvgrxl3q0sm" path="res://Characters/Trap.tscn" id="12_op4cu"]
 [ext_resource type="Script" uid="uid://bk5xdha6bpv7x" path="res://classes/container.gd" id="13_8l3nt"]
 [ext_resource type="Script" uid="uid://d2jkh2keao5ea" path="res://classes/magic_stone.gd" id="14_kwl8l"]
 [ext_resource type="Script" uid="uid://ptkbt21oe042" path="res://Components/stone_2.gd" id="15_kwl8l"]

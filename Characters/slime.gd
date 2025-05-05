@@ -15,12 +15,20 @@ var speed: float = 100
 @onready var edge_checker: RayCast2D = $Graphics/edge_checker
 @onready var player_checker: RayCast2D = $Graphics/Player_checker
 @onready var colddown_timer: Timer = $Timers/colddown_timer
+@onready var event_bus: EventBus = %EventBus
+@onready var killzone: Killzone = $Graphics/Killzone
 
 func can_see_player() -> bool:
 	if not player_checker.is_colliding():
 		return false
 	else:
 		return player_checker.get_collider() is Player
+
+func enable_killzone() -> void:
+	killzone.monitoring = true
+
+func disable_killzone() -> void:
+	killzone.monitoring = false
 
 func tick_physics(state: State, delta: float) -> void:
 	
@@ -92,5 +100,5 @@ func transition_state(from: State , to: State) -> void:
 			animation_player.play("die")
 
 func _on_death():
-	#EventBus.emit_signal("slime_killed")
+	event_bus.emit_signal("slime_killed")
 	queue_free()

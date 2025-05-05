@@ -5,7 +5,7 @@ enum State {
 	ATTACK,
 	DIE,
 }
-
+@onready var event_bus: EventBus = %EventBus
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area: Area2D = $Area2D
 @onready var killzone_scene: PackedScene = preload("res://Components/killzone.tscn") 
@@ -22,7 +22,7 @@ func _ready():
 	sprite.play("idle")
 
 func kill():
-	EventBus.corpse_flower_killed.emit()
+	event_bus.corpse_flower_killed.emit()
 	queue_free()
 
 func _process(delta):

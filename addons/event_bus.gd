@@ -7,18 +7,8 @@ signal platform_control_ended()
 
 signal player_control_locked()
 signal player_control_unlocked()
-signal slime_killed(type: String)  # 史莱姆类型参数
-signal skill_unlocked(skill_name: String)
-
-var player_skills:={
-	"appear":false,
-	"clear":false,
-	"modify":false,
-	"up":false,
-	"down":false,
-	"left":false,
-	"right":false,
-}
+signal slime_killed # 史莱姆类型参数
+signal corpse_flower_killed
 
 var kill_counters = {
 	"slime": 0,

@@ -1,8 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgy78yxhn2l1u"]
+[gd_scene load_steps=14 format=3 uid="uid://dgy78yxhn2l1u"]
 
 [ext_resource type="PackedScene" uid="uid://bxnlk1rpkda2d" path="res://Characters/enemy.tscn" id="1_8qkr6"]
 [ext_resource type="Script" uid="uid://thxvfw40eu66" path="res://Characters/slime.gd" id="2_ndaoh"]
 [ext_resource type="Texture2D" uid="uid://cqqyucxfmw3i7" path="res://Assets/Mobs/Blue_Water_Slime/slime-Sheet.png" id="3_ojfj0"]
+[ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="4_m48q5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icfjy"]
+size = Vector2(38, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ojfj0"]
 radius = 6.0
@@ -159,6 +163,23 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_killzone"
+}, {
+"args": [],
+"method": &"disable_killzone"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_rs03m"]
@@ -523,6 +544,17 @@ target_position = Vector2(0, 13)
 position = Vector2(-6, -14)
 target_position = Vector2(-155, 0)
 collision_mask = 3
+
+[node name="Killzone" type="Area2D" parent="Graphics" index="6"]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+script = ExtResource("4_m48q5")
+metadata/_custom_type_script = "uid://drb7fi0rr1elp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Killzone" index="0"]
+position = Vector2(-6, -8)
+shape = SubResource("RectangleShape2D_icfjy")
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-4.65661e-10, -6)
