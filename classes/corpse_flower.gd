@@ -9,8 +9,8 @@ enum State {
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area: Area2D = $Area2D
 @onready var killzone_scene: PackedScene = preload("res://Components/killzone.tscn") 
-@onready var corpse_flower_dead_sound = $CorpseFlowerSound
-@onready var corpse_flower_attack_sound = $CorpseAttackSound
+#@onready var corpse_flower_dead_sound = $CorpseFlowerSound
+#@onready var corpse_flower_attack_sound = $CorpseAttackSound
 
 var current_state: State = State.IDLE
 var player_in_range: bool = false
@@ -34,10 +34,10 @@ func _process(delta):
 				transition_state(State.ATTACK)
 		State.ATTACK:
 			# 等待动画自动回调 _on_animation_finished
-			corpse_flower_attack_sound()
+			#corpse_flower_attack_sound()
 			pass
 		State.DIE:
-			corpse_flower_dead_sound.play()
+			#corpse_flower_dead_sound.play()
 			kill()
 			
 func _on_body_entered(body):
@@ -73,7 +73,6 @@ func _spawn_killzone():
 	add_child(active_killzone)
 	active_killzone.position = Vector2(0, 0) 
 
-#func _on_death():
-	#EventBus.emit_signal("corpse_flower_killed")
-	#queue_free()
-
+func _on_death():
+	event_bus.emit_signal("corpse_flower_killed")
+	queue_free()

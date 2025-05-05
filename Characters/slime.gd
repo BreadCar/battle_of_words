@@ -15,8 +15,8 @@ var speed: float = 100
 @onready var edge_checker: RayCast2D = $Graphics/edge_checker
 @onready var player_checker: RayCast2D = $Graphics/Player_checker
 @onready var colddown_timer: Timer = $Timers/colddown_timer
-@onready var slime_dead_sound = $SlimeDeadSound
-@onready var slime_attack_sound = $SlimeAttackSound
+#@onready var slime_dead_sound = $SlimeDeadSound
+#@onready var slime_attack_sound = $SlimeAttackSound
 @onready var event_bus: EventBus = %EventBus
 @onready var killzone: Killzone = $Graphics/Killzone
 
@@ -96,14 +96,13 @@ func transition_state(from: State , to: State) -> void:
 			animation_player.play("run")
 		State.ATTACK:
 			animation_player.play("attack")
-			slime_attack_sound.play()
+			#slime_attack_sound.play()
 		State.HURT:
 			animation_player.play("hurt")
 		State.DIE:
 			animation_player.play("die")
 
-			slime_dead_sound.play()
+			#slime_dead_sound.play()
 func _on_death():
 	event_bus.emit_signal("slime_killed")
 	queue_free()
-

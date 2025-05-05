@@ -12,9 +12,7 @@ signal ability_gained
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var event_bus: EventBus = %EventBus
-@onready var jump_sound =$JumpSound
-@onready var run_sound =$RunSound
-@onready var eraseandmodify_sound=$EraseaAndModifySound
+
 enum State {
 	IDLE,
 	RUN,
@@ -52,37 +50,28 @@ var slime_kill_counter: int = 0
 var corpse_flower_kill_counter: int = 0
 
 func _ready():
+	event_bus.slime_killed.connect(_on_slime_killed)
+	event_bus.corpse_flower_killed.connect(_on_corpse_flower_killed)
 
-	pass
-	#EventBus.connect("slime_killed",_on_slime_killed)
-	#EventBus.connect("slime_unlocked",_on_skill_unlocked)
-	#EventBus.connect("corpse_flower_killed", _on_corpse_flower_killed)
+const DIRECTION_SKILLS = {
+	1: "up",
+	2: "down", 
+	3: "left",
+	4: "right"
+}
 
-#func _on_slime_killed(type: String):
-	#EventBus.kill_counters.slime += 1
-	#match  EventBus.kill_counters.slime:
-		#1:
-			#EventBus.player_skills.manifest.up = true
-			#EventBus.emit_signal("skill_unlocked", "manifest", "up")
-		#2:
-			#EventBus.player_skills.manifest.down = true
-			#EventBus.emit_signal("skill_unlocked", "manifest", "down")
-		#3:
-			#EventBus.player_skills.manifest.left = true
-			#EventBus.emit_signal("skill_unlocked", "manifest", "left")
-		#4:
-			#EventBus.player_skills.manifest.right = true
-			#EventBus.emit_signal("skill_unlocked", "manifest", "right")
+const LOGIC_SKILLS = {
+	1: "true",
+	2: "false"
+}
 
-#func corpse_flower_killed():
-	#EventBus.kill_counters.corpse_flower+=1
-	#match EventBus.kill_counters.corpse_flower:
-		#1:
-			#EventBus.player_skills.clear.true = true
-			#EventBus.emit_signal("skill_unlocked", "erase", "true")
-		#2:
-			#EventBus.player_skills.clear.false = true
-			#EventBus.emit_signal("skill_unlocked", "erase", "false")
+func _check_ultimate_skill():
+	if (slime_kill_counter >= 4 && 
+		corpse_flower_kill_counter >= 2 &&
+		!player_skills.has("modify")):
+		
+		player_skills["modify"] = true
+		print("终极技能modify已解锁")
 
 func _on_slime_killed():
 	slime_kill_counter += 1
@@ -91,8 +80,7 @@ func _on_slime_killed():
 		player_skills[skill] = true
 		print("解锁方向技能:", skill)
 	_check_ultimate_skill()
-	ability_gained.emit()
-	
+
 func _on_corpse_flower_killed():
 	corpse_flower_kill_counter += 1
 	if LOGIC_SKILLS.has(corpse_flower_kill_counter):
@@ -100,8 +88,6 @@ func _on_corpse_flower_killed():
 		player_skills[skill] = true
 		print("解锁逻辑技能:", skill)
 	_check_ultimate_skill()
-	ability_gained.emit()
-	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
@@ -252,10 +238,8 @@ func transition_state(from: State, to: State) -> void:
 				animation_player.play("idle")
 		State.RUN:
 			animation_player.play("run")
-			run_sound.play()
 		State.JUMP:
 			animation_player.play("jump")
-			jump_sound.play()
 			velocity.y = Jump_Velocity
 			coyote_timer.stop()
 			jump_request_timer.stop()
