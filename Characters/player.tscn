@@ -812,6 +812,7 @@ autoplay = "default"
 frame_progress = 0.600396
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("8_5slg2")]
 offset_left = 51.0

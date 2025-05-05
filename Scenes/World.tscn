@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://c2u1mux2ffs7t"]
+[gd_scene load_steps=26 format=4 uid="uid://c2u1mux2ffs7t"]
 
 [ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/01/stringstar fields/tileset.png" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bgkec1l7jpsmy" path="res://Scenes/test_scene.gd" id="1_5nsto"]
@@ -12,11 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="9_kn06e"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_kn06e"]
 [ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="11_ti1bm"]
-[ext_resource type="PackedScene" uid="uid://cxbvgrxl3q0sm" path="res://Characters/Trap.tscn" id="12_op4cu"]
 [ext_resource type="Script" uid="uid://bk5xdha6bpv7x" path="res://classes/container.gd" id="13_8l3nt"]
 [ext_resource type="Script" uid="uid://d2jkh2keao5ea" path="res://classes/magic_stone.gd" id="14_kwl8l"]
 [ext_resource type="Script" uid="uid://ptkbt21oe042" path="res://Components/stone_2.gd" id="15_kwl8l"]
 [ext_resource type="Script" uid="uid://bc5xhuldbc1vg" path="res://Components/e_g_cosplaying_door.gd" id="16_xiqgv"]
+[ext_resource type="PackedScene" uid="uid://8p7qc1voolg1" path="res://Components/spike_box.tscn" id="18_mvfa8"]
 [ext_resource type="PackedScene" uid="uid://d1xncc5i7d3uj" path="res://Characters/Corpse_flower.tscn" id="18_rwt1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwt1y"]
@@ -137,6 +137,8 @@ size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xiqgv"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_waglr"]
+
 [node name="test_scene" type="Node"]
 script = ExtResource("1_5nsto")
 
@@ -178,7 +180,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="Slime" parent="." instance=ExtResource("5_p70al")]
-position = Vector2(169, 0)
+position = Vector2(175, -68)
 
 [node name="test_interacter_tree" type="Area2D" parent="."]
 position = Vector2(56, -9)
@@ -262,9 +264,27 @@ offset_bottom = -56.0
 text = "我是门"
 script = ExtResource("16_xiqgv")
 
-[node name="Spike_box" parent="." instance=ExtResource("12_op4cu")]
-position = Vector2(-135, 43)
-rotation = 3.14159
-
 [node name="CharacterBody2D" parent="." instance=ExtResource("18_rwt1y")]
-position = Vector2(-145, -36)
+position = Vector2(-222, -18)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(493, -74)
+shape = SubResource("RectangleShape2D_waglr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(608, -75)
+shape = SubResource("RectangleShape2D_waglr")
+
+[node name="Spike_box" parent="." instance=ExtResource("18_mvfa8")]
+
+[node name="Interact_point" parent="Spike_box/Platform2" index="1"]
+position = Vector2(-675, -6)
+
+[node name="Spike_box" parent="Spike_box/Platform2" index="2"]
+position = Vector2(-223, -124)
+
+[editable path="Spike_box"]

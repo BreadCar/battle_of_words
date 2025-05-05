@@ -1,19 +1,26 @@
-[gd_scene load_steps=27 format=4 uid="uid://xwh6t27oe7d8"]
+[gd_scene load_steps=41 format=4 uid="uid://xwh6t27oe7d8"]
 
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="3_lsw8j"]
 [ext_resource type="TileSet" uid="uid://bcbt3jdmwoa4e" path="res://Scenes/Game_play/Resourse/Scene_tileset.tres" id="6_x2g80"]
 [ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="7_hiw41"]
+[ext_resource type="Script" uid="uid://dqherf4g4u2si" path="res://classes/platform_packger.gd" id="7_v6ica"]
 [ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="8_pifuj"]
 [ext_resource type="Texture2D" uid="uid://bpqcsx2kns6qb" path="res://Assets/Stones/Blue.png" id="9_2shyc"]
 [ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="9_uqgud"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_2shyc"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="10_ew4r3"]
+[ext_resource type="Shader" uid="uid://donk35s583ur4" path="res://百泽改的东西——/shader/魔法石的shader.gdshader" id="10_q306e"]
+[ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/01/stringstar fields/tileset.png" id="11_mugtv"]
 [ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="11_q306e"]
 [ext_resource type="SpriteFrames" uid="uid://cyjdjuqjhyetu" path="res://Scenes/Start_Page/fire.tres" id="12_lsw8j"]
 [ext_resource type="PackedScene" uid="uid://dwsh41lkwwaq7" path="res://Components/transition_trigger.tscn" id="13_lsw8j"]
 [ext_resource type="Texture2D" uid="uid://cyb6cpmtuhy7n" path="res://Assets/Scene/Light.png" id="13_pifuj"]
 [ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="13_v6ica"]
 [ext_resource type="PackedScene" uid="uid://dgy78yxhn2l1u" path="res://Characters/slime.tscn" id="15_v6ica"]
+[ext_resource type="Script" uid="uid://6sxtwf3grmkf" path="res://classes/interactable.gd" id="16_83jhx"]
+[ext_resource type="PackedScene" uid="uid://bqa4t8ywjbaw8" path="res://Components/spike.tscn" id="16_x2g80"]
+[ext_resource type="Texture2D" uid="uid://dk8pesy2kc6vc" path="res://Assets/Stones/Green.png" id="17_83jhx"]
+[ext_resource type="Texture2D" uid="uid://bi3ccanngipxl" path="res://Assets/Stones/Yellow.png" id="21_c50yv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
 load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
@@ -150,8 +157,38 @@ sources/1 = SubResource("TileSetAtlasSource_lsw8j")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2shyc"]
 size = Vector2(20, 550.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsw8j"]
-size = Vector2(56, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2g80"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mugtv"]
+shader = ExtResource("10_q306e")
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c50yv"]
+shader = ExtResource("10_q306e")
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqr3u"]
+size = Vector2(80, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ew4r3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqr3u"]
+shader = ExtResource("10_q306e")
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5h0a"]
+shader = ExtResource("10_q306e")
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s28j7"]
+shader = ExtResource("10_q306e")
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [node name="01Forest" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-319.0, 601.0]
@@ -426,22 +463,82 @@ limit_smoothed = true
 
 [node name="Platform2" type="Node" parent="Interactable"]
 
-[node name="Platform" parent="Interactable" instance=ExtResource("7_hiw41")]
-position = Vector2(362, 184)
+[node name="Platform" type="Node" parent="Interactable/Platform2"]
+script = ExtResource("7_v6ica")
+metadata/_custom_type_script = "uid://dqherf4g4u2si"
 
-[node name="Interact_point" type="Area2D" parent="Interactable"]
+[node name="Platform" parent="Interactable/Platform2/Platform" instance=ExtResource("7_hiw41")]
+position = Vector2(379, 188)
+collision_layer = 4
+
+[node name="Interact_point" type="Area2D" parent="Interactable/Platform2/Platform"]
+position = Vector2(-303, 234)
 collision_mask = 3
 script = ExtResource("8_pifuj")
 metadata/_custom_type_script = "uid://dbjunicpytvjx"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Interact_point"]
-position = Vector2(193, 222)
-shape = SubResource("RectangleShape2D_lsw8j")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Interact_point"]
+position = Vector2(677, -62)
+shape = SubResource("RectangleShape2D_x2g80")
 
-[node name="Sprite2D" type="Sprite2D" parent="Interactable/Interact_point/CollisionShape2D"]
-z_index = -1
-position = Vector2(-6, 5)
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/Platform2/Platform/Interact_point/CollisionShape2D"]
+material = SubResource("ShaderMaterial_mugtv")
+position = Vector2(0, 3)
 texture = ExtResource("9_2shyc")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Platform2" parent="Interactable/Platform2/Platform" instance=ExtResource("7_hiw41")]
+position = Vector2(52, -80)
+collision_layer = 4
+
+[node name="Interact_point2" type="Area2D" parent="Interactable/Platform2/Platform"]
+position = Vector2(-630, -34)
+collision_mask = 3
+script = ExtResource("8_pifuj")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Interact_point2"]
+visible = false
+position = Vector2(655, -61)
+shape = SubResource("RectangleShape2D_x2g80")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/Platform2/Platform/Interact_point2/CollisionShape2D"]
+visible = false
+position = Vector2(0, 2)
+texture = ExtResource("9_2shyc")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Platform3" parent="Interactable/Platform2/Platform" instance=ExtResource("7_hiw41")]
+position = Vector2(409, -32)
+collision_layer = 4
+
+[node name="Interact_point3" type="Area2D" parent="Interactable/Platform2/Platform"]
+position = Vector2(-273, 14)
+collision_mask = 3
+script = ExtResource("8_pifuj")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Interact_point3"]
+position = Vector2(570, -29)
+shape = SubResource("RectangleShape2D_x2g80")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/Platform2/Platform/Interact_point3/CollisionShape2D"]
+material = SubResource("ShaderMaterial_c50yv")
+position = Vector2(0, 5)
+texture = ExtResource("9_2shyc")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/Platform2/Platform"]
+position = Vector2(184, -119)
+texture = ExtResource("11_mugtv")
+region_enabled = true
+region_rect = Rect2(80, 64, 80, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Interactable/Platform2/Platform/Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Sprite2D/StaticBody2D"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_lqr3u")
 
 [node name="EventBus" type="Node" parent="Interactable"]
 unique_name_in_owner = true
@@ -451,10 +548,16 @@ metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
 [node name="Enemy" type="Node" parent="."]
 
 [node name="Slime" parent="Enemy" instance=ExtResource("15_v6ica")]
-position = Vector2(384, 233)
+position = Vector2(239, -4)
 
 [node name="Slime2" parent="Enemy" instance=ExtResource("15_v6ica")]
-position = Vector2(167, -12)
+position = Vector2(495, 231)
+
+[node name="Slime3" parent="Enemy" instance=ExtResource("15_v6ica")]
+position = Vector2(207, -130)
+
+[node name="Slime4" parent="Enemy" instance=ExtResource("15_v6ica")]
+position = Vector2(-153, 232)
 
 [node name="NPC" parent="." instance=ExtResource("9_uqgud")]
 position = Vector2(113, 218)
@@ -472,12 +575,70 @@ offset_right = -20.0
 offset_bottom = -129.0
 dialog_lines = Array[String](["看到那里的史莱姆了吗~利用尖刺消灭它们得到特殊材料吧~"])
 
-[node name="TransitionTrigger" parent="." instance=ExtResource("13_lsw8j")]
-position = Vector2(583, -155)
-next_scene_path = "res://Scenes/Game_play/02_Maze.tscn"
-
 [node name="EventBus" type="Node" parent="."]
 script = ExtResource("10_2shyc")
 metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
+
+[node name="Spike" type="Node" parent="."]
+
+[node name="Spike_interacter" type="Area2D" parent="Spike"]
+position = Vector2(-85, -10)
+script = ExtResource("16_83jhx")
+metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike/Spike_interacter"]
+shape = SubResource("RectangleShape2D_ew4r3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spike/Spike_interacter/CollisionShape2D"]
+material = SubResource("ShaderMaterial_lqr3u")
+texture = ExtResource("17_83jhx")
+region_rect = Rect2(80, 64, 16, 16)
+
+[node name="Spike" parent="Spike" instance=ExtResource("16_x2g80")]
+position = Vector2(63, -9)
+
+[node name="Spike2" type="Node" parent="."]
+
+[node name="Spike_interacter" type="Area2D" parent="Spike2"]
+position = Vector2(-85, -10)
+script = ExtResource("16_83jhx")
+metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike2/Spike_interacter"]
+position = Vector2(168, -84)
+shape = SubResource("RectangleShape2D_ew4r3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spike2/Spike_interacter/CollisionShape2D"]
+material = SubResource("ShaderMaterial_m5h0a")
+position = Vector2(-12, 0)
+texture = ExtResource("21_c50yv")
+region_rect = Rect2(80, 64, 16, 16)
+
+[node name="Spike" parent="Spike2" instance=ExtResource("16_x2g80")]
+position = Vector2(158, -135)
+
+[node name="Spike3" type="Node" parent="."]
+
+[node name="Spike_interacter" type="Area2D" parent="Spike3"]
+position = Vector2(-85, -10)
+script = ExtResource("16_83jhx")
+metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike3/Spike_interacter"]
+position = Vector2(97, 234)
+shape = SubResource("RectangleShape2D_ew4r3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spike3/Spike_interacter/CollisionShape2D"]
+material = SubResource("ShaderMaterial_s28j7")
+position = Vector2(-1, 0)
+texture = ExtResource("21_c50yv")
+region_rect = Rect2(80, 64, 16, 16)
+
+[node name="Spike" parent="Spike3" instance=ExtResource("16_x2g80")]
+position = Vector2(175, 228)
+
+[node name="TransitionTrigger2" parent="." instance=ExtResource("13_lsw8j")]
+position = Vector2(597, -163)
+next_scene_path = "res://Scenes/Game_play/02_Maze.tscn"
 
 [editable path="NPC"]

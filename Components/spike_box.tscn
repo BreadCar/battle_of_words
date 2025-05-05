@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://8p7qc1voolg1"]
+
+[ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="1_7y51k"]
+[ext_resource type="Script" uid="uid://dqherf4g4u2si" path="res://classes/platform_packger.gd" id="1_ca31l"]
+[ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="1_os7sq"]
+[ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="2_os7sq"]
+[ext_resource type="PackedScene" uid="uid://cxbvgrxl3q0sm" path="res://Characters/Trap.tscn" id="3_ca31l"]
+[ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="5_ca31l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_put3o"]
+size = Vector2(32, 32)
+
+[node name="Spike_box" type="Node"]
+
+[node name="Platform2" type="Node" parent="."]
+script = ExtResource("1_ca31l")
+metadata/_custom_type_script = "uid://dqherf4g4u2si"
+
+[node name="Platform" parent="Platform2" instance=ExtResource("1_os7sq")]
+visible = false
+position = Vector2(550, -73)
+
+[node name="Interact_point" type="Area2D" parent="Platform2"]
+collision_mask = 3
+script = ExtResource("1_7y51k")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2/Interact_point"]
+position = Vector2(493, -10)
+shape = SubResource("RectangleShape2D_put3o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform2/Interact_point/CollisionShape2D"]
+texture = ExtResource("2_os7sq")
+region_enabled = true
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Spike_box" parent="Platform2" instance=ExtResource("3_ca31l")]
+position = Vector2(503, -123)
+
+[node name="EventBus" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_ca31l")
+metadata/_custom_type_script = "uid://d3uh6ck1ycabq"

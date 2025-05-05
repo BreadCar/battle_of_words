@@ -1,30 +1,35 @@
 [gd_scene load_steps=6 format=3 uid="uid://bqa4t8ywjbaw8"]
 
 [ext_resource type="Script" path="res://Components/spike.gd" id="1_b5vf1"]
-[ext_resource type="Texture2D" uid="uid://bvsfge3jtee13" path="res://Assets/UI/GUI.png" id="3_8b3r4"]
+[ext_resource type="Texture2D" uid="uid://b5g2fhi2p2brj" path="res://Assets/Scene/02/Castle_Background_Black (1).png" id="2_8b3r4"]
 [ext_resource type="Script" uid="uid://c2mhe4rb27hxj" path="res://classes/passive_interacter.gd" id="3_j1ivn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1ivn"]
+size = Vector2(20, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbwgx"]
+size = Vector2(20, 14)
 
 [node name="Spike" type="Area2D"]
 collision_mask = 16
 script = ExtResource("1_b5vf1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_j1ivn")
 
 [node name="Spike timer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_8b3r4")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_8b3r4")
 region_enabled = true
-region_rect = Rect2(167, 39, 18, 18)
+region_rect = Rect2(429.14, 173.323, 85.9504, 64.4628)
 
 [node name="Passive_Interacter" type="Area2D" parent="."]
 script = ExtResource("3_j1ivn")
 metadata/_custom_type_script = "uid://c2mhe4rb27hxj"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Passive_Interacter"]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_lbwgx")

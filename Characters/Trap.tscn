@@ -1,24 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxbvgrxl3q0sm"]
+[gd_scene load_steps=6 format=3 uid="uid://cxbvgrxl3q0sm"]
 
 [ext_resource type="Texture2D" uid="uid://bmrjk5785ubw5" path="res://Assets/spike_box/Spike_box.png" id="1_no4oc"]
+[ext_resource type="Script" uid="uid://clvpj2msa3yug" path="res://Components/platform.gd" id="1_v25a8"]
 [ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="2_v25a8"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs72o"]
-size = Vector2(83, 75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w5fd"]
 size = Vector2(88, 39)
 
-[node name="Spike_box" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v25a8"]
+size = Vector2(88, 85.8289)
+
+[node name="Spike_box" type="CharacterBody2D"]
+script = ExtResource("1_v25a8")
+metadata/_custom_type_script = "uid://clvpj2msa3yug"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_no4oc")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.5, -23.5)
-shape = SubResource("RectangleShape2D_fs72o")
 
 [node name="Killzone" type="Area2D" parent="."]
 collision_layer = 3
@@ -28,3 +25,7 @@ metadata/_custom_type_script = "uid://drb7fi0rr1elp"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(0, 43.5)
 shape = SubResource("RectangleShape2D_7w5fd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21)
+shape = SubResource("RectangleShape2D_v25a8")

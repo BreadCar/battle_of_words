@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://xphfa4voimox"]
+[gd_scene load_steps=27 format=4 uid="uid://xphfa4voimox"]
 
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="5_3icsq"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="6_3icsq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="7_3icsq"]
 [ext_resource type="PackedScene" uid="uid://dwsh41lkwwaq7" path="res://Components/transition_trigger.tscn" id="8_3pq81"]
 [ext_resource type="Script" uid="uid://6sxtwf3grmkf" path="res://classes/interactable.gd" id="9_4atdx"]
+[ext_resource type="Shader" uid="uid://donk35s583ur4" path="res://百泽改的东西——/shader/魔法石的shader.gdshader" id="9_nnay0"]
 [ext_resource type="Texture2D" uid="uid://bpqcsx2kns6qb" path="res://Assets/Stones/Blue.png" id="10_2av67"]
 [ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="10_lnimb"]
 [ext_resource type="Texture2D" uid="uid://dh0l4uvk7tduc" path="res://Assets/Mobs/荆棘.png" id="11_nnay0"]
@@ -145,6 +146,11 @@ size = Vector2(91.9148, 311.191)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnay0"]
 size = Vector2(56, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8taie"]
+shader = ExtResource("9_nnay0")
+shader_parameter/outline_width = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnmh5"]
 size = Vector2(20, 427.464)
@@ -321,7 +327,7 @@ offset_bottom = -112.0
 dialog_lines = Array[String](["“呜哇~！活的人类，(´◊ω◊｀)你是被小魔角拐来的吧？真可怜呐~“", "想回去？桀桀桀(ಡωಡ)，只有找到另一支角喽~。", "它就在言灵恶魔的城堡中，不过要小心~这里的‘文字’，可不会乖乖听你的话。", "也许你可以试着靠近这块符文石。"])
 
 [node name="TransitionTrigger" parent="." instance=ExtResource("8_3pq81")]
-position = Vector2(581, -97)
+position = Vector2(568, -97)
 next_scene_path = "res://Scenes/Game_play/01_Forest.tscn"
 
 [node name="Interactable" type="Node" parent="."]
@@ -338,6 +344,7 @@ shape = SubResource("RectangleShape2D_nnay0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactable/Interact_point/CollisionShape2D"]
 z_index = -1
+material = SubResource("ShaderMaterial_8taie")
 position = Vector2(-6, 5)
 texture = ExtResource("10_2av67")
 

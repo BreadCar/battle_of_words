@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://jqknpdupyri2"]
+[gd_scene load_steps=22 format=4 uid="uid://jqknpdupyri2"]
 
 [ext_resource type="Texture2D" uid="uid://b5g2fhi2p2brj" path="res://Assets/Scene/02/Castle_Background_Black (1).png" id="1_jo076"]
 [ext_resource type="Texture2D" uid="uid://b1i157gb4wn7h" path="res://Assets/Scene/02/Castle_Background_Blue (1).png" id="2_dk7r5"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="10_opxq8"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="11_xh3dr"]
 [ext_resource type="PackedScene" uid="uid://dwsh41lkwwaq7" path="res://Components/transition_trigger.tscn" id="12_whd3f"]
+[ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="13_j61ok"]
+[ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="14_jtlna"]
+[ext_resource type="Texture2D" uid="uid://bpqcsx2kns6qb" path="res://Assets/Stones/Blue.png" id="15_j61ok"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_opxq8"]
 load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
@@ -28,8 +31,8 @@ size = Vector2(20, 158)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opxq8"]
 size = Vector2(530, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jo076"]
-size = Vector2(58, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3ida"]
+size = Vector2(32, 32)
 
 [node name="03Castle" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-707.0]
@@ -212,170 +215,12 @@ motion_scale = Vector2(1.2, 1)
 
 [node name="TileMapLayerInside" type="TileMapLayer" parent="ForeGround/ParallaxLayer2"]
 z_index = 3
-position = Vector2(544, -97)
+position = Vector2(419, -101)
 scale = Vector2(2.52512, 2.52512)
 tile_map_data = PackedByteArray("AAD0/wEAAAAFAAYAAAD0/wIAAAAFAAcAAAD0/wMAAAAFAAgAAAD1/wEAAAAGAAYAAAD1/wIAAAAGAAcAAAD1/wMAAAAGAAgAAAD6/wEAAAAFAAYAAAD6/wIAAAAFAAcAAAD6/wMAAAAFAAgAAAD7/wEAAAAGAAYAAAD7/wIAAAAGAAcAAAD7/wMAAAAGAAgAAAAAAAEAAAAFAAYAAAAAAAIAAAAFAAcAAAAAAAMAAAAFAAgAAAABAAEAAAAGAAYAAAABAAIAAAAGAAcAAAABAAMAAAAGAAgAAAAGAAEAAAAFAAYAAAAGAAIAAAAFAAcAAAAGAAMAAAAFAAgAAAAHAAEAAAAGAAYAAAAHAAIAAAAGAAcAAAAHAAMAAAAGAAgAAAAMAAEAAAAFAAYAAAAMAAIAAAAFAAcAAAAMAAMAAAAFAAgAAAANAAEAAAAGAAYAAAANAAIAAAAGAAcAAAANAAMAAAAGAAgAAAASAAEAAAAFAAYAAAASAAIAAAAFAAcAAAASAAMAAAAFAAgAAAATAAEAAAAGAAYAAAATAAIAAAAGAAcAAAATAAMAAAAGAAgAAAD0//7/AAAFAAYAAAD0////AAAFAAcAAAD0/wAAAAAFAAgAAAD1//7/AAAGAAYAAAD1////AAAGAAcAAAD1/wAAAAAGAAgAAAD6//7/AAAFAAYAAAD6////AAAFAAcAAAD6/wAAAAAFAAgAAAD7//7/AAAGAAYAAAD7////AAAGAAcAAAD7/wAAAAAGAAgAAAAAAP7/AAAFAAYAAAAAAP//AAAFAAcAAAAAAAAAAAAFAAgAAAABAP7/AAAGAAYAAAABAP//AAAGAAcAAAABAAAAAAAGAAgAAAAGAP7/AAAFAAYAAAAGAP//AAAFAAcAAAAGAAAAAAAFAAgAAAAHAP7/AAAGAAYAAAAHAP//AAAGAAcAAAAHAAAAAAAGAAgAAAAMAP7/AAAFAAYAAAAMAP//AAAFAAcAAAAMAAAAAAAFAAgAAAANAP7/AAAGAAYAAAANAP//AAAGAAcAAAANAAAAAAAGAAgAAAASAP7/AAAFAAYAAAASAP//AAAFAAcAAAASAAAAAAAFAAgAAAATAP7/AAAGAAYAAAATAP//AAAGAAcAAAATAAAAAAAGAAgAAADw/wIAAAAHAAQAAADw/wMAAAAHAAUAAADx/wIAAAAIAAQAAADx/wMAAAAIAAUAAADu/wIAAAAHAAQAAADu/wMAAAAHAAUAAADv/wIAAAAIAAQAAADv/wMAAAAIAAUAAADs/wIAAAAHAAQAAADs/wMAAAAHAAUAAADt/wIAAAAIAAQAAADt/wMAAAAIAAUAAADq/wIAAAAHAAQAAADq/wMAAAAHAAUAAADr/wIAAAAIAAQAAADr/wMAAAAIAAUAAADy/wIAAAAHAAQAAADy/wMAAAAHAAUAAADz/wIAAAAIAAQAAADz/wMAAAAIAAUAAAD2/wIAAAAHAAQAAAD2/wMAAAAHAAUAAAD3/wIAAAAIAAQAAAD3/wMAAAAIAAUAAAD4/wIAAAAHAAQAAAD4/wMAAAAHAAUAAAD5/wIAAAAIAAQAAAD5/wMAAAAIAAUAAAAEAAAAAAAOAAAAAAAEAAEAAAAOAAEAAAAEAAIAAAAOAAIAAAAEAAMAAAAOAAMAAAAFAAEAAAAPAAEAAAAFAAIAAAAPAAIAAAAFAAMAAAAPAAMAAAAPAAIAAAAIAAQAAAAPAAMAAAAIAAUAAAAQAAIAAAAHAAQAAAAQAAMAAAAHAAUAAAD0//v/AAAFAAYAAAD0//z/AAAFAAcAAAD0//3/AAAFAAgAAAD1//v/AAAGAAYAAAD1//z/AAAGAAcAAAD1//3/AAAGAAgAAAD6//v/AAAFAAYAAAD6//z/AAAFAAcAAAD6//3/AAAFAAgAAAD7//v/AAAGAAYAAAD7//z/AAAGAAcAAAD7//3/AAAGAAgAAAAAAPv/AAAFAAYAAAAAAPz/AAAFAAcAAAAAAP3/AAAFAAgAAAABAPv/AAAGAAYAAAABAPz/AAAGAAcAAAABAP3/AAAGAAgAAAAGAPv/AAAFAAYAAAAGAPz/AAAFAAcAAAAGAP3/AAAFAAgAAAAHAPv/AAAGAAYAAAAHAPz/AAAGAAcAAAAHAP3/AAAGAAgAAAAMAPv/AAAFAAYAAAAMAPz/AAAFAAcAAAAMAP3/AAAFAAgAAAANAPv/AAAGAAYAAAANAPz/AAAGAAcAAAANAP3/AAAGAAgAAAASAPv/AAAFAAYAAAASAPz/AAAFAAcAAAASAP3/AAAFAAgAAAATAPv/AAAGAAYAAAATAPz/AAAGAAcAAAATAP3/AAAGAAgAAAAIAAIAAAAHAAQAAAAIAAMAAAAHAAUAAAAJAAIAAAAIAAQAAAAJAAMAAAAIAAUAAAAKAAIAAAAHAAQAAAAKAAMAAAAHAAUAAAALAAIAAAAIAAQAAAALAAMAAAAIAAUAAAACAAIAAAAHAAQAAAACAAMAAAAHAAUAAAADAAIAAAAIAAQAAAADAAMAAAAIAAUAAAD8/wIAAAAHAAQAAAD8/wMAAAAHAAUAAAD9/wIAAAAIAAQAAAD9/wMAAAAIAAUAAAAOAAIAAAAHAAQAAAAOAAMAAAAHAAUAAAARAAIAAAAIAAQAAAARAAMAAAAIAAUAAAAYAAEAAAAFAAYAAAAYAAIAAAAFAAcAAAAYAAMAAAAFAAgAAAAZAAEAAAAGAAYAAAAZAAIAAAAGAAcAAAAZAAMAAAAGAAgAAAAYAP7/AAAFAAYAAAAYAP//AAAFAAcAAAAYAAAAAAAFAAgAAAAZAP7/AAAGAAYAAAAZAP//AAAGAAcAAAAZAAAAAAAGAAgAAAAYAPv/AAAFAAYAAAAYAPz/AAAFAAcAAAAYAP3/AAAFAAgAAAAZAPv/AAAGAAYAAAAZAPz/AAAGAAcAAAAZAP3/AAAGAAgAAAAeAAEAAAAFAAYAAAAeAAIAAAAFAAcAAAAeAAMAAAAFAAgAAAAfAAEAAAAGAAYAAAAfAAIAAAAGAAcAAAAfAAMAAAAGAAgAAAAeAP7/AAAFAAYAAAAeAP//AAAFAAcAAAAeAAAAAAAFAAgAAAAfAP7/AAAGAAYAAAAfAP//AAAGAAcAAAAfAAAAAAAGAAgAAAAeAPv/AAAFAAYAAAAeAPz/AAAFAAcAAAAeAP3/AAAFAAgAAAAfAPv/AAAGAAYAAAAfAPz/AAAGAAcAAAAfAP3/AAAGAAgAAAAcAAIAAAAHAAQAAAAbAAIAAAAIAAQAAAAcAAMAAAAHAAUAAAAbAAMAAAAIAAUAAAAWAAIAAAAHAAQAAAAWAAMAAAAHAAUAAAAXAAIAAAAIAAQAAAAXAAMAAAAIAAUAAAAaAAIAAAAHAAQAAAAaAAMAAAAHAAUAAAAdAAIAAAAIAAQAAAAdAAMAAAAIAAUAAAD+/wIAAAAHAAQAAAD+/wMAAAAHAAUAAAD//wIAAAAIAAQAAAD//wMAAAAIAAUAAAAUAAIAAAACABoAAAAUAAMAAAACABsAAAAVAAIAAAADABoAAAAVAAMAAAADABsAAAA=")
 tile_set = ExtResource("5_eh5mv")
 
 [node name="Interact able" type="Node" parent="."]
-
-[node name="Platform" type="Node" parent="Interact able"]
-
-[node name="Platform_temp" type="ColorRect" parent="Interact able/Platform"]
-offset_left = -431.0
-offset_top = -39.0
-offset_right = -373.0
-offset_bottom = -25.0
-color = Color(0.129412, 0.14902, 0.247059, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Interact able/Platform/Platform_temp"]
-position = Vector2(431, 39)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact able/Platform/Platform_temp/StaticBody2D"]
-position = Vector2(-402, -32)
-shape = SubResource("RectangleShape2D_jo076")
-
-[node name="Label" type="Label" parent="Interact able/Platform/Platform_temp"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = -5.0
-offset_right = 64.0
-offset_bottom = 18.0
-text = "1"
-
-[node name="Platform_temp2" type="ColorRect" parent="Interact able/Platform"]
-offset_left = -297.0
-offset_top = -81.0
-offset_right = -239.0
-offset_bottom = -67.0
-color = Color(0.129412, 0.14902, 0.247059, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Interact able/Platform/Platform_temp2"]
-position = Vector2(431, 39)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact able/Platform/Platform_temp2/StaticBody2D"]
-position = Vector2(-402, -32)
-shape = SubResource("RectangleShape2D_jo076")
-
-[node name="Label" type="Label" parent="Interact able/Platform/Platform_temp2"]
-layout_mode = 0
-offset_left = 23.0
-offset_top = -5.0
-offset_right = 63.0
-offset_bottom = 18.0
-text = "2"
-
-[node name="Platform_temp3" type="ColorRect" parent="Interact able/Platform"]
-offset_left = -186.0
-offset_top = -119.0
-offset_right = -128.0
-offset_bottom = -105.0
-color = Color(0.129412, 0.14902, 0.247059, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Interact able/Platform/Platform_temp3"]
-position = Vector2(431, 39)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact able/Platform/Platform_temp3/StaticBody2D"]
-position = Vector2(-402, -32)
-shape = SubResource("RectangleShape2D_jo076")
-
-[node name="Label" type="Label" parent="Interact able/Platform/Platform_temp3"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = -5.0
-offset_right = 65.0
-offset_bottom = 18.0
-text = "3"
-
-[node name="Platform_temp4" type="ColorRect" parent="Interact able/Platform"]
-offset_left = -396.0
-offset_top = -119.0
-offset_right = -338.0
-offset_bottom = -105.0
-color = Color(0.129412, 0.14902, 0.247059, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Interact able/Platform/Platform_temp4"]
-position = Vector2(431, 39)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact able/Platform/Platform_temp4/StaticBody2D"]
-position = Vector2(-402, -32)
-shape = SubResource("RectangleShape2D_jo076")
-
-[node name="Label" type="Label" parent="Interact able/Platform/Platform_temp4"]
-layout_mode = 0
-offset_left = -9.0
-offset_top = -5.0
-offset_right = 65.0
-offset_bottom = 44.0
-text = "4
-3移动过来"
-horizontal_alignment = 1
-
-[node name="Platform_temp5" type="ColorRect" parent="Interact able/Platform"]
-offset_left = -486.0
-offset_top = -157.0
-offset_right = -428.0
-offset_bottom = -143.0
-color = Color(0.129412, 0.14902, 0.247059, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Interact able/Platform/Platform_temp5"]
-position = Vector2(431, 39)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact able/Platform/Platform_temp5/StaticBody2D"]
-position = Vector2(-402, -32)
-shape = SubResource("RectangleShape2D_jo076")
-
-[node name="Label" type="Label" parent="Interact able/Platform/Platform_temp5"]
-layout_mode = 0
-offset_left = 23.0
-offset_top = -5.0
-offset_right = 63.0
-offset_bottom = 18.0
-text = "5"
-
-[node name="Platform_temp6" type="ColorRect" parent="Interact able/Platform"]
-offset_left = -86.0
-offset_top = -153.0
-offset_right = -28.0
-offset_bottom = -139.0
-color = Color(0.129412, 0.14902, 0.247059, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Interact able/Platform/Platform_temp6"]
-position = Vector2(431, 39)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact able/Platform/Platform_temp6/StaticBody2D"]
-position = Vector2(-402, -32)
-shape = SubResource("RectangleShape2D_jo076")
-
-[node name="Label" type="Label" parent="Interact able/Platform/Platform_temp6"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = -5.0
-offset_right = 64.0
-offset_bottom = 18.0
-text = "6"
-
-[node name="Platform_temp7" type="ColorRect" parent="Interact able/Platform"]
-offset_left = -17.0
-offset_top = -117.0
-offset_right = 41.0
-offset_bottom = -103.0
-color = Color(0.129412, 0.14902, 0.247059, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Interact able/Platform/Platform_temp7"]
-position = Vector2(431, 39)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact able/Platform/Platform_temp7/StaticBody2D"]
-position = Vector2(-402, -32)
-shape = SubResource("RectangleShape2D_jo076")
-
-[node name="Label" type="Label" parent="Interact able/Platform/Platform_temp7"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = -5.0
-offset_right = 65.0
-offset_bottom = 18.0
-text = "7"
 
 [node name="Node" type="Node" parent="Interact able"]
 
@@ -388,7 +233,7 @@ texture = ExtResource("7_y4v8m")
 layer = 3
 
 [node name="NPC" parent="." instance=ExtResource("7_hgcxt")]
-position = Vector2(-458, -183)
+position = Vector2(-467, -172)
 
 [node name="VBoxContainer" parent="NPC" index="6"]
 visible = false
@@ -409,7 +254,103 @@ script = ExtResource("11_xh3dr")
 metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
 
 [node name="TransitionTrigger" parent="." instance=ExtResource("12_whd3f")]
-position = Vector2(167, -117)
+position = Vector2(166, -116)
 next_scene_path = "res://UI/Video/end_video.tscn"
+
+[node name="Platform" parent="." instance=ExtResource("13_j61ok")]
+position = Vector2(-400, -33)
+
+[node name="Interact_point" type="Area2D" parent="."]
+collision_mask = 3
+script = ExtResource("14_jtlna")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_point"]
+position = Vector2(-488, -8)
+shape = SubResource("RectangleShape2D_r3ida")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interact_point/CollisionShape2D"]
+texture = ExtResource("15_j61ok")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Platform2" parent="." instance=ExtResource("13_j61ok")]
+position = Vector2(-278, -74)
+
+[node name="Interact_point2" type="Area2D" parent="."]
+collision_mask = 3
+script = ExtResource("14_jtlna")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_point2"]
+position = Vector2(-371, -46)
+shape = SubResource("RectangleShape2D_r3ida")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interact_point2/CollisionShape2D"]
+texture = ExtResource("15_j61ok")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Platform3" parent="." instance=ExtResource("13_j61ok")]
+position = Vector2(-157, -113)
+
+[node name="Interact_point3" type="Area2D" parent="."]
+collision_mask = 3
+script = ExtResource("14_jtlna")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_point3"]
+position = Vector2(-140, -126)
+shape = SubResource("RectangleShape2D_r3ida")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interact_point3/CollisionShape2D"]
+texture = ExtResource("15_j61ok")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Platform4" parent="." instance=ExtResource("13_j61ok")]
+position = Vector2(-460, -153)
+
+[node name="Interact_point4" type="Area2D" parent="."]
+collision_mask = 3
+script = ExtResource("14_jtlna")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_point4"]
+position = Vector2(-433, -166)
+shape = SubResource("RectangleShape2D_r3ida")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interact_point4/CollisionShape2D"]
+texture = ExtResource("15_j61ok")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Platform5" parent="." instance=ExtResource("13_j61ok")]
+position = Vector2(-53, -147)
+
+[node name="Interact_point5" type="Area2D" parent="."]
+collision_mask = 3
+script = ExtResource("14_jtlna")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_point5"]
+position = Vector2(-67, -161)
+shape = SubResource("RectangleShape2D_r3ida")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interact_point5/CollisionShape2D"]
+texture = ExtResource("15_j61ok")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Platform6" parent="." instance=ExtResource("13_j61ok")]
+position = Vector2(8, -110)
+
+[node name="Interact_point6" type="Area2D" parent="."]
+collision_mask = 3
+script = ExtResource("14_jtlna")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_point6"]
+position = Vector2(-145, -11)
+shape = SubResource("RectangleShape2D_r3ida")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interact_point6/CollisionShape2D"]
+texture = ExtResource("15_j61ok")
+region_rect = Rect2(448, 16, 12, 16)
 
 [editable path="NPC"]
