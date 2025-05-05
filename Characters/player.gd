@@ -18,6 +18,7 @@ enum State {
 	FALL,
 	CASTING,
 	DYING,
+	CONTROLING_PLATFORM,
 }
 
 const Ground_State := [State.IDLE, State.RUN]
@@ -31,12 +32,22 @@ var interacting_with: Array[Interactable] = []
 
 var killed: bool = false
 
+var controling: int = -1
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
-	if event.is_action_pressed("interact")and interacting_with:
-		interacting_with.back().interact()
+	if event.is_action_pressed("interact") and interacting_with:
+		print("[DEBUG] Interact input - controling before: ", controling)
+		var interacted = interacting_with.back()
+		interacted.interact()
+		match controling:
+			-1:  # 直接设置为1表示开始控制
+				controling = 1
+				print("[DEBUG] Platform interact - controling set to: ", controling)
+			1:
+				controling = -1
+				print("[DEBUG] Platform interact - controling set to: ", controling)
 
 func kill() -> void:
 	if not killed:  # 防止重复触发
@@ -66,7 +77,11 @@ func tick_physics(state: State, delta: float) -> void:
 		
 		State.DYING:
 			stand(delta)
-
+		
+		State.CONTROLING_PLATFORM:
+			# 控制平台时玩家自身不移动
+			velocity = Vector2.ZERO
+			move_and_slide()
 
 func move(delta: float) -> void:
 	var direction: int = Input.get_axis("move_l", "move_r")
@@ -118,6 +133,9 @@ func get_next_state(state: State) -> int:
 				return State.RUN
 			if should_jump:
 				return State.JUMP
+			if not interacting_with.is_empty() and controling == 1:
+				print("[DEBUG] State transition to CONTROLING_PLATFORM")
+				return State.CONTROLING_PLATFORM
 		State.RUN:
 			if is_still:
 				return State.IDLE
@@ -141,7 +159,12 @@ func get_next_state(state: State) -> int:
 				print("Player entering DYING state")
 				die()
 			return StateMachine.KEEP_CURRENT
-
+		
+		State.CONTROLING_PLATFORM:
+			if controling != 1:  # 只要不是1就退出控制状态
+				print("[DEBUG] Exiting CONTROLING_PLATFORM state, controling: ", controling)
+				return State.IDLE
+			
 	return StateMachine.KEEP_CURRENT
 
 func transition_state(from: State, to: State) -> void:
@@ -174,3 +197,6 @@ func transition_state(from: State, to: State) -> void:
 			animation_player.play("hurt")
 			velocity.y = Jump_Velocity / 2
 			collision_shape_2d.disabled = true
+			
+		State.CONTROLING_PLATFORM:
+			animation_player.play("controling")
