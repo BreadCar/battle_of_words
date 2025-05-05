@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://c2u1mux2ffs7t"]
+[gd_scene load_steps=15 format=4 uid="uid://c2u1mux2ffs7t"]
 
 [ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/01/stringstar fields/tileset.png" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bgkec1l7jpsmy" path="res://Scenes/test_scene.gd" id="1_5nsto"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://6sxtwf3grmkf" path="res://classes/interactable.gd" id="6_45d1s"]
 [ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="8_uo7di"]
 [ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="9_kn06e"]
+[ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_kn06e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0p05"]
 texture = ExtResource("1_5cjrv")
@@ -122,6 +123,7 @@ sources/1 = SubResource("TileSetAtlasSource_j0p05")
 size = Vector2(20, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yo87"]
+size = Vector2(32, 32)
 
 [node name="test_scene" type="Node"]
 script = ExtResource("1_5nsto")
@@ -163,6 +165,7 @@ shape = SubResource("RectangleShape2D_y7y61")
 position = Vector2(550, -73)
 
 [node name="Interact_point" type="Area2D" parent="."]
+collision_mask = 3
 script = ExtResource("6_45d1s")
 metadata/_custom_type_script = "uid://6sxtwf3grmkf"
 
@@ -174,3 +177,7 @@ shape = SubResource("RectangleShape2D_7yo87")
 texture = ExtResource("9_kn06e")
 region_enabled = true
 region_rect = Rect2(448, 16, 12, 16)
+
+[node name="EventBus" type="Node" parent="."]
+script = ExtResource("10_kn06e")
+metadata/_custom_type_script = "uid://d3uh6ck1ycabq"

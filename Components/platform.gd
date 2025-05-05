@@ -3,52 +3,73 @@ extends Area2D
 
 @onready var interact_point: Interactable = $"../Interact_point"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var event_bus: EventBus = $"../EventBus"
 
-var activate: bool = false
-var is_moving: bool = false
-var move_direction: Vector2 = Vector2.ZERO
+var current_direction: Vector2 = Vector2.ZERO
 var move_speed: float = 100.0
-var velocity: Vector2 = Vector2.ZERO
+var is_controlled: bool = false
+var is_waiting_for_input: bool = false
 
 func _ready():
 	interact_point.interacted.connect(_on_interacted)
+	# Set collision layers through Project Settings
+	collision_layer = 1  
+	collision_mask = 1   
+	
+	# Connect to existing EventBus node
+	event_bus.connect("platform_control_started", _on_platform_control_started)
+	event_bus.connect("platform_control_ended", _on_platform_control_ended)
 
 func _on_interacted():
-	print("Platform activated")
-	if is_moving:
-		# Stop movement if currently moving
-		is_moving = false
-		activate = false
-		velocity = Vector2.ZERO
+	if is_controlled:
+		event_bus.emit_signal("platform_control_ended")
+		event_bus.emit_signal("player_control_unlocked")
 	else:
-		# Get direction input and start moving
-		var direction_x = Input.get_axis("move_l", "move_r")
-		var direction_y = 0
-		
-		if direction_x == 0:  # Only check vertical if no horizontal input
-			direction_y = Input.get_axis("move_up", "move_down")
-		
-		if direction_x != 0 or direction_y != 0:
-			move_direction = Vector2(direction_x, direction_y).normalized()
-			is_moving = true
-			activate = true
-			velocity = move_direction * move_speed
+		is_waiting_for_input = true
+		event_bus.emit_signal("player_control_locked")
+
+func _input(event):
+	if is_controlled and current_direction == Vector2.ZERO:
+		if event.is_action_pressed("move_l"):
+			current_direction = Vector2.LEFT
+		elif event.is_action_pressed("move_r"):
+			current_direction = Vector2.RIGHT
+		elif event.is_action_pressed("move_up"):
+			current_direction = Vector2.UP
+		elif event.is_action_pressed("move_dn"):
+			current_direction = Vector2.DOWN
+	elif is_waiting_for_input:
+		if event.is_action_pressed("move_l"):
+			is_waiting_for_input = false
+			current_direction = Vector2.LEFT
+			event_bus.emit_signal("platform_control_started", current_direction)
+		elif event.is_action_pressed("move_r"):
+			is_waiting_for_input = false
+			current_direction = Vector2.RIGHT
+			event_bus.emit_signal("platform_control_started", current_direction)
 
 func _physics_process(delta):
-	if is_moving:
-		position += velocity * delta
-		
-		# Check for collisions using test_move
-		var params = PhysicsTestMotionParameters2D.new()
-		params.from = position
-		params.motion = velocity * delta
-		
-		var result = PhysicsServer2D.body_test_motion(
-			get_rid(),
-			params
+	if is_controlled and current_direction != Vector2.ZERO:
+		var new_position = position + current_direction * move_speed * delta
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.create(
+			position,
+			new_position,
+			collision_mask
 		)
+		var result = space_state.intersect_ray(query)
 		
 		if result:
-			is_moving = false
-			move_direction = Vector2.ZERO
-			velocity = Vector2.ZERO
+			current_direction = Vector2.ZERO  # 停止移动但保持控制状态
+		else:
+			position = new_position
+
+func _on_platform_control_started(direction: Vector2):
+	current_direction = direction
+	is_controlled = true
+
+func _on_platform_control_ended():
+	is_controlled = false
+	is_waiting_for_input = false
+	current_direction = Vector2.ZERO
+	event_bus.emit_signal("player_control_unlocked")
