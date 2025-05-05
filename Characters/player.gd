@@ -50,8 +50,9 @@ var slime_kill_counter: int = 0
 var corpse_flower_kill_counter: int = 0
 
 func _ready():
-	event_bus.slime_killed.connect(_on_slime_killed)
-	event_bus.corpse_flower_killed.connect(_on_corpse_flower_killed)
+#	event_bus.slime_killed.connect(_on_slime_killed)
+	#event_bus.corpse_flower_killed.connect(_on_corpse_flower_killed)
+	pass
 
 const DIRECTION_SKILLS = {
 	1: "up",

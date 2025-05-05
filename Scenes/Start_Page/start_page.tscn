@@ -196,6 +196,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_ffbbd")
 theme_override_styles/normal = SubResource("StyleBoxTexture_x5137")
 text = "START"
 script = ExtResource("9_3h0en")
+next_scene_path = "res://UI/Video/intro_video.tscn"
 
 [node name="ExitButton" type="Button" parent="UI/Button_Panel/Button"]
 layout_mode = 2
