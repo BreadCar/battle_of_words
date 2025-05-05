@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://ctj0rib6q8i0q"]
+[gd_scene load_steps=29 format=4 uid="uid://ctj0rib6q8i0q"]
 
 [ext_resource type="Texture2D" uid="uid://b5g2fhi2p2brj" path="res://Assets/Scene/02/Castle_Background_Black (1).png" id="2_b611x"]
 [ext_resource type="Texture2D" uid="uid://b1i157gb4wn7h" path="res://Assets/Scene/02/Castle_Background_Blue (1).png" id="4_flaqq"]
@@ -9,8 +9,12 @@
 [ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="8_flaqq"]
 [ext_resource type="Texture2D" uid="uid://dinvu07d6vrld" path="res://Assets/Scene/02/dungeon_sidescroller-Raou/spr_torch.png" id="10_yswn3"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="11_3lro8"]
-[ext_resource type="PackedScene" path="res://Characters/Corpse_flower.tscn" id="11_fvfaf"]
+[ext_resource type="PackedScene" uid="uid://d1xncc5i7d3uj" path="res://Characters/Corpse_flower.tscn" id="11_fvfaf"]
+[ext_resource type="PackedScene" uid="uid://dwsh41lkwwaq7" path="res://Components/transition_trigger.tscn" id="12_3lro8"]
 [ext_resource type="TileSet" uid="uid://d4gou6srq3dgg" path="res://Scenes/Game_play/Resourse/02/02Scene_tileset_fore.tres" id="12_yswn3"]
+[ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="13_8a4gb"]
+[ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="14_jdgih"]
+[ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="15_jdgih"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
 load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
@@ -422,3 +426,33 @@ limit_left = -935
 limit_right = 909
 limit_bottom = 50
 limit_smoothed = true
+
+[node name="TransitionTrigger" parent="." instance=ExtResource("12_3lro8")]
+position = Vector2(867, -76)
+next_scene_path = "res://Scenes/Game_play/03_Castle.tscn"
+
+[node name="NPC" parent="." instance=ExtResource("13_8a4gb")]
+position = Vector2(162, -14)
+
+[node name="Sprite2D" parent="NPC" index="1"]
+flip_h = true
+
+[node name="VBoxContainer" parent="NPC" index="6"]
+visible = false
+
+[node name="Lines" parent="NPC/VBoxContainer" index="0"]
+visible = false
+
+[node name="BubbleDialog" parent="NPC" instance=ExtResource("14_jdgih")]
+offset_left = -107.0
+offset_top = -122.0
+offset_right = -107.0
+offset_bottom = -122.0
+dialog_lines = Array[String](["o(≧口≦)o啊啊啊啊", "我最害怕食人花了！我会远远为你加油嘀~"])
+
+[node name="EventBus" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("15_jdgih")
+metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
+
+[editable path="NPC"]

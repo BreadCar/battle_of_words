@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://jqknpdupyri2"]
+[gd_scene load_steps=18 format=4 uid="uid://jqknpdupyri2"]
 
 [ext_resource type="Texture2D" uid="uid://b5g2fhi2p2brj" path="res://Assets/Scene/02/Castle_Background_Black (1).png" id="1_jo076"]
 [ext_resource type="Texture2D" uid="uid://b1i157gb4wn7h" path="res://Assets/Scene/02/Castle_Background_Blue (1).png" id="2_dk7r5"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="6_eh5mv"]
 [ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="7_hgcxt"]
 [ext_resource type="Texture2D" uid="uid://bevescnp6378a" path="res://Assets/Scene/03/恶魔角.png" id="7_y4v8m"]
+[ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="10_opxq8"]
+[ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="11_xh3dr"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_opxq8"]
 load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
@@ -386,3 +388,23 @@ layer = 3
 
 [node name="NPC" parent="." instance=ExtResource("7_hgcxt")]
 position = Vector2(-458, -183)
+
+[node name="VBoxContainer" parent="NPC" index="6"]
+visible = false
+
+[node name="Lines" parent="NPC/VBoxContainer" index="0"]
+visible = false
+
+[node name="BubbleDialog" parent="NPC" instance=ExtResource("10_opxq8")]
+offset_left = -23.0
+offset_top = -125.0
+offset_right = -23.0
+offset_bottom = -125.0
+dialog_lines = Array[String](["文字框也可以踩哦"])
+
+[node name="EventBus" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_xh3dr")
+metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
+
+[editable path="NPC"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://1dwr0d20tmxv"]
+
+[ext_resource type="Script" uid="uid://c34tp75ppttmx" path="res://classes/dialog__bubble.gd" id="1_qvhio"]
+[ext_resource type="Texture2D" uid="uid://bvsfge3jtee13" path="res://Assets/UI/GUI.png" id="2_kfe0c"]
+[ext_resource type="FontFile" uid="uid://df31kyd3cfc32" path="res://Assets/UI/Cubic-11-1.000-R-2.ttf" id="3_kfe0c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kfe0c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x7ugx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7q1jv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4xvh"]
+
+[node name="BubbleDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qvhio")
+dialog_lines = Array[String]([""])
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 186.0
+offset_bottom = 104.0
+texture = ExtResource("2_kfe0c")
+region_rect = Rect2(142.5, 61.25, 50.5, 18.839)
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 34.0
+offset_right = 168.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_kfe0c")
+theme_override_font_sizes/font_size = 11
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 14.0
+offset_right = 184.0
+offset_bottom = 103.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kfe0c")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_x7ugx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7q1jv")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4xvh")

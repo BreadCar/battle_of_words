@@ -1,11 +1,18 @@
-[gd_scene load_steps=19 format=4 uid="uid://xwh6t27oe7d8"]
+[gd_scene load_steps=27 format=4 uid="uid://xwh6t27oe7d8"]
 
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="3_lsw8j"]
 [ext_resource type="TileSet" uid="uid://bcbt3jdmwoa4e" path="res://Scenes/Game_play/Resourse/Scene_tileset.tres" id="6_x2g80"]
+[ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="7_hiw41"]
+[ext_resource type="Script" uid="uid://6sxtwf3grmkf" path="res://classes/interactable.gd" id="8_0s7c8"]
+[ext_resource type="Texture2D" uid="uid://bpqcsx2kns6qb" path="res://Assets/Stones/Blue.png" id="9_2shyc"]
+[ext_resource type="PackedScene" uid="uid://cfj73bia5pa4s" path="res://Characters/npc.tscn" id="9_uqgud"]
+[ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_2shyc"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="10_ew4r3"]
 [ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="11_q306e"]
 [ext_resource type="SpriteFrames" uid="uid://cyjdjuqjhyetu" path="res://Scenes/Start_Page/fire.tres" id="12_lsw8j"]
+[ext_resource type="PackedScene" uid="uid://dwsh41lkwwaq7" path="res://Components/transition_trigger.tscn" id="13_lsw8j"]
 [ext_resource type="Texture2D" uid="uid://cyb6cpmtuhy7n" path="res://Assets/Scene/Light.png" id="13_pifuj"]
+[ext_resource type="PackedScene" uid="uid://1dwr0d20tmxv" path="res://UI/Dialog/Dialog _bubble.tscn" id="13_v6ica"]
 [ext_resource type="PackedScene" uid="uid://dgy78yxhn2l1u" path="res://Characters/slime.tscn" id="15_v6ica"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
@@ -142,6 +149,9 @@ sources/1 = SubResource("TileSetAtlasSource_lsw8j")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2shyc"]
 size = Vector2(20, 550.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsw8j"]
+size = Vector2(56, 32)
 
 [node name="01Forest" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-319.0, 601.0]
@@ -339,7 +349,7 @@ motion_scale = Vector2(1.2, 1)
 z_index = 3
 position = Vector2(132, -29)
 scale = Vector2(1.86969, 1.86969)
-tile_map_data = PackedByteArray("AADz//3/AAAKAAAAAAAEAP//AAAAAAUAAAD+/wAAAAAEAAcAAAD3/wAAAAAHAAUAAAAIAP3/AAAKAAAAABAMAAEAAAAEAAcAAAAKAAEAAAAEAAcAAAACAAEAAAAHAAUAAAABAAEAAAAHAAUAABAJAAEAAAAHAAUAABALAAEAAAAHAAUAABAOAAAAAAAEAAcAAAD7/wEAAAAHAAUAAAD5/wEAAAAEAAcAAAD6/wEAAAABAAQAAAD4/wEAAAAEAAcAAAD1/wEAAAAEAAcAAADy/wEAAAAEAAcAAADx/wEAAAAHAAUAAADw/wEAAAAHAAUAAADv/wEAAAAEAAcAAADu/wEAAAAHAAUAAADt/wEAAAAHAAUAAAAPAAEAAAAHAAUAAAAQAAEAAAAHAAUAAAAQAAAAAAAEAAcAAAARAAEAAAAHAAUAAAARAAAAAAAHAAUAAAASAAEAAAAHAAUAAAASAAAAAAAEAAcAAADz/wMAAAAHAAUAACDx/wMAAAAEAAcAACDv/wMAAAAEAAcAACDu/wMAAAAEAAcAACD1/wIAAAAHAAUAACD2/wMAAAAHAAUAACD3/wMAAAAAAAUAACD7/wMAAAAHAAUAACD//wMAAAAAAAUAACAFAAMAAAAHAAUAACAMAAMAAAAHAAUAACALAAMAAAAAAAUAACARAAMAAAAAAAUAACD4/wIAAAAHAAUAACD5/wMAAAAHAAUAACD4/wQAAAAHAAUAACD5/wQAAAAHAAUAACD8/wMAAAAHAAUAACD9/wIAAAAHAAUAACD+/wIAAAAHAAUAACD+/wMAAAAHAAUAACAAAAMAAAAHAAUAACAAAAIAAAAHAAUAACABAAMAAAAEAAcAACADAAIAAAAEAAcAACAGAAIAAAAHAAUAACAHAAIAAAAEAAcAACAIAAMAAAAEAAcAACAKAAMAAAAEAAcAACANAAIAAAAEAAcAACAHAAMAAAAHAAUAACAOAAIAAAAHAAUAACAPAAMAAAAHAAUAACASAAMAAAAHAAUAACATAAIAAAAHAAUAACAQAAQAAAAHAAUAACABAAQAAAAHAAUAACACAAMAAAAHAAUAACAEAAIAAAAHAAUAACAEAAMAAAAAAAUAACD0/wMAAAAHAAUAACD0/wQAAAAHAAUAACD+/wQAAAAHAAUAACAFAAIAAAAHAAUAACADAAMAAAAHAAUAACANAAMAAAAHAAUAACAQAAMAAAAHAAUAACAPAAQAAAAHAAUAACAOAAMAAAAHAAUAACA=")
+tile_map_data = PackedByteArray("AADz//3/AAAKAAAAAAAEAP//AAAAAAUAAAD+/wAAAAAEAAcAAAD3/wAAAAAHAAUAAAAIAP3/AAAKAAAAABAMAAEAAAAEAAcAAAAKAAEAAAAEAAcAAAACAAEAAAAHAAUAAAABAAEAAAAHAAUAABAJAAEAAAAHAAUAABALAAEAAAAHAAUAABAOAAAAAAAEAAcAAAD7/wEAAAAHAAUAAAD5/wEAAAAEAAcAAAD6/wEAAAABAAQAAAD4/wEAAAAEAAcAAAD1/wEAAAAEAAcAAADy/wEAAAAEAAcAAADx/wEAAAAHAAUAAADw/wEAAAAHAAUAAADv/wEAAAAEAAcAAADu/wEAAAAHAAUAAADt/wEAAAAHAAUAAAAPAAEAAAAHAAUAAAAQAAEAAAAHAAUAAAAQAAAAAAAEAAcAAAARAAEAAAAHAAUAAAARAAAAAAAHAAUAAAASAAEAAAAHAAUAAAASAAAAAAAEAAcAAADz/wMAAAAHAAUAACDx/wMAAAAEAAcAACDv/wMAAAAEAAcAACDu/wMAAAAEAAcAACD1/wIAAAAHAAUAACD2/wMAAAAHAAUAACD3/wMAAAAAAAUAACD7/wMAAAAHAAUAACAFAAMAAAAHAAUAACAMAAMAAAAHAAUAACALAAMAAAAAAAUAACARAAMAAAAAAAUAACD4/wIAAAAHAAUAACD5/wMAAAAHAAUAACD4/wQAAAAHAAUAACD5/wQAAAAHAAUAACD8/wMAAAAHAAUAACD9/wIAAAAHAAUAACD+/wIAAAAHAAUAACD+/wMAAAAHAAUAACAAAAMAAAAHAAUAACAAAAIAAAAHAAUAACABAAMAAAAEAAcAACADAAIAAAAEAAcAACAGAAIAAAAHAAUAACAHAAIAAAAEAAcAACAIAAMAAAAEAAcAACAKAAMAAAAEAAcAACANAAIAAAAEAAcAACAHAAMAAAAHAAUAACAOAAIAAAAHAAUAACAPAAMAAAAHAAUAACASAAMAAAAHAAUAACATAAIAAAAHAAUAACAQAAQAAAAHAAUAACABAAQAAAAHAAUAACACAAMAAAAHAAUAACAEAAIAAAAHAAUAACAEAAMAAAAAAAUAACD0/wMAAAAHAAUAACD0/wQAAAAHAAUAACD+/wQAAAAHAAUAACAFAAIAAAAHAAUAACADAAMAAAAHAAUAACANAAMAAAAHAAUAACAQAAMAAAAHAAUAACAPAAQAAAAHAAUAACAOAAMAAAAHAAUAACD//wMAAAAEAAcAACD//wIAAAAEAAcAACA=")
 tile_set = ExtResource("10_ew4r3")
 
 [node name="ParallaxUnderground" type="ParallaxLayer" parent="ForeGround"]
@@ -387,7 +397,7 @@ autoplay = "default"
 frame_progress = 0.906685
 
 [node name="PointLight2D" type="PointLight2D" parent="Scene/Underground/Fire"]
-position = Vector2(155, 225)
+position = Vector2(155, 245)
 color = Color(0.930643, 0.66059, 0.391649, 1)
 energy = 1.5
 texture = ExtResource("13_pifuj")
@@ -414,7 +424,60 @@ limit_smoothed = true
 
 [node name="Interactable" type="Node" parent="."]
 
+[node name="Platform2" type="Node" parent="Interactable"]
+
+[node name="Platform" parent="Interactable" instance=ExtResource("7_hiw41")]
+position = Vector2(362, 184)
+
+[node name="Interact_point" type="Area2D" parent="Interactable"]
+collision_mask = 3
+script = ExtResource("8_0s7c8")
+metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Interact_point"]
+position = Vector2(193, 222)
+shape = SubResource("RectangleShape2D_lsw8j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/Interact_point/CollisionShape2D"]
+z_index = -1
+position = Vector2(-6, 5)
+texture = ExtResource("9_2shyc")
+
+[node name="EventBus" type="Node" parent="Interactable"]
+unique_name_in_owner = true
+script = ExtResource("10_2shyc")
+metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
+
 [node name="Enemy" type="Node" parent="."]
 
 [node name="Slime" parent="Enemy" instance=ExtResource("15_v6ica")]
 position = Vector2(384, 233)
+
+[node name="Slime2" parent="Enemy" instance=ExtResource("15_v6ica")]
+position = Vector2(167, -12)
+
+[node name="NPC" parent="." instance=ExtResource("9_uqgud")]
+position = Vector2(113, 218)
+
+[node name="VBoxContainer" parent="NPC" index="6"]
+visible = false
+
+[node name="Lines" parent="NPC/VBoxContainer" index="0"]
+visible = false
+
+[node name="BubbleDialog" parent="NPC" instance=ExtResource("13_v6ica")]
+offset_left = -20.0
+offset_top = -129.0
+offset_right = -20.0
+offset_bottom = -129.0
+dialog_lines = Array[String](["看到那里的史莱姆了吗~利用尖刺消灭它们得到特殊材料吧~"])
+
+[node name="TransitionTrigger" parent="." instance=ExtResource("13_lsw8j")]
+position = Vector2(583, -155)
+next_scene_path = "res://Scenes/Game_play/02_Maze.tscn"
+
+[node name="EventBus" type="Node" parent="."]
+script = ExtResource("10_2shyc")
+metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
+
+[editable path="NPC"]

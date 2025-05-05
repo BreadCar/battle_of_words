@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://c2u1mux2ffs7t"]
+[gd_scene load_steps=17 format=4 uid="uid://c2u1mux2ffs7t"]
 
 [ext_resource type="Texture2D" uid="uid://da6pqafbjdeyt" path="res://Assets/Scene/01/stringstar fields/tileset.png" id="1_5cjrv"]
 [ext_resource type="Script" uid="uid://bgkec1l7jpsmy" path="res://Scenes/test_scene.gd" id="1_5nsto"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="8_uo7di"]
 [ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="9_kn06e"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_kn06e"]
+[ext_resource type="PackedScene" uid="uid://d1xncc5i7d3uj" path="res://Characters/Corpse_flower.tscn" id="11_ti1bm"]
+[ext_resource type="PackedScene" uid="uid://b4wfegpy1gu42" path="res://Characters/Trap.tscn" id="12_op4cu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0p05"]
 texture = ExtResource("1_5cjrv")
@@ -140,6 +142,7 @@ tile_set = SubResource("TileSet_5nsto")
 
 [node name="Player" parent="." instance=ExtResource("2_j0p05")]
 position = Vector2(0, -43)
+collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -17)
@@ -184,3 +187,10 @@ shape = SubResource("RectangleShape2D_7yo87")
 texture = ExtResource("9_kn06e")
 region_enabled = true
 region_rect = Rect2(448, 16, 12, 16)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("11_ti1bm")]
+position = Vector2(-134, -31)
+
+[node name="Spike_box" parent="." instance=ExtResource("12_op4cu")]
+position = Vector2(-135, 43)
+rotation = 3.14159
