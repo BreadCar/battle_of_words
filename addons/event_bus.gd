@@ -7,13 +7,8 @@ signal platform_control_ended()
 
 signal player_control_locked()
 signal player_control_unlocked()
-signal slime_killed # 史莱姆类型参数
+signal slime_killed 
 signal corpse_flower_killed
-
-var kill_counters = {
-	"slime": 0,
-	"corpse_flower": 0
-}
 
 
 # Layer Constants

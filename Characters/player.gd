@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 signal interacted
+signal ability_gained
 
 @onready var graphics: Node2D = $Graphics
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -83,48 +84,24 @@ func _ready():
 			#EventBus.player_skills.clear.false = true
 			#EventBus.emit_signal("skill_unlocked", "erase", "false")
 
-func _on_skill_unlocked(skill_type: String, ability_name: String):
-	match skill_type:
-		"manifest":
-			print("解锁显现·%s 能力" % ability_name)
-			_enable_direction_ability(ability_name)
-		"erase":
-			print("解锁抹除·%s 能力" % ability_name)
-			_enable_logic_ability(ability_name)
-		"modify":
-			print("解锁抹除·%s 能力" % ability_name)
-			_enable_logic_ability(ability_name)
-
-func _enable_direction_ability(dir: String):
-	match dir:
-		"up":
-			$UpIndicator.visible = true
-		"down":
-			$DownIndicator.visible = true
-		"left":
-			$LeftIndicator.visible = true
-		"right":
-			$RightIndicator.visible = true
-
-func _enable_logic_ability(logic: String):
-	# 实现逻辑能力的具体效果 
-	match logic:
-		"true":
-			$TrueParticles.emitting = true
-		"false":
-			$FalseParticles.emitting = true
-
-func _physics_process(delta):
-	pass
-	# 检查终极技能解锁条件
-	#if (EventBus.kill_counters.slime >= 4 && 
-		#EventBus.kill_counters.corpse_flower >= 2 &&
-		#!EventBus.player_skills.modify):
-		
-		#EventBus.player_skills.modify = true
-		#EventBus.emit_signal("skill_unlocked", "modify", "")
-			 
-
+func _on_slime_killed():
+	slime_kill_counter += 1
+	if DIRECTION_SKILLS.has(slime_kill_counter):
+		var skill = DIRECTION_SKILLS[slime_kill_counter]
+		player_skills[skill] = true
+		print("解锁方向技能:", skill)
+	_check_ultimate_skill()
+	ability_gained.emit()
+	
+func _on_corpse_flower_killed():
+	corpse_flower_kill_counter += 1
+	if LOGIC_SKILLS.has(corpse_flower_kill_counter):
+		var skill = LOGIC_SKILLS[corpse_flower_kill_counter]
+		player_skills[skill] = true
+		print("解锁逻辑技能:", skill)
+	_check_ultimate_skill()
+	ability_gained.emit()
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()

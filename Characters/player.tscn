@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://n56jlj8ne1g6"]
+[gd_scene load_steps=25 format=3 uid="uid://n56jlj8ne1g6"]
 
 [ext_resource type="Texture2D" uid="uid://d1ik4g2re3iqj" path="res://Assets/Character/HERO_FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="1_5mj4t"]
 [ext_resource type="Script" uid="uid://c8j8fcqj5dx2d" path="res://Characters/player.gd" id="1_65n15"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://biw1kjko2arw1" path="res://Assets/Character/HERO_FREE_Samurai 2D Pixel Art v1.2/Sprites/ATTACK 1.png" id="4_4m0gv"]
 [ext_resource type="Script" uid="uid://dgwegxgyk0ebl" path="res://classes/statemachine.gd" id="5_l48on"]
 [ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="7_p728j"]
+[ext_resource type="PackedScene" uid="uid://bbwhnh0h4j31g" path="res://Components/ui.tscn" id="8_5slg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vb825"]
 size = Vector2(13, 32.5)
@@ -809,3 +810,11 @@ position = Vector2(0, -45)
 sprite_frames = SubResource("SpriteFrames_642pg")
 autoplay = "default"
 frame_progress = 0.600396
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("8_5slg2")]
+offset_left = 51.0
+offset_top = 860.0
+offset_right = 213.0
+offset_bottom = 1022.0
