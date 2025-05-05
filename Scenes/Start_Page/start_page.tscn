@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://blupqjdeu1u6g"]
+[gd_scene load_steps=34 format=3 uid="uid://blupqjdeu1u6g"]
 
 [ext_resource type="Texture2D" uid="uid://bl48wihq8i0qf" path="res://Assets/Scene/Start_Page/Start.png" id="1_pfp41"]
-[ext_resource type="PackedScene" uid="uid://n56jlj8ne1g6" path="res://Characters/player.tscn" id="2_ixw72"]
+[ext_resource type="Texture2D" uid="uid://d1ik4g2re3iqj" path="res://Assets/Character/HERO_FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="2_3h0en"]
 [ext_resource type="SpriteFrames" uid="uid://cyjdjuqjhyetu" path="res://Scenes/Start_Page/fire.tres" id="3_rwjpj"]
 [ext_resource type="Texture2D" uid="uid://dp6x34abhp5u" path="res://Assets/UI/Panel.png" id="4_7v051"]
 [ext_resource type="FontFile" uid="uid://bq2s13vhvphbq" path="res://Assets/UI/minimalpixel.fnt" id="4_ixw72"]
@@ -9,12 +9,93 @@
 [ext_resource type="Texture2D" uid="uid://bf5ncjenu5fhc" path="res://Assets/UI/Button/Button_Hover.png" id="6_wfpfa"]
 [ext_resource type="Texture2D" uid="uid://diw6al1f307hu" path="res://Assets/UI/Button/Button_Pressed.png" id="6_x5137"]
 [ext_resource type="Texture2D" uid="uid://h8bi3n6cxx0b" path="res://Assets/UI/Title_Panel.png" id="7_ffbbd"]
+[ext_resource type="Script" uid="uid://cs0akqte7i70w" path="res://Components/start_button.gd" id="9_3h0en"]
+[ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_0cbnd"]
+[ext_resource type="Script" uid="uid://dptqfp8j21ha" path="res://Components/exit_button.gd" id="10_c62j2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7v051"]
 size = Vector2(892.225, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ffbbd"]
 size = Vector2(20, 270.481)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c62j2"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p37k7"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n2pp"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnrko"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y320k"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urc5t"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1i0o"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iseh"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(672, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t70y"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(768, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3l6n"]
+atlas = ExtResource("2_3h0en")
+region = Rect2(864, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvsx0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c62j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p37k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n2pp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnrko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y320k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urc5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1i0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iseh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t70y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3l6n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wfpfa"]
 
@@ -59,8 +140,11 @@ shape = SubResource("RectangleShape2D_ffbbd")
 position = Vector2(-599.606, -48.75)
 shape = SubResource("RectangleShape2D_ffbbd")
 
-[node name="Player" parent="." instance=ExtResource("2_ixw72")]
-position = Vector2(-6, 138)
+[node name="Hero" type="AnimatedSprite2D" parent="."]
+position = Vector2(-51, 108)
+sprite_frames = SubResource("SpriteFrames_gvsx0")
+autoplay = "default"
+frame_progress = 0.613333
 
 [node name="Fire" type="Node2D" parent="."]
 
@@ -111,6 +195,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_0cbnd")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ffbbd")
 theme_override_styles/normal = SubResource("StyleBoxTexture_x5137")
 text = "START"
+script = ExtResource("9_3h0en")
 
 [node name="ExitButton" type="Button" parent="UI/Button_Panel/Button"]
 layout_mode = 2
@@ -122,6 +207,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_c62j2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_p37k7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_wfpfa")
 text = "EXIT"
+script = ExtResource("10_c62j2")
 
 [node name="Title_panel" type="TextureRect" parent="UI"]
 layout_mode = 0
@@ -145,3 +231,8 @@ text = "Whispers of Wordcraft"
 position = Vector2(-6, 138)
 zoom = Vector2(1.5, 1.5)
 limit_bottom = 400
+
+[node name="EventBus" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("10_0cbnd")
+metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
