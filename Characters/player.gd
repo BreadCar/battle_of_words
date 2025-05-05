@@ -11,7 +11,9 @@ signal interacted
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var event_bus: EventBus = %EventBus
-
+@onready var jump_sound =$JumpSound
+@onready var run_sound =$RunSound
+@onready var eraseandmodify_sound=$EraseaAndModifySound
 enum State {
 	IDLE,
 	RUN,
@@ -237,8 +239,10 @@ func transition_state(from: State, to: State) -> void:
 				animation_player.play("idle")
 		State.RUN:
 			animation_player.play("run")
+			run_sound.play()
 		State.JUMP:
 			animation_player.play("jump")
+			jump_sound.play()
 			velocity.y = Jump_Velocity
 			coyote_timer.stop()
 			jump_request_timer.stop()

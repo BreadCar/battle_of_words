@@ -4,7 +4,7 @@ extends Area2D
 @export var spike: NodePath  # 尖刺节点的路径
 @export var platform_color: Color = Color.GREEN  # 触发器对应尖刺的颜色
 @export var platform: NodePath  # 尖刺节点的路径
-
+@onready var f_sound= $FSound
 
 #当玩家进入触发器范围时
 func _on_Trigger_body_entered(body):
@@ -19,6 +19,7 @@ func _on_Trigger_body_exited(body):
 #按下F键位实现尖刺或平台移动
 func _process(delta):
 	if Input.is_action_just_pressed("interact"):
+		f_sound.play()
 		var spike_node = get_node(spike)
 		if spike_node:
 			spike_node.show_spike(spike_color)

@@ -3,13 +3,14 @@ extends Sprite2D
 @onready var killzone: Area2D = $Killzone
 @onready var interact_point: Interactable = $"../Interact_point"
 @onready var collision_shape_2d_2: CollisionShape2D = $"../../Scene/Edge/CollisionShape2D2"
-
+@onready var bramble_disappear_sound = $BramleDisappearSound
 
 func _ready():
 	interact_point.interacted.connect(_on_interacted)
 
 func _on_interacted():
 	# 方法一：直接隐藏
+	bramble_disappear_sound.play()
 	visible = false
 	killzone.visible = false
 	killzone.set_deferred("monitoring", false) # 禁用碰撞检测
