@@ -163,6 +163,7 @@ tile_set = ExtResource("3_dk7r5")
 
 [node name="Player" parent="." instance=ExtResource("3_hgcxt")]
 position = Vector2(-546, 0)
+collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-2, -43)
@@ -190,6 +191,7 @@ shape = SubResource("RectangleShape2D_y4v8m")
 [node name="killzone" type="Node" parent="Scene"]
 
 [node name="Killzone" type="Area2D" parent="Scene/killzone"]
+collision_layer = 3
 script = ExtResource("6_eh5mv")
 metadata/_custom_type_script = "uid://drb7fi0rr1elp"
 

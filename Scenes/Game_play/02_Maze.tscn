@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://ctj0rib6q8i0q"]
+[gd_scene load_steps=25 format=4 uid="uid://ctj0rib6q8i0q"]
 
 [ext_resource type="Texture2D" uid="uid://b5g2fhi2p2brj" path="res://Assets/Scene/02/Castle_Background_Black (1).png" id="2_b611x"]
 [ext_resource type="Texture2D" uid="uid://b1i157gb4wn7h" path="res://Assets/Scene/02/Castle_Background_Blue (1).png" id="4_flaqq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="8_flaqq"]
 [ext_resource type="Texture2D" uid="uid://dinvu07d6vrld" path="res://Assets/Scene/02/dungeon_sidescroller-Raou/spr_torch.png" id="10_yswn3"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="11_3lro8"]
+[ext_resource type="PackedScene" uid="uid://d1xncc5i7d3uj" path="res://Characters/Corpse_flower.tscn" id="11_fvfaf"]
 [ext_resource type="TileSet" uid="uid://d4gou6srq3dgg" path="res://Scenes/Game_play/Resourse/02/02Scene_tileset_fore.tres" id="12_yswn3"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
@@ -168,10 +169,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b611x"]
-size = Vector2(20, 182)
+size = Vector2(47, 182)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvfaf"]
-size = Vector2(530, 20)
+size = Vector2(598, 20)
 
 [node name="02Maze" type="Node2D"]
 metadata/_edit_vertical_guides_ = [-935.0, 909.0]
@@ -361,26 +362,21 @@ shape = SubResource("RectangleShape2D_b611x")
 position = Vector2(900, -59)
 shape = SubResource("RectangleShape2D_b611x")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Scene/Edge"]
+position = Vector2(23.5, -139)
+shape = SubResource("RectangleShape2D_b611x")
+
 [node name="killzone" type="Node" parent="Scene"]
 
 [node name="Killzone" type="Area2D" parent="Scene/killzone"]
 position = Vector2(736, 0)
+collision_layer = 3
 script = ExtResource("8_flaqq")
 metadata/_custom_type_script = "uid://drb7fi0rr1elp"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/killzone/Killzone"]
-position = Vector2(-207, 75)
+position = Vector2(-241, 75)
 shape = SubResource("RectangleShape2D_fvfaf")
-
-[node name="Player" parent="." instance=ExtResource("5_b611x")]
-position = Vector2(-870, -2)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(4, 4)
-limit_left = -935
-limit_right = 909
-limit_bottom = 50
-limit_smoothed = true
 
 [node name="ForeGround" type="ParallaxBackground" parent="."]
 layer = 3
@@ -410,3 +406,19 @@ offset_top = 35.0
 offset_right = 611.0
 offset_bottom = 60.0
 color = Color(0, 0, 0, 1)
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CorpseFlower" parent="Characters" instance=ExtResource("11_fvfaf")]
+position = Vector2(529, -46)
+
+[node name="Player" parent="." instance=ExtResource("5_b611x")]
+position = Vector2(-870, -2)
+collision_layer = 3
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(4, 4)
+limit_left = -935
+limit_right = 909
+limit_bottom = 50
+limit_smoothed = true

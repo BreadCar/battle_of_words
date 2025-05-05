@@ -507,6 +507,9 @@ hframes = 4
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 32)
 
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -7)
+
 [node name="Wall_checker" type="RayCast2D" parent="Graphics" index="3"]
 position = Vector2(11, -8)
 target_position = Vector2(-36, 0)

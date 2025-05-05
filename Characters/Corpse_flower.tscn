@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1xncc5i7d3uj"]
+
+[ext_resource type="Script" uid="uid://ba73kodnj526k" path="res://classes/corpse_flower.gd" id="1_7ur85"]
+[ext_resource type="SpriteFrames" uid="uid://njgyp2l1gcis" path="res://Assets/Character/Corpse_flower/corpse_flower.tres" id="2_yn7ff"]
+[ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="3_5g30m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yn7ff"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5g30m"]
+radius = 20.025
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ox4o"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_7ur85")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_yn7ff")
+animation = &"attack"
+autoplay = "idle"
+frame_progress = 0.591199
+
+[node name="Killzone" type="Area2D" parent="."]
+script = ExtResource("3_5g30m")
+metadata/_custom_type_script = "uid://drb7fi0rr1elp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("CircleShape2D_yn7ff")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5g30m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7ox4o")

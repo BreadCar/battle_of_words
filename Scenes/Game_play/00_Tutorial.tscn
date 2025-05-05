@@ -252,10 +252,6 @@ tile_set = SubResource("TileSet_5nsto")
 position = Vector2(-331, -61)
 shape = SubResource("RectangleShape2D_40qop")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Scene/Edge"]
-position = Vector2(565, -61)
-shape = SubResource("RectangleShape2D_40qop")
-
 [node name="Sprite2D" type="Sprite2D" parent="Scene/Edge"]
 modulate = Color(0.360784, 0.537255, 0.662745, 1)
 z_index = 5
@@ -264,15 +260,17 @@ scale = Vector2(0.329611, 0.358576)
 texture = ExtResource("8_4atdx")
 
 [node name="Killzone" type="Area2D" parent="Scene/Edge/Sprite2D"]
+collision_layer = 3
 script = ExtResource("4_3icsq")
 metadata/_custom_type_script = "uid://drb7fi0rr1elp"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Scene/Edge/Sprite2D/Killzone"]
-position = Vector2(99.6688, -13.944)
+position = Vector2(87.9825, -13.944)
 shape = SubResource("RectangleShape2D_3pq81")
 
 [node name="Player" parent="." instance=ExtResource("6_3pq81")]
 position = Vector2(-235, 0)
+collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
