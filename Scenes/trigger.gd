@@ -79,29 +79,29 @@ var enemy_killed = false
 #		check_activation()
 
 # 检查是否激活
-func check_activation():
-	if current_text == activation_text:
-		activate()
-
-# 激活机关
-func activate():
-	activated = true
-#	text_label.text = "ACTIVATED"
-#	text_label.modulate = Color(0, 1, 0, 1)
-	
-	# 消灭附近的敌人
-	var enemies = get_tree().get_nodes_in_group("enemies")
-	for enemy in enemies:
-		if enemy.position.distance_to(position) < 300:
-			enemy.die()
-			enemy_killed = true
-
-# 掉落新的材料
-func drop_material():
-	if enemy_killed:
-		@warning_ignore("shadowed_variable_base_class")
-		var material = preload("res://Components/ritual_material.tscn").instantiate()
-		get_parent().add_child(material)
-		material.position = position + Vector2(randi_range(-50, 50), randi_range(-50, 50))
-		material.set_new_character(activation_text)
-		enemy_killed = false
+#func check_activation():
+	#if current_text == activation_text:
+		#activate()
+#
+## 激活机关
+#func activate():
+	#activated = true
+##	text_label.text = "ACTIVATED"
+##	text_label.modulate = Color(0, 1, 0, 1)
+	#
+	## 消灭附近的敌人
+	#var enemies = get_tree().get_nodes_in_group("enemies")
+	#for enemy in enemies:
+		#if enemy.position.distance_to(position) < 300:
+			#enemy.die()
+			#enemy_killed = true
+#
+## 掉落新的材料
+#func drop_material():
+	#if enemy_killed:
+		#@warning_ignore("shadowed_variable_base_class")
+		#var material = preload("res://Components/ritual_material.tscn").instantiate()
+		#get_parent().add_child(material)
+		#material.position = position + Vector2(randi_range(-50, 50), randi_range(-50, 50))
+		#material.set_new_character(activation_text)
+		#enemy_killed = false

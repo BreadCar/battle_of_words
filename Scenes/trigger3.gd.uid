@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-uid://qneqwlavb630
-=======
 uid://bo8qnydfkqbal
->>>>>>> a4e47f6 (feat:建立了killzone通用组件(在需要使用时使用new启用，之后及时释放),实现了尖刺和死亡逻辑)
