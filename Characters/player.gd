@@ -38,16 +38,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
 	if event.is_action_pressed("interact") and interacting_with:
-		print("[DEBUG] Interact input - controling before: ", controling)
 		var interacted = interacting_with.back()
 		interacted.interact()
-		match controling:
-			-1:  # 直接设置为1表示开始控制
-				controling = 1
-				print("[DEBUG] Platform interact - controling set to: ", controling)
-			1:
-				controling = -1
-				print("[DEBUG] Platform interact - controling set to: ", controling)
+		if interacting_with.back() is Platform_Interacter:
+			print("[DEBUG] Interact input - controling before: ", controling)
+			match controling:
+				-1:  # 直接设置为1表示开始控制
+					controling = 1
+					print("[DEBUG] Platform interact - controling set to: ", controling)
+				1:
+					controling = -1
+					print("[DEBUG] Platform interact - controling set to: ", controling)
 
 func kill() -> void:
 	if not killed:  # 防止重复触发

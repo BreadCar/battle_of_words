@@ -8,10 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dgy78yxhn2l1u" path="res://Characters/slime.tscn" id="5_p70al"]
 [ext_resource type="Script" uid="uid://6sxtwf3grmkf" path="res://classes/interactable.gd" id="6_45d1s"]
 [ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="8_uo7di"]
+[ext_resource type="Script" uid="uid://dqherf4g4u2si" path="res://classes/platform_packger.gd" id="9_7yo87"]
 [ext_resource type="Texture2D" uid="uid://fn5m5tn5mseg" path="res://Assets/Keyboard/gdb-keyboard-2.png" id="9_kn06e"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_kn06e"]
-[ext_resource type="PackedScene" uid="uid://d1xncc5i7d3uj" path="res://Characters/Corpse_flower.tscn" id="11_ti1bm"]
+
 [ext_resource type="PackedScene" uid="uid://b4wfegpy1gu42" path="res://Characters/Trap.tscn" id="12_op4cu"]
+
+[ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="11_ti1bm"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0p05"]
 texture = ExtResource("1_5cjrv")
@@ -170,14 +174,16 @@ script = ExtResource("10_kn06e")
 metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
 
 [node name="Platform" type="Node" parent="."]
+script = ExtResource("9_7yo87")
+metadata/_custom_type_script = "uid://dqherf4g4u2si"
 
 [node name="Platform" parent="Platform" instance=ExtResource("8_uo7di")]
 position = Vector2(550, -73)
 
 [node name="Interact_point" type="Area2D" parent="Platform"]
 collision_mask = 3
-script = ExtResource("6_45d1s")
-metadata/_custom_type_script = "uid://6sxtwf3grmkf"
+script = ExtResource("11_ti1bm")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Interact_point"]
 position = Vector2(493, -10)
@@ -188,8 +194,7 @@ texture = ExtResource("9_kn06e")
 region_enabled = true
 region_rect = Rect2(448, 16, 12, 16)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("11_ti1bm")]
-position = Vector2(-134, -31)
+
 
 [node name="Spike_box" parent="." instance=ExtResource("12_op4cu")]
 position = Vector2(-135, 43)

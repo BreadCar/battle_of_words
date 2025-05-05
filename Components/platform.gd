@@ -1,5 +1,5 @@
 class_name Platform
-extends Area2D
+extends CharacterBody2D
 
 @onready var interact_point: Interactable = $"../Interact_point"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -13,8 +13,8 @@ var is_waiting_for_input: bool = false
 func _ready():
 	interact_point.interacted.connect(_on_interacted)
 	# Set collision layers through Project Settings
-	collision_layer = 1  
-	collision_mask = 1   
+	collision_layer = 1 << 0 | 1 << 1  # Layer 1 (World) and Layer 2 (Player)
+	collision_mask = 1 << 0 | 1 << 1   # Collide with World and Player
 	
 	# Connect to existing EventBus node
 	event_bus.connect("platform_control_started", _on_platform_control_started)
@@ -50,19 +50,16 @@ func _input(event):
 
 func _physics_process(delta):
 	if is_controlled and current_direction != Vector2.ZERO:
-		var new_position = position + current_direction * move_speed * delta
-		var space_state = get_world_2d().direct_space_state
-		var query = PhysicsRayQueryParameters2D.create(
-			position,
-			new_position,
-			collision_mask
-		)
-		var result = space_state.intersect_ray(query)
+		var velocity = current_direction * move_speed
+		var collision = move_and_collide(velocity * delta)
 		
-		if result:
+		if collision:
+			# 检查碰撞对象是否是玩家
+			if collision.get_collider() is Player:
+				# 将玩家推开避免卡住
+				var push_vector = velocity.normalized() * 10
+				collision.get_collider().velocity += push_vector
 			current_direction = Vector2.ZERO  # 停止移动但保持控制状态
-		else:
-			position = new_position
 
 func _on_platform_control_started(direction: Vector2):
 	current_direction = direction
