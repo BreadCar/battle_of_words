@@ -4,6 +4,7 @@ extends Node
 # Platform Control Signals
 signal platform_control_started(direction: Vector2)
 signal platform_control_ended()
+
 signal player_control_locked()
 signal player_control_unlocked()
 signal slime_killed(type: String)  # 史莱姆类型参数
@@ -20,8 +21,8 @@ var player_skills:={
 }
 
 var kill_counters = {
-    "slime": 0,
-    "corpse_flower": 0
+	"slime": 0,
+	"corpse_flower": 0
 }
 
 

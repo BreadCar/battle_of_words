@@ -10,6 +10,7 @@ signal interacted
 @onready var cast_request_timer: Timer = $Timers/cast_request_timer
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var event_bus: EventBus = %EventBus
 
 enum State {
 	IDLE,
@@ -40,75 +41,75 @@ var can_clear:=false
 var can_modify:=false
 
 func _ready():
-	EventBus.connect("slime_killed",_on_slime_killed)
-	EventBus.connect("slime_unlocked,_on_skill_unlocked)
-	EventBus.connect("corpse_flower_killed", _on_corpse_flower_killed)
+	event_bus.slime_killed.connect(_on_slime_killed)
+	event_bus.slime_unlocked.connect(_on_skill_unlocked)
+	event_bus.corpse_flower_killed.connect(_on_corpse_flower_killed)
 
 func _on_slime_killed(type: String):
-	EventBus.kill_counters.slime += 1
-	match  EventBus.kill_counters.slime:
+	event_bus.kill_counters.slime += 1
+	match  event_bus.kill_counters.slime:
 		1:
-            EventBus.player_skills.manifest.up = true
-            EventBus.emit_signal("skill_unlocked", "manifest", "up")
-        2:
-            EventBus.player_skills.manifest.down = true
-            EventBus.emit_signal("skill_unlocked", "manifest", "down")
-        3:
-            EventBus.player_skills.manifest.left = true
-            EventBus.emit_signal("skill_unlocked", "manifest", "left")
-        4:
-            EventBus.player_skills.manifest.right = true
-            EventBus.emit_signal("skill_unlocked", "manifest", "right")
+			event_bus.player_skills.manifest.up = true
+			event_bus.emit_signal("skill_unlocked", "manifest", "up")
+		2:
+			event_bus.player_skills.manifest.down = true
+			event_bus.emit_signal("skill_unlocked", "manifest", "down")
+		3:
+			event_bus.player_skills.manifest.left = true
+			event_bus.emit_signal("skill_unlocked", "manifest", "left")
+		4:
+			event_bus.player_skills.manifest.right = true
+			event_bus.emit_signal("skill_unlocked", "manifest", "right")
 
-func corpse_flower_killed():
-	EventBus.kill_counters.corpse_flower+=1
-	match EventBus.kill_counters.corpse_flower:
-        1:
-            EventBus.player_skills.erase.true = true
-            EventBus.emit_signal("skill_unlocked", "erase", "true")
-        2:
-            EventBus.player_skills.erase.false = true
-            EventBus.emit_signal("skill_unlocked", "erase", "false")
+func _on_corpse_flower_killed():
+	event_bus.kill_counters.corpse_flower+=1
+	match event_bus.kill_counters.corpse_flower:
+		1:
+			event_bus.player_skills.clear= true
+			event_bus.emit_signal("skill_unlocked", "erase", "true")
+		2:
+			event_bus.player_skills.clear = true
+			event_bus.emit_signal("skill_unlocked", "erase", "false")
 
 func _on_skill_unlocked(skill_type: String, ability_name: String):
-    match skill_type:
-        "manifest":
-            print("解锁显现·%s 能力" % ability_name)
-            _enable_direction_ability(ability_name)
-        "erase":
-            print("解锁抹除·%s 能力" % ability_name)
-            _enable_logic_ability(ability_name)
-        "modify":
-            print("解锁抹除·%s 能力" % ability_name)
-			 _enable_logic_ability(ability_name)
+	match skill_type:
+		"manifest":
+			print("解锁显现·%s 能力" % ability_name)
+			_enable_direction_ability(ability_name)
+		"erase":
+			print("解锁抹除·%s 能力" % ability_name)
+			_enable_logic_ability(ability_name)
+		"modify":
+			print("解锁抹除·%s 能力" % ability_name)
+			_enable_logic_ability(ability_name)
 
 func _enable_direction_ability(dir: String):
-    match dir:
-        "up":
-            $UpIndicator.visible = true
-        "down":
-            $DownIndicator.visible = true
-        "left":
-            $LeftIndicator.visible = true
-        "right":
-            $RightIndicator.visible = true
+	match dir:
+		"up":
+			$UpIndicator.visible = true
+		"down":
+			$DownIndicator.visible = true
+		"left":
+			$LeftIndicator.visible = true
+		"right":
+			$RightIndicator.visible = true
 
 func _enable_logic_ability(logic: String):
-    # 实现逻辑能力的具体效果 
-    match logic:
-        "true":
-            $TrueParticles.emitting = true
-        "false":
-            $FalseParticles.emitting = true
+	# 实现逻辑能力的具体效果 
+	match logic:
+		"true":
+			$TrueParticles.emitting = true
+		"false":
+			$FalseParticles.emitting = true
 
 func _physics_process(delta):
-    # 检查终极技能解锁条件
-    if (EventBus.kill_counters.slime >= 4 && 
-        EventBus.kill_counters.corpse_flower >= 2 &&
-        !EventBus.player_skills.modify):
-        
-        EventBus.player_skills.modify = true
-        EventBus.emit_signal("skill_unlocked", "modify", "")
+	# 检查终极技能解锁条件
+	if (event_bus.kill_counters.slime >= 4 && 
+		event_bus.kill_counters.corpse_flower >= 2 &&
+		!event_bus.player_skills.modify):
+		
+		event_bus.player_skills.modify = true
+		event_bus.emit_signal("skill_unlocked", "modify", "")
 			 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):

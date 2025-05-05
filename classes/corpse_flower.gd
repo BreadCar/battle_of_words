@@ -3,6 +3,7 @@ extends CharacterBody2D
 enum State {
 	IDLE,
 	ATTACK,
+	DIE,
 }
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -20,6 +21,10 @@ func _ready():
 
 	sprite.play("idle")
 
+func kill():
+	EventBus.corpse_flower_killed.emit()
+	queue_free()
+
 func _process(delta):
 	match current_state:
 		State.IDLE:
@@ -28,6 +33,8 @@ func _process(delta):
 		State.ATTACK:
 			# 等待动画自动回调 _on_animation_finished
 			pass
+		State.DIE:
+			kill()
 
 func _on_body_entered(body):
 	if body is Player:
@@ -61,7 +68,3 @@ func _spawn_killzone():
 	active_killzone = killzone_scene.instantiate()
 	add_child(active_killzone)
 	active_killzone.position = Vector2(0, 0) 
-
-func _on_death():
-    EventBus.emit_signal("corpse_flower_killed")
-    queue_free()
