@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://blupqjdeu1u6g"]
+[gd_scene load_steps=36 format=3 uid="uid://blupqjdeu1u6g"]
 
 [ext_resource type="Texture2D" uid="uid://bl48wihq8i0qf" path="res://Assets/Scene/Start_Page/Start.png" id="1_pfp41"]
 [ext_resource type="Texture2D" uid="uid://d1ik4g2re3iqj" path="res://Assets/Character/HERO_FREE_Samurai 2D Pixel Art v1.2/Sprites/IDLE.png" id="2_3h0en"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://cs0akqte7i70w" path="res://Components/start_button.gd" id="9_3h0en"]
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="10_0cbnd"]
 [ext_resource type="Script" uid="uid://dptqfp8j21ha" path="res://Components/exit_button.gd" id="10_c62j2"]
+[ext_resource type="FontFile" uid="uid://df31kyd3cfc32" path="res://Assets/UI/Cubic-11-1.000-R-2.ttf" id="12_p37k7"]
+[ext_resource type="AudioStream" uid="uid://dbkb2fb51k87r" path="res://Assets/Music/主界面.wav" id="13_c62j2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7v051"]
 size = Vector2(892.225, 20)
@@ -220,13 +222,13 @@ texture = ExtResource("7_ffbbd")
 
 [node name="Title" type="Label" parent="UI/Title_panel"]
 layout_mode = 0
-offset_left = 83.0
-offset_top = 188.0
-offset_right = 820.0
-offset_bottom = 288.0
-theme_override_fonts/font = ExtResource("4_ixw72")
+offset_left = 201.0
+offset_top = 167.0
+offset_right = 938.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("12_p37k7")
 theme_override_font_sizes/font_size = 100
-text = "Whispers of Wordcraft"
+text = "言灵异语"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-6, 138)
@@ -237,3 +239,7 @@ limit_bottom = 400
 unique_name_in_owner = true
 script = ExtResource("10_0cbnd")
 metadata/_custom_type_script = "uid://d3uh6ck1ycabq"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_c62j2")
+autoplay = true

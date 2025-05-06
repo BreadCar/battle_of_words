@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://xphfa4voimox"]
+[gd_scene load_steps=28 format=4 uid="uid://xphfa4voimox"]
 
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="5_3icsq"]
 [ext_resource type="TileSet" uid="uid://rxbp7ve8jf8j" path="res://Scenes/Game_play/Resourse/Scene_tileset_Foreground.tres" id="6_3icsq"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://d3uh6ck1ycabq" path="res://addons/event_bus.gd" id="11_w6nsl"]
 [ext_resource type="Script" uid="uid://cpem4oxy34wss" path="res://classes/brambles.gd" id="12_8taie"]
 [ext_resource type="Script" uid="uid://drb7fi0rr1elp" path="res://Components/killzone.gd" id="13_1c45w"]
+[ext_resource type="AudioStream" uid="uid://hnbkhrei2rxh" path="res://Assets/Music/引导关.wav" id="15_8taie"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
 load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
@@ -367,6 +368,10 @@ metadata/_custom_type_script = "uid://drb7fi0rr1elp"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Brambles/Killzone"]
 position = Vector2(-10.0581, 163.442)
 shape = SubResource("RectangleShape2D_dnmh5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_8taie")
+autoplay = true
 
 [editable path="NPC"]
 [editable path="NPC/BubbleDialog"]

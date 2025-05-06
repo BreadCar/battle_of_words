@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://xwh6t27oe7d8"]
+[gd_scene load_steps=42 format=4 uid="uid://xwh6t27oe7d8"]
 
 [ext_resource type="TileSet" uid="uid://d02s7btd6wcy2" path="res://Scenes/Game_play/Resourse/Scene_tileset_2.tres" id="3_lsw8j"]
 [ext_resource type="TileSet" uid="uid://bcbt3jdmwoa4e" path="res://Scenes/Game_play/Resourse/Scene_tileset.tres" id="6_x2g80"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bqa4t8ywjbaw8" path="res://Components/spike.tscn" id="16_x2g80"]
 [ext_resource type="Texture2D" uid="uid://dk8pesy2kc6vc" path="res://Assets/Stones/Green.png" id="17_83jhx"]
 [ext_resource type="Texture2D" uid="uid://bi3ccanngipxl" path="res://Assets/Stones/Yellow.png" id="21_c50yv"]
+[ext_resource type="AudioStream" uid="uid://dhd6p4n6fmiq6" path="res://Assets/Music/第一关.mp3" id="22_mugtv"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_40qop"]
 load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
@@ -386,7 +387,7 @@ motion_scale = Vector2(1.2, 1)
 z_index = 3
 position = Vector2(132, -29)
 scale = Vector2(1.86969, 1.86969)
-tile_map_data = PackedByteArray("AADz//3/AAAKAAAAAAAEAP//AAAAAAUAAAD+/wAAAAAEAAcAAAD3/wAAAAAHAAUAAAAIAP3/AAAKAAAAABAMAAEAAAAEAAcAAAAKAAEAAAAEAAcAAAACAAEAAAAHAAUAAAABAAEAAAAHAAUAABAJAAEAAAAHAAUAABALAAEAAAAHAAUAABAOAAAAAAAEAAcAAAD7/wEAAAAHAAUAAAD5/wEAAAAEAAcAAAD6/wEAAAABAAQAAAD4/wEAAAAEAAcAAAD1/wEAAAAEAAcAAADy/wEAAAAEAAcAAADx/wEAAAAHAAUAAADw/wEAAAAHAAUAAADv/wEAAAAEAAcAAADu/wEAAAAHAAUAAADt/wEAAAAHAAUAAAAPAAEAAAAHAAUAAAAQAAEAAAAHAAUAAAAQAAAAAAAEAAcAAAARAAEAAAAHAAUAAAARAAAAAAAHAAUAAAASAAEAAAAHAAUAAAASAAAAAAAEAAcAAADz/wMAAAAHAAUAACDx/wMAAAAEAAcAACDv/wMAAAAEAAcAACDu/wMAAAAEAAcAACD1/wIAAAAHAAUAACD2/wMAAAAHAAUAACD3/wMAAAAAAAUAACD7/wMAAAAHAAUAACAFAAMAAAAHAAUAACAMAAMAAAAHAAUAACALAAMAAAAAAAUAACARAAMAAAAAAAUAACD4/wIAAAAHAAUAACD5/wMAAAAHAAUAACD4/wQAAAAHAAUAACD5/wQAAAAHAAUAACD8/wMAAAAHAAUAACD9/wIAAAAHAAUAACD+/wIAAAAHAAUAACD+/wMAAAAHAAUAACAAAAMAAAAHAAUAACAAAAIAAAAHAAUAACABAAMAAAAEAAcAACADAAIAAAAEAAcAACAGAAIAAAAHAAUAACAHAAIAAAAEAAcAACAIAAMAAAAEAAcAACAKAAMAAAAEAAcAACANAAIAAAAEAAcAACAHAAMAAAAHAAUAACAOAAIAAAAHAAUAACAPAAMAAAAHAAUAACASAAMAAAAHAAUAACATAAIAAAAHAAUAACAQAAQAAAAHAAUAACABAAQAAAAHAAUAACACAAMAAAAHAAUAACAEAAIAAAAHAAUAACAEAAMAAAAAAAUAACD0/wMAAAAHAAUAACD0/wQAAAAHAAUAACD+/wQAAAAHAAUAACAFAAIAAAAHAAUAACADAAMAAAAHAAUAACANAAMAAAAHAAUAACAQAAMAAAAHAAUAACAPAAQAAAAHAAUAACAOAAMAAAAHAAUAACD//wMAAAAEAAcAACD//wIAAAAEAAcAACA=")
+tile_map_data = PackedByteArray("AADz//3/AAAKAAAAAAAEAP//AAAAAAUAAAD+/wAAAAAEAAcAAAD3/wAAAAAHAAUAAAAMAAEAAAAEAAcAAAAKAAEAAAAEAAcAAAACAAEAAAAHAAUAAAABAAEAAAAHAAUAABALAAEAAAAHAAUAABAOAAAAAAAEAAcAAAD7/wEAAAAHAAUAAAD5/wEAAAAEAAcAAAD6/wEAAAABAAQAAAD4/wEAAAAEAAcAAAD1/wEAAAAEAAcAAADy/wEAAAAEAAcAAADx/wEAAAAHAAUAAADw/wEAAAAHAAUAAADv/wEAAAAEAAcAAADu/wEAAAAHAAUAAADt/wEAAAAHAAUAAAAPAAEAAAAHAAUAAAAQAAEAAAAHAAUAAAAQAAAAAAAEAAcAAAARAAEAAAAHAAUAAAARAAAAAAAHAAUAAAASAAEAAAAHAAUAAAASAAAAAAAEAAcAAADz/wMAAAAHAAUAACDx/wMAAAAEAAcAACDv/wMAAAAEAAcAACDu/wMAAAAEAAcAACD1/wIAAAAHAAUAACD2/wMAAAAHAAUAACD3/wMAAAAAAAUAACD7/wMAAAAHAAUAACAFAAMAAAAHAAUAACAMAAMAAAAHAAUAACALAAMAAAAAAAUAACARAAMAAAAAAAUAACD4/wIAAAAHAAUAACD5/wMAAAAHAAUAACD4/wQAAAAHAAUAACD5/wQAAAAHAAUAACD8/wMAAAAHAAUAACD9/wIAAAAHAAUAACD+/wIAAAAHAAUAACD+/wMAAAAHAAUAACAAAAMAAAAHAAUAACAAAAIAAAAHAAUAACABAAMAAAAEAAcAACADAAIAAAAEAAcAACAKAAMAAAAEAAcAACANAAIAAAAEAAcAACAOAAIAAAAHAAUAACAPAAMAAAAHAAUAACASAAMAAAAHAAUAACATAAIAAAAHAAUAACAQAAQAAAAHAAUAACABAAQAAAAHAAUAACACAAMAAAAHAAUAACAEAAIAAAAHAAUAACAEAAMAAAAAAAUAACD0/wMAAAAHAAUAACD0/wQAAAAHAAUAACD+/wQAAAAHAAUAACAFAAIAAAAHAAUAACADAAMAAAAHAAUAACANAAMAAAAHAAUAACAQAAMAAAAHAAUAACAPAAQAAAAHAAUAACAOAAMAAAAHAAUAACD//wMAAAAEAAcAACD//wIAAAAEAAcAACA=")
 tile_set = ExtResource("10_ew4r3")
 
 [node name="ParallaxUnderground" type="ParallaxLayer" parent="ForeGround"]
@@ -451,6 +452,7 @@ shape = SubResource("RectangleShape2D_2shyc")
 
 [node name="Player" parent="." instance=ExtResource("11_q306e")]
 position = Vector2(-269, -2)
+collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
@@ -537,6 +539,78 @@ region_rect = Rect2(80, 64, 80, 16)
 [node name="StaticBody2D" type="StaticBody2D" parent="Interactable/Platform2/Platform/Sprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Sprite2D/StaticBody2D"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_lqr3u")
+
+[node name="Platform4" parent="Interactable/Platform2/Platform" instance=ExtResource("7_hiw41")]
+position = Vector2(444, 119)
+collision_layer = 4
+
+[node name="Interact_point4" type="Area2D" parent="Interactable/Platform2/Platform"]
+position = Vector2(-273, 14)
+collision_mask = 3
+script = ExtResource("8_pifuj")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Interact_point4"]
+visible = false
+position = Vector2(570, -29)
+shape = SubResource("RectangleShape2D_x2g80")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/Platform2/Platform/Interact_point4/CollisionShape2D"]
+visible = false
+material = SubResource("ShaderMaterial_c50yv")
+position = Vector2(0, 5)
+texture = ExtResource("9_2shyc")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Interactable/Platform2/Platform"]
+position = Vector2(184, -119)
+texture = ExtResource("11_mugtv")
+region_enabled = true
+region_rect = Rect2(80, 64, 80, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Interactable/Platform2/Platform/Sprite2D2"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Sprite2D2/StaticBody2D"]
+visible = false
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_lqr3u")
+
+[node name="Platform5" parent="Interactable/Platform2/Platform" instance=ExtResource("7_hiw41")]
+position = Vector2(365, 56)
+collision_layer = 4
+
+[node name="Interact_point5" type="Area2D" parent="Interactable/Platform2/Platform"]
+position = Vector2(-273, 14)
+collision_mask = 3
+script = ExtResource("8_pifuj")
+metadata/_custom_type_script = "uid://dbjunicpytvjx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Interact_point5"]
+visible = false
+position = Vector2(570, -29)
+shape = SubResource("RectangleShape2D_x2g80")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/Platform2/Platform/Interact_point5/CollisionShape2D"]
+visible = false
+material = SubResource("ShaderMaterial_c50yv")
+position = Vector2(0, 5)
+texture = ExtResource("9_2shyc")
+region_rect = Rect2(448, 16, 12, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Interactable/Platform2/Platform"]
+position = Vector2(184, -119)
+texture = ExtResource("11_mugtv")
+region_enabled = true
+region_rect = Rect2(80, 64, 80, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Interactable/Platform2/Platform/Sprite2D3"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Platform2/Platform/Sprite2D3/StaticBody2D"]
+visible = false
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_lqr3u")
 
@@ -640,5 +714,9 @@ position = Vector2(175, 228)
 [node name="TransitionTrigger2" parent="." instance=ExtResource("13_lsw8j")]
 position = Vector2(597, -163)
 next_scene_path = "res://Scenes/Game_play/02_Maze.tscn"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_mugtv")
+autoplay = true
 
 [editable path="NPC"]

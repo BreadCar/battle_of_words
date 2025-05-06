@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://jqknpdupyri2"]
+[gd_scene load_steps=23 format=4 uid="uid://jqknpdupyri2"]
 
 [ext_resource type="Texture2D" uid="uid://b5g2fhi2p2brj" path="res://Assets/Scene/02/Castle_Background_Black (1).png" id="1_jo076"]
 [ext_resource type="Texture2D" uid="uid://b1i157gb4wn7h" path="res://Assets/Scene/02/Castle_Background_Blue (1).png" id="2_dk7r5"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://wkmfp81xhh3y" path="res://Components/platform.tscn" id="13_j61ok"]
 [ext_resource type="Script" uid="uid://dbjunicpytvjx" path="res://Scenes/platform_interacter.gd" id="14_jtlna"]
 [ext_resource type="Texture2D" uid="uid://bpqcsx2kns6qb" path="res://Assets/Stones/Blue.png" id="15_j61ok"]
+[ext_resource type="AudioStream" uid="uid://dpxwbouxjh6gg" path="res://Assets/Music/最终关.wav" id="16_jtlna"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_opxq8"]
 load_path = "res://.godot/imported/background_0.png-2b61e56fb67ef7a5d11e8e8314343a04.ctex"
@@ -352,5 +353,9 @@ shape = SubResource("RectangleShape2D_r3ida")
 [node name="Sprite2D" type="Sprite2D" parent="Interact_point6/CollisionShape2D"]
 texture = ExtResource("15_j61ok")
 region_rect = Rect2(448, 16, 12, 16)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_jtlna")
+autoplay = true
 
 [editable path="NPC"]

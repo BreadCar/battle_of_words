@@ -35,7 +35,7 @@ var player_skills: Dictionary = {
 
 const Ground_State := [State.IDLE, State.RUN]
 const Player_Speed: float = 300
-const Jump_Velocity: float = -300
+const Jump_Velocity: float = -400
 const Accleration: float = Player_Speed / 0.2
 
 var gravity: float = ProjectSettings.get("physics/2d/default_gravity") 

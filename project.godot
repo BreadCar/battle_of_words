@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Prototype01_Battle_of_Words"
-run/main_scene="uid://c2u1mux2ffs7t"
+run/main_scene="uid://blupqjdeu1u6g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
